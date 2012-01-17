@@ -2,14 +2,14 @@ package org.scauhci.ExamSystem.android.service;
 
 import java.util.ArrayList;
 
-import org.scauhci.ExamSystem.android.dao.OptionDao;
-import org.scauhci.ExamSystem.android.pojo.OptionPojo;
+import org.scauhci.ExamSystem.android.dao.QuestionOptionDao;
+import org.scauhci.ExamSystem.android.pojo.QuestionOptionPojo;
 import org.scauhci.ExamSystem.android.pojo.QuestionPojo;
 import org.scauhci.ExamSystem.android.tool.ExecuteResultFlag;
 
 public class QuestionService {
 
-	OptionDao optionDao = null;
+	QuestionOptionDao questionOptionDao = null;
 	ExamService b = new ExamService();
 	
 	/*public ArrayList<QuestionPojo> getQuestionPojosByCoursePojo(CoursePojo coursePojo) {
@@ -17,9 +17,9 @@ public class QuestionService {
 		return questionPojos;
 	}*/
 	
-	public ArrayList<OptionPojo> getOptionPojosByQuestionPojo(QuestionPojo questionPojo) {
-		ArrayList<OptionPojo> optionPojos = null;
-		return optionPojos;
+	public ArrayList<QuestionOptionPojo> getQuestionOptionPojosByQuestionPojo(QuestionPojo questionPojo) {
+		ArrayList<QuestionOptionPojo> questionOptionPojos = null;
+		return questionOptionPojos;
 	}
 
 	public int addQuestionPojo(QuestionPojo questionPojo) {
@@ -32,12 +32,12 @@ public class QuestionService {
 		return executeResult;
 	}
 
-	public int addOptionPojo(OptionPojo optionPojo) {
+	public int addQuestionOptionPojo(QuestionOptionPojo questionOptionPojo) {
 		int executeResult = ExecuteResultFlag.ERROR;
 		return executeResult;
 	}
 	
-	public int deleteOptionPojo(OptionPojo optionPojo) {
+	public int deleteQuestionOptionPojo(QuestionOptionPojo questionOptionPojo) {
 		int executeResult = ExecuteResultFlag.ERROR;
 		return executeResult;
 	}
