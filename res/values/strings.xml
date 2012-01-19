@@ -3,5 +3,6 @@
 
     <string name="hello">Hello World, ExamSystemClientOnAndroidActivity!</string>
     <string name="app_name">ExamSystemClientOnAndroid</string>
+    <string name="database_name">exam_online.db</string>
 
 </resources>

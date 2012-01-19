@@ -106,4 +106,12 @@ public class SQLStatement {
 			+ ") ENGINE=InnoDB DEFAULT CHARSET=utf8;";
 
 	public static final String CREATE_TABLE_REMARK = "";
+	
+	public static final String INSERT = "INSERT INTO ? (?) VALUES (?)";
+	
+	public static final String DELETE = "DELETE FROM ? WHERE ?";
+	
+	public static final String UPDATE = "UPDATE ? SET ? WHERE ?";
+	
+	public static final String SELECT = "SELECT ? FROM ?";
 }
