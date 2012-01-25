@@ -10,73 +10,58 @@ public class PaperPojo {
 	private String paperName;
 	private int paperType;
 	private String teacherId;
-	private Time createTime;
+	private Time paperCreateTime;
 	private String courseId;
 	private int paperTotalScore;
 	private String paperExplain;
-
+	
+	public String getPaperId() {
+		return paperId;
+	}
+	public void setPaperId(String paperId) {
+		this.paperId = paperId;
+	}
+	public String getPaperName() {
+		return paperName;
+	}
+	public void setPaperName(String paperName) {
+		this.paperName = paperName;
+	}
 	public int getPaperType() {
 		return paperType;
 	}
-	
 	public void setPaperType(int paperType) {
 		this.paperType = paperType;
 	}
-	
-	public Time getCreateTime() {
-		return createTime;
+	public String getTeacherId() {
+		return teacherId;
 	}
-	
-	public void setCreateTime(Time createTime) {
-		this.createTime = createTime;
+	public void setTeacherId(String teacherId) {
+		this.teacherId = teacherId;
 	}
-	
-	public int getTotalScore() {
+	public Time getPaperCreateTime() {
+		return paperCreateTime;
+	}
+	public void setPaperCreateTime(Time paperCreateTime) {
+		this.paperCreateTime = paperCreateTime;
+	}
+	public String getCourseId() {
+		return courseId;
+	}
+	public void setCourseId(String courseId) {
+		this.courseId = courseId;
+	}
+	public int getPaperTotalScore() {
 		return paperTotalScore;
 	}
-	
-	public void setTotalScore(int totalScore) {
-		this.paperTotalScore = totalScore;
+	public void setPaperTotalScore(int paperTotalScore) {
+		this.paperTotalScore = paperTotalScore;
 	}
-	
 	public String getPaperExplain() {
 		return paperExplain;
 	}
-	
 	public void setPaperExplain(String paperExplain) {
 		this.paperExplain = paperExplain;
 	}
 
-	public String getPaperId() {
-		return paperId;
-	}
-
-	public void setPaperId(String paperId) {
-		this.paperId = paperId;
-	}
-
-	public String getPaperName() {
-		return paperName;
-	}
-
-	public void setPaperName(String paperName) {
-		this.paperName = paperName;
-	}
-
-	public String getTeacherId() {
-		return teacherId;
-	}
-
-	public void setTeacherId(String teacherId) {
-		this.teacherId = teacherId;
-	}
-
-	public String getCourseId() {
-		return courseId;
-	}
-
-	public void setCourseId(String courseId) {
-		this.courseId = courseId;
-	}
-	                 
 }

@@ -41,20 +41,20 @@ public class SubmitAnswerPojo {
 		this.studentId = studentId;
 	}
 
-	public float getStdScore() {
+	public float getQuestionStdScore() {
 		return questionStdScore;
 	}
 
-	public void setStdScore(float stdScore) {
-		this.questionStdScore = stdScore;
+	public void setQuestionStdScore(float questionStdScore) {
+		this.questionStdScore = questionStdScore;
 	}
 
-	public float getScore() {
+	public float getQuestionScore() {
 		return questionScore;
 	}
 
-	public void setScore(float score) {
-		this.questionScore = score;
+	public void setQuestionScore(float questionScore) {
+		this.questionScore = questionScore;
 	}
 
 }

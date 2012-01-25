@@ -108,7 +108,7 @@ public class DaoHelper extends SQLiteOpenHelper {
 
 	public Cursor select(String tableName, String[] keys,
 			String[] whereConditionKeys, String[] whereConditionValues) {
-		int executeResult = ExecuteResultFlag.ERROR;
+
 		String[] selectionArgs = null;
 
 		String selectConditions = null, whereConditions = null;

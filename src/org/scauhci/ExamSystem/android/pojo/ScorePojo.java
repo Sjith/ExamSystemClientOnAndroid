@@ -5,7 +5,7 @@ public class ScorePojo {
 	private String scoreId;
 	private String examId;
 	private String studentId;
-	private String paperScore;
+	private float paperScore = 0;
 
 	public String getScoreId() {
 		return scoreId;
@@ -31,11 +31,11 @@ public class ScorePojo {
 		this.studentId = studentId;
 	}
 
-	public String getScore() {
+	public float getPaperScore() {
 		return paperScore;
 	}
 
-	public void setScore(String score) {
+	public void setScore(float score) {
 		this.paperScore = score;
 	}
 

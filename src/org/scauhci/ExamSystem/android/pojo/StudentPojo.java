@@ -14,20 +14,20 @@ public class StudentPojo {
 		this.studentId = studentId;
 	}
 
-	public String getSudentName() {
+	public String getStudentName() {
 		return studentName;
 	}
 
-	public void setSudentName(String sudentName) {
-		this.studentName = sudentName;
+	public void setStudentName(String studentName) {
+		this.studentName = studentName;
 	}
 
-	public String getPassword() {
+	public String getStudentPassword() {
 		return studentPassword;
 	}
 
-	public void setPassword(String password) {
-		this.studentPassword = password;
+	public void setStudentPassword(String studentPassword) {
+		this.studentPassword = studentPassword;
 	}
 
 }

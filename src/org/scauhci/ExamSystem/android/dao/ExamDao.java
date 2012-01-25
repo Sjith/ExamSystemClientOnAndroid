@@ -1,11 +1,7 @@
 package org.scauhci.ExamSystem.android.dao;
 
-import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedList;
-import java.util.Set;
 
-import org.scauhci.ExamSystem.android.R;
 import org.scauhci.ExamSystem.android.pojo.ExamPojo;
 import org.scauhci.ExamSystem.android.tool.ExecuteResultFlag;
 
@@ -16,7 +12,11 @@ public class ExamDao {
 
 	DaoHelper daoHelper = new DaoHelper(null, "exam_online.db", null, 0);
 	String tableName = "exam";
-	ExamPojo examPojo = null;
+	private static ExamPojo latestExamPojo = null;
+	
+	public ExamDao() {
+		updateLatestExamPojo();
+	}
 
 	public int add(ExamPojo examPojo) {
 		int executeResult = ExecuteResultFlag.ERROR;
@@ -27,9 +27,9 @@ public class ExamDao {
 		String[] values = { examPojo.getExamId(), examPojo.getCourseId(),
 				examPojo.getTeacherId(), examPojo.getPaperId(),
 				examPojo.getExamExplain(), examPojo.getExamName(),
-				examPojo.getExamCreateTime() + "",
-				examPojo.getExamStartTime() + "",
-				examPojo.getExamEndTime() + "" };
+				examPojo.getExamCreateTime().format3339(true),
+				examPojo.getExamStartTime().format3339(true),
+				examPojo.getExamEndTime().format3339(true) };
 
 		daoHelper.insert(tableName, keys, values);
 
@@ -51,10 +51,7 @@ public class ExamDao {
 		int executeResult = ExecuteResultFlag.ERROR;
 
 		HashMap<String, String> keyValueMap = new HashMap<String, String>();
-		/*
-		 * if{ "examId", "courseId", "teacherId", "paperId", "examExplain",
-		 * "examName", "examCreateTime", "examStartTime", "examEndTime" }
-		 */
+		
 		if (examPojo.getCourseId() != null) {
 			keyValueMap.put("courseId", examPojo.getCourseId());
 		}
@@ -72,13 +69,13 @@ public class ExamDao {
 		}
 		if (examPojo.getExamCreateTime() != null) {
 			keyValueMap
-					.put("examCreateTime", examPojo.getExamCreateTime() + "");
+					.put("examCreateTime", examPojo.getExamCreateTime().format3339(true));
 		}
 		if (examPojo.getExamStartTime() != null) {
-			keyValueMap.put("examStartTime", examPojo.getExamStartTime() + "");
+			keyValueMap.put("examStartTime", examPojo.getExamStartTime().format3339(true));
 		}
 		if (examPojo.getExamEndTime() != null) {
-			keyValueMap.put("examEndTime", examPojo.getExamEndTime() + "");
+			keyValueMap.put("examEndTime", examPojo.getExamEndTime().format3339(true));
 		}
 		
 		String[] keys = new String[keyValueMap.size()];
@@ -108,13 +105,26 @@ public class ExamDao {
 			examPojo.setPaperId(examCursor.getString(examCursor.getColumnIndex("paperId")));
 			examPojo.setExamExplain(examCursor.getString(examCursor.getColumnIndex("examExplain")));
 			examPojo.setExamName(examCursor.getString(examCursor.getColumnIndex("examName")));
-			//examCreateTime,examStartTime,examEndTime aren't parsed into exampojo.
+			Time examCreateTime = new Time();
+			examCreateTime.parse3339(examCursor.getString(examCursor.getColumnIndex("examCreateTime")));
+			examPojo.setExamCreateTime(examCreateTime);
+			Time examStartTime = new Time();
+			examStartTime.parse3339(examCursor.getString(examCursor.getColumnIndex("examStartTime")));
+			examPojo.setExamCreateTime(examStartTime);
+			Time examEndTime = new Time();
+			examEndTime.parse3339(examCursor.getString(examCursor.getColumnIndex("examEndTime")));
+			examPojo.setExamCreateTime(examEndTime);
 		}
 		
 		return examPojo;
 	}
 
-	public ExamPojo getExamPojo() {
+	public static ExamPojo getLatestExamPojo() {
+		return latestExamPojo;
+	}
+	
+	public int updateLatestExamPojo() {
+		int executeResult = ExecuteResultFlag.ERROR;
 		ExamPojo examPojo = new ExamPojo();
 
 		String[] keys = { "*" };
@@ -127,29 +137,20 @@ public class ExamDao {
 			examPojo.setPaperId(examCursor.getString(examCursor.getColumnIndex("paperId")));
 			examPojo.setExamExplain(examCursor.getString(examCursor.getColumnIndex("examExplain")));
 			examPojo.setExamName(examCursor.getString(examCursor.getColumnIndex("examName")));
-			//examCreateTime,examStartTime,examEndTime aren't parsed into exampojo.
+			Time examCreateTime = new Time();
+			examCreateTime.parse3339(examCursor.getString(examCursor.getColumnIndex("examCreateTime")));
+			examPojo.setExamCreateTime(examCreateTime);
+			Time examStartTime = new Time();
+			examStartTime.parse3339(examCursor.getString(examCursor.getColumnIndex("examStartTime")));
+			examPojo.setExamCreateTime(examStartTime);
+			Time examEndTime = new Time();
+			examEndTime.parse3339(examCursor.getString(examCursor.getColumnIndex("examEndTime")));
+			examPojo.setExamCreateTime(examEndTime);
+			this.latestExamPojo = examPojo;
+			executeResult = ExecuteResultFlag.SUCCESS;
 		}
 		
-		return examPojo;
-	}
-	
-	public ExamPojo getLatestExamPojo() {
-		ExamPojo latestExamPojo = new ExamPojo();
-
-		String[] keys = { "*" };
-		
-		Cursor examCursor = daoHelper.select(tableName, keys, null, null);
-		if (examCursor.isFirst()) {
-			latestExamPojo.setExamId(examCursor.getString(examCursor.getColumnIndex("examId")));
-			latestExamPojo.setCourseId(examCursor.getString(examCursor.getColumnIndex("courseId")));
-			latestExamPojo.setTeacherId(examCursor.getString(examCursor.getColumnIndex("teacherId")));
-			latestExamPojo.setPaperId(examCursor.getString(examCursor.getColumnIndex("paperId")));
-			latestExamPojo.setExamExplain(examCursor.getString(examCursor.getColumnIndex("examExplain")));
-			latestExamPojo.setExamName(examCursor.getString(examCursor.getColumnIndex("examName")));
-			//examCreateTime,examStartTime,examEndTime aren't parsed into exampojo.
-		}
-		
-		return latestExamPojo;
+		return executeResult;
 	}
 
 	public int getNumberOfExam() {
@@ -173,9 +174,10 @@ public class ExamDao {
 	}
 
 	public Time getRemainTime(Time targetTime) {
-		Time remainTime = null;
-		
-		remainTime = Time.
+		Time remainTime = new Time();
+		Time examStartTime = this.latestExamPojo.getExamStartTime();
+
+		remainTime.set(targetTime.toMillis(false) - examStartTime.toMillis(false));
 		
 		return remainTime;
 	}

@@ -35,28 +35,28 @@ public class RemarkPojo {
 		this.remarkTitle = remarkTitle;
 	}
 
-	public String getContent() {
+	public String getRemarkContent() {
 		return remarkContent;
 	}
 
-	public void setContent(String content) {
-		this.remarkContent = content;
+	public void setRemarkContent(String remarkContent) {
+		this.remarkContent = remarkContent;
 	}
 
-	public Time getCreateTime() {
+	public Time getRemarkCreateTime() {
 		return remarkCreateTime;
 	}
 
-	public void setCreateTime(Time createTime) {
-		this.remarkCreateTime = createTime;
+	public void setRemarkCreateTime(Time remarkCreateTime) {
+		this.remarkCreateTime = remarkCreateTime;
 	}
 
-	public Time getUpdateTime() {
+	public Time getRemarkUpdateTime() {
 		return remarkUpdateTime;
 	}
 
-	public void setUpdateTime(Time updateTime) {
-		this.remarkUpdateTime = updateTime;
+	public void setRemarkUpdateTime(Time remarkUpdateTime) {
+		this.remarkUpdateTime = remarkUpdateTime;
 	}
 
 }
