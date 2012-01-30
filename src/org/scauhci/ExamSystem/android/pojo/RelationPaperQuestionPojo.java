@@ -6,6 +6,7 @@ public class RelationPaperQuestionPojo {
 	private String examId;
 	private String paperId;
 	private String questionId;
+	private int questionIndex;
 
 	public String getRelationPaperQuestionId() {
 		return relationPaperQuestionId;
@@ -37,6 +38,14 @@ public class RelationPaperQuestionPojo {
 
 	public void setQuestionId(String questionId) {
 		this.questionId = questionId;
+	}
+
+	public int getQuestionIndex() {
+		return questionIndex;
+	}
+
+	public void setQuestionIndex(int questionIndex) {
+		this.questionIndex = questionIndex;
 	}
 
 }

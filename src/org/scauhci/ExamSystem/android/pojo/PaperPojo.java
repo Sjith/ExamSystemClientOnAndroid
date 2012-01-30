@@ -12,7 +12,7 @@ public class PaperPojo {
 	private String teacherId;
 	private Time paperCreateTime;
 	private String courseId;
-	private int paperTotalScore;
+	private float paperTotalScore;
 	private String paperExplain;
 	
 	public String getPaperId() {
@@ -51,10 +51,10 @@ public class PaperPojo {
 	public void setCourseId(String courseId) {
 		this.courseId = courseId;
 	}
-	public int getPaperTotalScore() {
+	public float getPaperTotalScore() {
 		return paperTotalScore;
 	}
-	public void setPaperTotalScore(int paperTotalScore) {
+	public void setPaperTotalScore(float paperTotalScore) {
 		this.paperTotalScore = paperTotalScore;
 	}
 	public String getPaperExplain() {

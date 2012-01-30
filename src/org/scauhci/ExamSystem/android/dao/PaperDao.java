@@ -68,7 +68,7 @@ public class PaperDao {
 		if (paperPojo.getCourseId() != null) {
 			keyValueMap.put("courseId", paperPojo.getCourseId());
 		}
-		if (paperPojo.getPaperTotalScore() != -1) {
+		if (paperPojo.getPaperTotalScore() != 0) {
 			keyValueMap.put("paperTotalScore", paperPojo.getPaperTotalScore()
 					+ "");
 		}
@@ -109,7 +109,7 @@ public class PaperDao {
 					.getColumnIndex("teacherId")));
 			paperPojo.setCourseId(paperCursor.getString(paperCursor
 					.getColumnIndex("courseId")));
-			paperPojo.setPaperTotalScore(paperCursor.getInt(paperCursor
+			paperPojo.setPaperTotalScore(paperCursor.getFloat(paperCursor
 					.getColumnIndex("paperTotalScore")));
 			paperPojo.setPaperExplain(paperCursor.getString(paperCursor
 					.getColumnIndex("paperExplain")));

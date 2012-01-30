@@ -23,7 +23,7 @@ public class ExamService {
 	PaperDao paperDao = new PaperDao();
 
 	public ExamPojo getExamPojo() {
-		return examDao.getLatestExamPojo();
+		return ExamDao.getLatestExamPojo();
 	}
 
 	public Time getRemainTime() {

@@ -6,7 +6,7 @@ public class RemarkPojo {
 
 	private String remarkId;
 	private String studentId;
-	private String remarkTitle;
+	private String remarkName;
 	private String remarkContent;
 	private Time remarkCreateTime;
 	private Time remarkUpdateTime;
@@ -27,12 +27,12 @@ public class RemarkPojo {
 		this.studentId = studentId;
 	}
 
-	public String getRemarkTitle() {
-		return remarkTitle;
+	public String getRemarkName() {
+		return remarkName;
 	}
 
-	public void setRemarkTitle(String remarkTitle) {
-		this.remarkTitle = remarkTitle;
+	public void setRemarkName(String remarkName) {
+		this.remarkName = remarkName;
 	}
 
 	public String getRemarkContent() {

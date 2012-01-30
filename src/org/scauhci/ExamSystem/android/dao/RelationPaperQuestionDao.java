@@ -23,12 +23,13 @@ public class RelationPaperQuestionDao {
 		int executeResult = ExecuteResultFlag.ERROR;
 
 		String[] keys = { "relationPaperQuestionId", "examId", "paperId",
-				"questionId" };
+				"questionId", "questionIndex" };
 		String[] values = {
 				relationPaperQuestionPojo.getRelationPaperQuestionId(),
 				relationPaperQuestionPojo.getExamId(),
 				relationPaperQuestionPojo.getPaperId(),
-				relationPaperQuestionPojo.getQuestionId() };
+				relationPaperQuestionPojo.getQuestionId(),
+				relationPaperQuestionPojo.getQuestionIndex() + "" };
 
 		daoHelper.insert(tableName, keys, values);
 
@@ -61,6 +62,10 @@ public class RelationPaperQuestionDao {
 		if (relationPaperQuestionPojo.getQuestionId() != null) {
 			keyValueMap.put("questionId",
 					relationPaperQuestionPojo.getQuestionId());
+		}
+		if (relationPaperQuestionPojo.getQuestionIndex() != -1) {
+			keyValueMap.put("questionIndex",
+					relationPaperQuestionPojo.getQuestionIndex() + "");
 		}
 
 		String[] keys = new String[keyValueMap.size()];
@@ -109,6 +114,10 @@ public class RelationPaperQuestionDao {
 			relationPaperQuestionPojo.setQuestionId(relationPaperQuestionCursor
 					.getString(relationPaperQuestionCursor
 							.getColumnIndex("questionId")));
+			relationPaperQuestionPojo
+					.setQuestionIndex(relationPaperQuestionCursor
+							.getInt(relationPaperQuestionCursor
+									.getColumnIndex("questionIndex")));
 			relationPaperQuestionPojos.add(relationPaperQuestionPojo);
 		}
 
@@ -140,6 +149,10 @@ public class RelationPaperQuestionDao {
 			relationPaperQuestionPojo.setQuestionId(relationPaperQuestionCursor
 					.getString(relationPaperQuestionCursor
 							.getColumnIndex("questionId")));
+			relationPaperQuestionPojo
+					.setQuestionIndex(relationPaperQuestionCursor
+							.getInt(relationPaperQuestionCursor
+									.getColumnIndex("questionIndex")));
 			relationPaperQuestionPojos.add(relationPaperQuestionPojo);
 		}
 
