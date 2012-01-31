@@ -3,11 +3,13 @@ package org.scauhci.ExamSystem.android.dao;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.scauhci.ExamSystem.android.pojo.CoursePojo;
 import org.scauhci.ExamSystem.android.pojo.ExamPojo;
 import org.scauhci.ExamSystem.android.pojo.QuestionPojo;
 import org.scauhci.ExamSystem.android.pojo.StudentPojo;
 import org.scauhci.ExamSystem.android.pojo.SubmitAnswerPojo;
 import org.scauhci.ExamSystem.android.tool.ExecuteResultFlag;
+import org.scauhci.ExamSystem.android.tool.HashValue;
 
 import android.database.Cursor;
 
@@ -22,6 +24,15 @@ public class SubmitAnswerDao {
 
 	public int add(SubmitAnswerPojo submitAnswerPojo) {
 		int executeResult = ExecuteResultFlag.ERROR;
+
+		long submitAnswerId;
+		for (submitAnswerId = HashValue.getDJBHashValue(submitAnswerPojo
+				.getExamId()
+				+ submitAnswerPojo.getQuestionId()
+				+ submitAnswerPojo.getStudentId()); getSubmitAnswerPojoBySubmitAnswerId(Long
+				.toHexString(submitAnswerId)) != null; submitAnswerId++)
+			;
+		submitAnswerPojo.setSubmitAnswerId(Long.toHexString(submitAnswerId));
 
 		String[] keys = { "submitAnswerId", "questionId", "examId",
 				"studentId", "questionStdScore", "questionScore" };
@@ -46,12 +57,28 @@ public class SubmitAnswerDao {
 
 		return executeResult;
 	}
-
+	
 	public int change(SubmitAnswerPojo submitAnswerPojo) {
 		int executeResult = ExecuteResultFlag.ERROR;
 
-		HashMap<String, String> keyValueMap = new HashMap<String, String>();
+		HashMap<String, String> keyValueMap = getKeyValueMapBySubmitAnswerPojo(submitAnswerPojo);
 
+		String[] keys = new String[keyValueMap.size()];
+		keyValueMap.keySet().toArray(keys);
+		String[] newValues = new String[keys.length];
+		keyValueMap.values().toArray(newValues);
+		String[] whereConditionKeys = { "submitAnswerId" };
+		String[] whereConditionValues = { submitAnswerPojo.getSubmitAnswerId() };
+
+		daoHelper.update(tableName, keys, newValues, whereConditionKeys,
+				whereConditionValues);
+
+		return executeResult;
+	}
+	
+	public HashMap<String, String> getKeyValueMapBySubmitAnswerPojo(SubmitAnswerPojo submitAnswerPojo){
+		HashMap<String, String> keyValueMap = new HashMap<String, String>();
+		
 		if (submitAnswerPojo.getSubmitAnswerId() != null) {
 			keyValueMap.put("submitAnswerId",
 					submitAnswerPojo.getSubmitAnswerId());
@@ -73,18 +100,75 @@ public class SubmitAnswerDao {
 			keyValueMap.put("questionScore",
 					submitAnswerPojo.getQuestionScore() + "");
 		}
+		
+		return keyValueMap;
+	}
 
-		String[] keys = new String[keyValueMap.size()];
-		keyValueMap.keySet().toArray(keys);
-		String[] newValues = new String[keys.length];
-		keyValueMap.values().toArray(newValues);
+	public SubmitAnswerPojo getSubmitAnswerPojoBySubmitAnswerId(
+			String submitAnswerId) {
+		SubmitAnswerPojo submitAnswerPojo = new SubmitAnswerPojo();
+
+		String[] keys = { "*" };
 		String[] whereConditionKeys = { "submitAnswerId" };
-		String[] whereConditionValues = { submitAnswerPojo.getSubmitAnswerId() };
+		String[] whereConditionValues = { submitAnswerId };
 
-		daoHelper.update(tableName, keys, newValues, whereConditionKeys,
-				whereConditionValues);
+		Cursor submitAnswerCursor = daoHelper.select(tableName, keys,
+				whereConditionKeys, whereConditionValues);
+		while (submitAnswerCursor.moveToNext()) {
+			submitAnswerPojo.setSubmitAnswerId(submitAnswerCursor
+					.getString(submitAnswerCursor
+							.getColumnIndex("submitAnswerId")));
+			submitAnswerPojo.setExamId(submitAnswerCursor
+					.getString(submitAnswerCursor.getColumnIndex("examId")));
+			submitAnswerPojo
+					.setQuestionId(submitAnswerCursor
+							.getString(submitAnswerCursor
+									.getColumnIndex("questionId")));
+			submitAnswerPojo.setStudentId(submitAnswerCursor
+					.getString(submitAnswerCursor.getColumnIndex("studentId")));
+			submitAnswerPojo.setQuestionScore(submitAnswerCursor
+					.getFloat(submitAnswerCursor
+							.getColumnIndex("questionScore")));
+			submitAnswerPojo.setQuestionStdScore(submitAnswerCursor
+					.getFloat(submitAnswerCursor
+							.getColumnIndex("questionStdScore")));
+		}
 
-		return executeResult;
+		return submitAnswerPojo;
+	}
+
+	public SubmitAnswerPojo completeSubmitAnswerPojo(SubmitAnswerPojo submitAnswerPojo) {
+		HashMap<String, String> keyValueMap = getKeyValueMapBySubmitAnswerPojo(submitAnswerPojo);
+
+		String[] keys = { "*" };
+		String[] whereConditionKeys = new String[keyValueMap.size()];
+		keyValueMap.keySet().toArray(whereConditionKeys);
+		String[] whereConditionValues = new String[whereConditionKeys.length];
+		keyValueMap.values().toArray(whereConditionValues);
+
+		Cursor submitAnswerCursor = daoHelper.select(tableName, keys,
+				whereConditionKeys, whereConditionValues);
+		while (submitAnswerCursor.moveToNext()) {
+			submitAnswerPojo.setSubmitAnswerId(submitAnswerCursor
+					.getString(submitAnswerCursor
+							.getColumnIndex("submitAnswerId")));
+			submitAnswerPojo.setExamId(submitAnswerCursor
+					.getString(submitAnswerCursor.getColumnIndex("examId")));
+			submitAnswerPojo
+					.setQuestionId(submitAnswerCursor
+							.getString(submitAnswerCursor
+									.getColumnIndex("questionId")));
+			submitAnswerPojo.setStudentId(submitAnswerCursor
+					.getString(submitAnswerCursor.getColumnIndex("studentId")));
+			submitAnswerPojo.setQuestionScore(submitAnswerCursor
+					.getFloat(submitAnswerCursor
+							.getColumnIndex("questionScore")));
+			submitAnswerPojo.setQuestionStdScore(submitAnswerCursor
+					.getFloat(submitAnswerCursor
+							.getColumnIndex("questionStdScore")));
+		}
+		
+		return submitAnswerPojo;
 	}
 
 	public SubmitAnswerPojo getSubmitAnswerPojoByStudentPojoAndExamPojoAndQuestionPojo(

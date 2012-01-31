@@ -22,11 +22,12 @@ public class CoursePojo {
 		this.courseName = courseName;
 	}
 
-	public int getType() {
+	public int getCourseType() {
 		return courseType;
 	}
 
-	public void setType(int type) {
-		this.courseType = type;
+	public void setCourseType(int courseType) {
+		this.courseType = courseType;
 	}
+
 }

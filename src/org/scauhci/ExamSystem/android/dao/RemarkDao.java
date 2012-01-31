@@ -3,9 +3,11 @@ package org.scauhci.ExamSystem.android.dao;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.scauhci.ExamSystem.android.pojo.CoursePojo;
 import org.scauhci.ExamSystem.android.pojo.RemarkPojo;
 import org.scauhci.ExamSystem.android.pojo.StudentPojo;
 import org.scauhci.ExamSystem.android.tool.ExecuteResultFlag;
+import org.scauhci.ExamSystem.android.tool.HashValue;
 
 import android.database.Cursor;
 import android.text.format.Time;
@@ -18,10 +20,16 @@ public class RemarkDao {
 	public int add(RemarkPojo remarkPojo) {
 		int executeResult = ExecuteResultFlag.ERROR;
 
-		String[] keys = { "remarkId", "studentId", "remarkTitle",
+		long remarkId;
+		for (remarkId = HashValue.getDJBHashValue(remarkPojo.getRemarkName()); getRemarkPojoByRemarkId(Long
+				.toHexString(remarkId)) != null; remarkId++)
+			;
+		remarkPojo.setRemarkId(Long.toHexString(remarkId));
+
+		String[] keys = { "remarkId", "studentId", "remarkName",
 				"remarkContent", "remarkCreateTime", "remarkUpdateTime" };
 		String[] values = { remarkPojo.getRemarkId(),
-				remarkPojo.getStudentId(), remarkPojo.getRemarkTitle(),
+				remarkPojo.getStudentId(), remarkPojo.getRemarkName(),
 				remarkPojo.getRemarkContent(),
 				remarkPojo.getRemarkCreateTime().format3339(true),
 				remarkPojo.getRemarkUpdateTime().format3339(true) };
@@ -45,28 +53,7 @@ public class RemarkDao {
 	public int change(RemarkPojo remarkPojo) {
 		int executeResult = ExecuteResultFlag.ERROR;
 
-		HashMap<String, String> keyValueMap = new HashMap<String, String>();
-
-		if (remarkPojo.getRemarkId() != null) {
-			keyValueMap.put("remarkId", remarkPojo.getRemarkId());
-		}
-		if (remarkPojo.getStudentId() != null) {
-			keyValueMap.put("studentId", remarkPojo.getStudentId());
-		}
-		if (remarkPojo.getRemarkTitle() != null) {
-			keyValueMap.put("remarkTitle", remarkPojo.getRemarkId());
-		}
-		if (remarkPojo.getRemarkContent() != null) {
-			keyValueMap.put("remarkContent", remarkPojo.getRemarkContent());
-		}
-		if (remarkPojo.getRemarkCreateTime() != null) {
-			keyValueMap.put("remarkCreateTime", remarkPojo
-					.getRemarkCreateTime().format3339(true));
-		}
-		if (remarkPojo.getRemarkUpdateTime() != null) {
-			keyValueMap.put("remarkUpdateTime", remarkPojo
-					.getRemarkUpdateTime().format3339(true));
-		}
+		HashMap<String, String> keyValueMap = getKeyValueMapByRemarkPojo(remarkPojo);
 
 		String[] keys = new String[keyValueMap.size()];
 		keyValueMap.keySet().toArray(keys);
@@ -81,10 +68,94 @@ public class RemarkDao {
 		return executeResult;
 	}
 
-	/*
-	 * public RemarkPojo getRemarkPojoByRemarkId(String remarkId) { RemarkPojo
-	 * remarkPojo = null; return remarkPojo; }
-	 */
+	public HashMap<String, String> getKeyValueMapByRemarkPojo(
+			RemarkPojo remarkPojo) {
+		HashMap<String, String> keyValueMap = new HashMap<String, String>();
+
+		if (remarkPojo.getStudentId() != null) {
+			keyValueMap.put("studentId", remarkPojo.getStudentId());
+		}
+		if (remarkPojo.getRemarkName() != null) {
+			keyValueMap.put("remarkName", remarkPojo.getRemarkName());
+		}
+		if (remarkPojo.getRemarkContent() != null) {
+			keyValueMap.put("remarkContent", remarkPojo.getRemarkContent());
+		}
+		if (remarkPojo.getRemarkCreateTime() != null) {
+			keyValueMap.put("remarkCreateTime", remarkPojo
+					.getRemarkCreateTime().format3339(true));
+		}
+		if (remarkPojo.getRemarkUpdateTime() != null) {
+			keyValueMap.put("remarkUpdateTime", remarkPojo
+					.getRemarkUpdateTime().format3339(true));
+		}
+
+		return keyValueMap;
+	}
+
+	public RemarkPojo getRemarkPojoByRemarkId(String remarkId) {
+		RemarkPojo remarkPojo = new RemarkPojo();
+
+		String[] keys = { "*" };
+		String[] whereConditionKeys = { "remarkId" };
+		String[] whereConditionValues = { remarkId };
+
+		Cursor remarkCursor = daoHelper.select(tableName, keys,
+				whereConditionKeys, whereConditionValues);
+		while (remarkCursor.moveToNext()) {
+			remarkPojo.setRemarkId(remarkCursor.getString(remarkCursor
+					.getColumnIndex("remarkId")));
+			remarkPojo.setRemarkName(remarkCursor.getString(remarkCursor
+					.getColumnIndex("remarkName")));
+			remarkPojo.setStudentId(remarkCursor.getString(remarkCursor
+					.getColumnIndex("studentId")));
+			remarkPojo.setRemarkContent(remarkCursor.getString(remarkCursor
+					.getColumnIndex("remarkContent")));
+			Time remarkCreateTime = new Time();
+			remarkCreateTime.parse3339(remarkCursor.getString(remarkCursor
+					.getColumnIndex("remarkCreateTime")));
+			remarkPojo.setRemarkCreateTime(remarkCreateTime);
+			Time remarkUpdateTime = new Time();
+			remarkUpdateTime.parse3339(remarkCursor.getString(remarkCursor
+					.getColumnIndex("remarkUpdateTime")));
+			remarkPojo.setRemarkUpdateTime(remarkUpdateTime);
+		}
+
+		return remarkPojo;
+	}
+
+	public RemarkPojo completeRemarkPojo(RemarkPojo remarkPojo) {
+		HashMap<String, String> keyValueMap = getKeyValueMapByRemarkPojo(remarkPojo);
+
+		String[] keys = { "*" };
+		String[] whereConditionKeys = new String[keyValueMap.size()];
+		keyValueMap.keySet().toArray(whereConditionKeys);
+		String[] whereConditionValues = new String[whereConditionKeys.length];
+		keyValueMap.values().toArray(whereConditionValues);
+
+		Cursor remarkCursor = daoHelper.select(tableName, keys,
+				whereConditionKeys, whereConditionValues);
+		while (remarkCursor.moveToNext()) {
+			remarkPojo.setRemarkId(remarkCursor.getString(remarkCursor
+					.getColumnIndex("remarkId")));
+			remarkPojo.setRemarkName(remarkCursor.getString(remarkCursor
+					.getColumnIndex("remarkName")));
+			remarkPojo.setStudentId(remarkCursor.getString(remarkCursor
+					.getColumnIndex("studentId")));
+			remarkPojo.setRemarkContent(remarkCursor.getString(remarkCursor
+					.getColumnIndex("remarkContent")));
+			Time remarkCreateTime = new Time();
+			remarkCreateTime.parse3339(remarkCursor.getString(remarkCursor
+					.getColumnIndex("remarkCreateTime")));
+			remarkPojo.setRemarkCreateTime(remarkCreateTime);
+			Time remarkUpdateTime = new Time();
+			remarkUpdateTime.parse3339(remarkCursor.getString(remarkCursor
+					.getColumnIndex("remarkUpdateTime")));
+			remarkPojo.setRemarkUpdateTime(remarkUpdateTime);
+		}
+
+		return remarkPojo;
+	}
 
 	public ArrayList<RemarkPojo> getRemarkPojosByStudentPojo(
 			StudentPojo studentPojo) {
@@ -100,8 +171,8 @@ public class RemarkDao {
 			RemarkPojo remarkPojo = new RemarkPojo();
 			remarkPojo.setRemarkId(remarkCursor.getString(remarkCursor
 					.getColumnIndex("remarkId")));
-			remarkPojo.setRemarkTitle(remarkCursor.getString(remarkCursor
-					.getColumnIndex("remarkTitle")));
+			remarkPojo.setRemarkName(remarkCursor.getString(remarkCursor
+					.getColumnIndex("remarkName")));
 			remarkPojo.setStudentId(remarkCursor.getString(remarkCursor
 					.getColumnIndex("studentId")));
 			remarkPojo.setRemarkContent(remarkCursor.getString(remarkCursor

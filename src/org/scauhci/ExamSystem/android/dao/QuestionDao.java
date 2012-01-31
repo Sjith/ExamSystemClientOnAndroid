@@ -6,6 +6,7 @@ import java.util.HashMap;
 import org.scauhci.ExamSystem.android.pojo.CoursePojo;
 import org.scauhci.ExamSystem.android.pojo.QuestionPojo;
 import org.scauhci.ExamSystem.android.tool.ExecuteResultFlag;
+import org.scauhci.ExamSystem.android.tool.HashValue;
 
 import android.database.Cursor;
 import android.text.format.Time;
@@ -22,6 +23,13 @@ public class QuestionDao {
 	public int add(QuestionPojo questionPojo) {
 		int executeResult = ExecuteResultFlag.ERROR;
 
+		long questionId;
+		for (questionId = HashValue.getDJBHashValue(questionPojo
+				.getQuestionContent()); getQuestionPojoByQuestionId(Long
+				.toHexString(questionId)) != null; questionId++)
+			;
+		questionPojo.setQuestionId(Long.toHexString(questionId));
+
 		String[] keys = { "questionId", "questionContent", "questionType",
 				"courseId", "questionStdAnswer" };
 		String[] values = { questionPojo.getQuestionId(),
@@ -36,49 +44,58 @@ public class QuestionDao {
 
 	public int delete(QuestionPojo questionPojo) {
 		int executeResult = ExecuteResultFlag.ERROR;
-		
+
 		String[] keys = { "questionId" };
 		String[] values = { questionPojo.getQuestionId() };
 
 		daoHelper.delete(tableName, keys, values);
-		
+
 		return executeResult;
 	}
 
 	public int change(QuestionPojo questionPojo) {
 		int executeResult = ExecuteResultFlag.ERROR;
-		
-		HashMap<String, String> keyValueMap = new HashMap<String, String>();
 
-		if (questionPojo.getQuestionContent() != null) {
-			keyValueMap.put("questionContent", questionPojo.getQuestionContent());
-		}
-		if (questionPojo.getCourseId() != null) {
-			keyValueMap.put("courseId", questionPojo.getCourseId());
-		}
-		if (questionPojo.getQuestionStdAnswer() != null) {
-			keyValueMap.put("questionStdAnswer", questionPojo.getQuestionStdAnswer());
-		}
-		if (questionPojo.getQuestionType() != -1) {
-			keyValueMap.put("questionType", questionPojo.getQuestionType() + "");
-		}
-		
+		HashMap<String, String> keyValueMap = getKeyValueMapByQuestionPojo(questionPojo);
+
 		String[] keys = new String[keyValueMap.size()];
 		keyValueMap.keySet().toArray(keys);
 		String[] newValues = new String[keys.length];
 		keyValueMap.values().toArray(newValues);
 		String[] whereConditionKeys = { "questionId" };
 		String[] whereConditionValues = { questionPojo.getQuestionId() };
-		
+
 		daoHelper.update(tableName, keys, newValues, whereConditionKeys,
 				whereConditionValues);
-		
+
 		return executeResult;
 	}
 
+	public HashMap<String, String> getKeyValueMapByQuestionPojo(QuestionPojo questionPojo){
+		HashMap<String, String> keyValueMap = new HashMap<String, String>();
+
+		if (questionPojo.getQuestionContent() != null) {
+			keyValueMap.put("questionContent",
+					questionPojo.getQuestionContent());
+		}
+		if (questionPojo.getCourseId() != null) {
+			keyValueMap.put("courseId", questionPojo.getCourseId());
+		}
+		if (questionPojo.getQuestionStdAnswer() != null) {
+			keyValueMap.put("questionStdAnswer",
+					questionPojo.getQuestionStdAnswer());
+		}
+		if (questionPojo.getQuestionType() != -1) {
+			keyValueMap
+			.put("questionType", questionPojo.getQuestionType() + "");
+		}
+		
+		return keyValueMap;
+	}
+	
 	public QuestionPojo getQuestionPojoByQuestionId(String questionId) {
 		QuestionPojo questionPojo = new QuestionPojo();
-		
+
 		String[] keys = { "*" };
 		String[] whereConditionKeys = { "questionId" };
 		String[] whereConditionValues = { questionId };
@@ -88,12 +105,43 @@ public class QuestionDao {
 		while (questionCursor.moveToNext()) {
 			questionPojo.setQuestionId(questionCursor.getString(questionCursor
 					.getColumnIndex("questionId")));
-			questionPojo.setQuestionContent(questionCursor.getString(questionCursor
-					.getColumnIndex("questionContent")));
+			questionPojo
+					.setQuestionContent(questionCursor.getString(questionCursor
+							.getColumnIndex("questionContent")));
 			questionPojo.setCourseId(questionCursor.getString(questionCursor
 					.getColumnIndex("courseId")));
-			questionPojo.setQuestionStdAnswer(questionCursor.getString(questionCursor
-					.getColumnIndex("questionStdAnswer")));
+			questionPojo.setQuestionStdAnswer(questionCursor
+					.getString(questionCursor
+							.getColumnIndex("questionStdAnswer")));
+			questionPojo.setQuestionType(questionCursor.getInt(questionCursor
+					.getColumnIndex("questionType")));
+		}
+
+		return questionPojo;
+	}
+	
+	public QuestionPojo completeQuestionPojo(QuestionPojo questionPojo) {
+		HashMap<String, String> keyValueMap = getKeyValueMapByQuestionPojo(questionPojo);
+
+		String[] keys = { "*" };
+		String[] whereConditionKeys = new String[keyValueMap.size()];
+		keyValueMap.keySet().toArray(whereConditionKeys);
+		String[] whereConditionValues = new String[whereConditionKeys.length];
+		keyValueMap.values().toArray(whereConditionValues);
+
+		Cursor questionCursor = daoHelper.select(tableName, keys,
+				whereConditionKeys, whereConditionValues);
+		while (questionCursor.moveToNext()) {
+			questionPojo.setQuestionId(questionCursor.getString(questionCursor
+					.getColumnIndex("questionId")));
+			questionPojo
+					.setQuestionContent(questionCursor.getString(questionCursor
+							.getColumnIndex("questionContent")));
+			questionPojo.setCourseId(questionCursor.getString(questionCursor
+					.getColumnIndex("courseId")));
+			questionPojo.setQuestionStdAnswer(questionCursor
+					.getString(questionCursor
+							.getColumnIndex("questionStdAnswer")));
 			questionPojo.setQuestionType(questionCursor.getInt(questionCursor
 					.getColumnIndex("questionType")));
 		}
@@ -104,7 +152,7 @@ public class QuestionDao {
 	public ArrayList<QuestionPojo> getQuestionPojosByCoursePojo(
 			CoursePojo coursePojo) {
 		ArrayList<QuestionPojo> questionPojos = new ArrayList<QuestionPojo>();
-		
+
 		String[] keys = { "*" };
 		String[] whereConditionKeys = { "courseId" };
 		String[] whereConditionValues = { coursePojo.getCourseId() };
@@ -115,17 +163,19 @@ public class QuestionDao {
 			QuestionPojo questionPojo = new QuestionPojo();
 			questionPojo.setQuestionId(questionCursor.getString(questionCursor
 					.getColumnIndex("questionId")));
-			questionPojo.setQuestionContent(questionCursor.getString(questionCursor
-					.getColumnIndex("questionContent")));
+			questionPojo
+					.setQuestionContent(questionCursor.getString(questionCursor
+							.getColumnIndex("questionContent")));
 			questionPojo.setCourseId(questionCursor.getString(questionCursor
 					.getColumnIndex("courseId")));
-			questionPojo.setQuestionStdAnswer(questionCursor.getString(questionCursor
-					.getColumnIndex("questionStdAnswer")));
+			questionPojo.setQuestionStdAnswer(questionCursor
+					.getString(questionCursor
+							.getColumnIndex("questionStdAnswer")));
 			questionPojo.setQuestionType(questionCursor.getInt(questionCursor
 					.getColumnIndex("questionType")));
 			questionPojos.add(questionPojo);
 		}
-		
+
 		return questionPojos;
 	}
 }

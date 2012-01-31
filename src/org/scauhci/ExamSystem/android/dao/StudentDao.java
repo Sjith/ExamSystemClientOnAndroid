@@ -2,8 +2,10 @@ package org.scauhci.ExamSystem.android.dao;
 
 import java.util.HashMap;
 
+import org.scauhci.ExamSystem.android.pojo.CoursePojo;
 import org.scauhci.ExamSystem.android.pojo.StudentPojo;
 import org.scauhci.ExamSystem.android.tool.ExecuteResultFlag;
+import org.scauhci.ExamSystem.android.tool.HashValue;
 
 import android.database.Cursor;
 
@@ -19,7 +21,7 @@ public class StudentDao {
 
 	public int add(StudentPojo studentPojo) {
 		int executeResult = ExecuteResultFlag.ERROR;
-
+		
 		String[] keys = { "studentId", "studentName", "studentPassword" };
 		String[] values = { studentPojo.getStudentId(),
 				studentPojo.getStudentName(), studentPojo.getStudentPassword() };
@@ -43,17 +45,7 @@ public class StudentDao {
 	public int change(StudentPojo studentPojo) {
 		int executeResult = ExecuteResultFlag.ERROR;
 		
-		HashMap<String, String> keyValueMap = new HashMap<String, String>();
-
-		if (studentPojo.getStudentId() != null) {
-			keyValueMap.put("questionContent", studentPojo.getStudentId());
-		}
-		if (studentPojo.getStudentName() != null) {
-			keyValueMap.put("studentName", studentPojo.getStudentName());
-		}
-		if (studentPojo.getStudentPassword() != null) {
-			keyValueMap.put("studentPassword", studentPojo.getStudentPassword());
-		}
+		HashMap<String, String> keyValueMap = getKeyValueMapByStudentPojo(studentPojo);
 		
 		String[] keys = new String[keyValueMap.size()];
 		keyValueMap.keySet().toArray(keys);
@@ -68,6 +60,22 @@ public class StudentDao {
 		return executeResult;
 	}
 
+	public HashMap<String, String> getKeyValueMapByStudentPojo(StudentPojo studentPojo){
+		HashMap<String, String> keyValueMap = new HashMap<String, String>();
+		
+		if (studentPojo.getStudentId() != null) {
+			keyValueMap.put("questionContent", studentPojo.getStudentId());
+		}
+		if (studentPojo.getStudentName() != null) {
+			keyValueMap.put("studentName", studentPojo.getStudentName());
+		}
+		if (studentPojo.getStudentPassword() != null) {
+			keyValueMap.put("studentPassword", studentPojo.getStudentPassword());
+		}
+		
+		return keyValueMap;
+	}
+	
 	public StudentPojo getStudentPojoByStudentName(String studentName) {
 		StudentPojo studentPojo = new StudentPojo();
 		

@@ -3,10 +3,12 @@ package org.scauhci.ExamSystem.android.dao;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import org.scauhci.ExamSystem.android.pojo.CoursePojo;
 import org.scauhci.ExamSystem.android.pojo.ExamPojo;
 import org.scauhci.ExamSystem.android.pojo.PaperPojo;
 import org.scauhci.ExamSystem.android.pojo.RelationPaperQuestionPojo;
 import org.scauhci.ExamSystem.android.tool.ExecuteResultFlag;
+import org.scauhci.ExamSystem.android.tool.HashValue;
 
 import android.database.Cursor;
 
@@ -21,6 +23,15 @@ public class RelationPaperQuestionDao {
 
 	public int add(RelationPaperQuestionPojo relationPaperQuestionPojo) {
 		int executeResult = ExecuteResultFlag.ERROR;
+
+		long relationPaperQuestionId;
+		for (relationPaperQuestionId = HashValue
+				.getDJBHashValue(relationPaperQuestionPojo.getPaperId()
+						+ relationPaperQuestionPojo.getQuestionId()); getRelationPaperQuestionPojoByRelationPaperQuestionId(Long
+				.toHexString(relationPaperQuestionId)) != null; relationPaperQuestionId++)
+			;
+		relationPaperQuestionPojo.setRelationPaperQuestionId(Long
+				.toHexString(relationPaperQuestionId));
 
 		String[] keys = { "relationPaperQuestionId", "examId", "paperId",
 				"questionId", "questionIndex" };
@@ -51,6 +62,24 @@ public class RelationPaperQuestionDao {
 	public int change(RelationPaperQuestionPojo relationPaperQuestionPojo) {
 		int executeResult = ExecuteResultFlag.ERROR;
 
+		HashMap<String, String> keyValueMap = getKeyValueMapByRelationPaperQuestionPojo(relationPaperQuestionPojo);
+
+		String[] keys = new String[keyValueMap.size()];
+		keyValueMap.keySet().toArray(keys);
+		String[] newValues = new String[keys.length];
+		keyValueMap.values().toArray(newValues);
+		String[] whereConditionKeys = { "relationPaperQuestionId" };
+		String[] whereConditionValues = { relationPaperQuestionPojo
+				.getRelationPaperQuestionId() };
+
+		daoHelper.update(tableName, keys, newValues, whereConditionKeys,
+				whereConditionValues);
+
+		return executeResult;
+	}
+
+	public HashMap<String, String> getKeyValueMapByRelationPaperQuestionPojo(
+			RelationPaperQuestionPojo relationPaperQuestionPojo) {
 		HashMap<String, String> keyValueMap = new HashMap<String, String>();
 
 		if (relationPaperQuestionPojo.getExamId() != null) {
@@ -68,26 +97,75 @@ public class RelationPaperQuestionDao {
 					relationPaperQuestionPojo.getQuestionIndex() + "");
 		}
 
-		String[] keys = new String[keyValueMap.size()];
-		keyValueMap.keySet().toArray(keys);
-		String[] newValues = new String[keys.length];
-		keyValueMap.values().toArray(newValues);
-		String[] whereConditionKeys = { "relationPaperQuestionId" };
-		String[] whereConditionValues = { relationPaperQuestionPojo
-				.getRelationPaperQuestionId() };
-
-		daoHelper.update(tableName, keys, newValues, whereConditionKeys,
-				whereConditionValues);
-
-		return executeResult;
+		return keyValueMap;
 	}
 
-	/*
-	 * public RelationPaperQuestionPojo
-	 * getRelationPaperQuestionPojoByRelationPaperQuestionId( String
-	 * relationPaperQuestionId) { RelationPaperQuestionPojo
-	 * relationPaperQuestionPojo = null; return relationPaperQuestionPojo; }
-	 */
+	public RelationPaperQuestionPojo getRelationPaperQuestionPojoByRelationPaperQuestionId(
+			String relationPaperQuestionId) {
+		RelationPaperQuestionPojo relationPaperQuestionPojo = new RelationPaperQuestionPojo();
+
+		String[] keys = { "*" };
+		String[] whereConditionKeys = { "relationPaperQuestionId" };
+		String[] whereConditionValues = { relationPaperQuestionId };
+
+		Cursor relationPaperQuestionCursor = daoHelper.select(tableName, keys,
+				whereConditionKeys, whereConditionValues);
+		while (relationPaperQuestionCursor.moveToNext()) {
+			relationPaperQuestionPojo
+					.setRelationPaperQuestionId(relationPaperQuestionCursor
+							.getString(relationPaperQuestionCursor
+									.getColumnIndex("relationPaperQuestionId")));
+			relationPaperQuestionPojo.setExamId(relationPaperQuestionCursor
+					.getString(relationPaperQuestionCursor
+							.getColumnIndex("examId")));
+			relationPaperQuestionPojo.setPaperId(relationPaperQuestionCursor
+					.getString(relationPaperQuestionCursor
+							.getColumnIndex("paperId")));
+			relationPaperQuestionPojo.setQuestionId(relationPaperQuestionCursor
+					.getString(relationPaperQuestionCursor
+							.getColumnIndex("questionId")));
+			relationPaperQuestionPojo
+					.setQuestionIndex(relationPaperQuestionCursor
+							.getInt(relationPaperQuestionCursor
+									.getColumnIndex("questionIndex")));
+		}
+
+		return relationPaperQuestionPojo;
+	}
+	
+	public RelationPaperQuestionPojo completeRelationPaperQuestionPojo(RelationPaperQuestionPojo relationPaperQuestionPojo) {
+		HashMap<String, String> keyValueMap = getKeyValueMapByRelationPaperQuestionPojo(relationPaperQuestionPojo);
+
+		String[] keys = { "*" };
+		String[] whereConditionKeys = new String[keyValueMap.size()];
+		keyValueMap.keySet().toArray(whereConditionKeys);
+		String[] whereConditionValues = new String[whereConditionKeys.length];
+		keyValueMap.values().toArray(whereConditionValues);
+
+		Cursor relationPaperQuestionCursor = daoHelper.select(tableName, keys,
+				whereConditionKeys, whereConditionValues);
+		while (relationPaperQuestionCursor.moveToNext()) {
+			relationPaperQuestionPojo
+					.setRelationPaperQuestionId(relationPaperQuestionCursor
+							.getString(relationPaperQuestionCursor
+									.getColumnIndex("relationPaperQuestionId")));
+			relationPaperQuestionPojo.setExamId(relationPaperQuestionCursor
+					.getString(relationPaperQuestionCursor
+							.getColumnIndex("examId")));
+			relationPaperQuestionPojo.setPaperId(relationPaperQuestionCursor
+					.getString(relationPaperQuestionCursor
+							.getColumnIndex("paperId")));
+			relationPaperQuestionPojo.setQuestionId(relationPaperQuestionCursor
+					.getString(relationPaperQuestionCursor
+							.getColumnIndex("questionId")));
+			relationPaperQuestionPojo
+					.setQuestionIndex(relationPaperQuestionCursor
+							.getInt(relationPaperQuestionCursor
+									.getColumnIndex("questionIndex")));
+		}
+
+		return relationPaperQuestionPojo;
+	}
 
 	public ArrayList<RelationPaperQuestionPojo> getRelationPaperQuestionPojosByPaperPojo(
 			PaperPojo paperPojo) {

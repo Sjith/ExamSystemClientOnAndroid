@@ -25,20 +25,20 @@ public class NoticePojo {
 		this.noticeName = noticeName;
 	}
 
-	public String getContent() {
+	public String getNoticeContent() {
 		return noticeContent;
 	}
 
-	public void setContent(String content) {
-		this.noticeContent = content;
+	public void setNoticeContent(String noticeContent) {
+		this.noticeContent = noticeContent;
 	}
 
-	public Time getPublicTime() {
+	public Time getNoticePublicTime() {
 		return noticePublicTime;
 	}
 
-	public void setPublicTime(Time publicTime) {
-		this.noticePublicTime = publicTime;
+	public void setNoticePublicTime(Time noticePublicTime) {
+		this.noticePublicTime = noticePublicTime;
 	}
 
 }
