@@ -6,7 +6,7 @@ import java.util.HashMap;
 import org.scauhci.ExamSystem.android.pojo.CoursePojo;
 import org.scauhci.ExamSystem.android.pojo.RemarkPojo;
 import org.scauhci.ExamSystem.android.pojo.StudentPojo;
-import org.scauhci.ExamSystem.android.tool.ExecuteResultFlag;
+import org.scauhci.ExamSystem.android.tool.Flag;
 import org.scauhci.ExamSystem.android.tool.HashValue;
 
 import android.database.Cursor;
@@ -17,9 +17,7 @@ public class RemarkDao {
 	DaoHelper daoHelper = new DaoHelper(null, "exam_online.db", null, 0);
 	String tableName = "remark";
 
-	public int add(RemarkPojo remarkPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
-
+	public RemarkPojo add(RemarkPojo remarkPojo) {
 		long remarkId;
 		for (remarkId = HashValue.getDJBHashValue(remarkPojo.getRemarkName()); getRemarkPojoByRemarkId(Long
 				.toHexString(remarkId)) != null; remarkId++)
@@ -36,23 +34,21 @@ public class RemarkDao {
 
 		daoHelper.insert(tableName, keys, values);
 
-		return executeResult;
+		return remarkPojo;
 	}
 
-	public int delete(RemarkPojo remarkPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
+	public RemarkPojo delete(RemarkPojo remarkPojo) {
+		if ((remarkPojo = completeRemarkPojo(remarkPojo)) != null) {
+			String[] keys = { "remarkId" };
+			String[] values = { remarkPojo.getRemarkId() };
+			
+			daoHelper.delete(tableName, keys, values);
+		}
 
-		String[] keys = { "remarkId" };
-		String[] values = { remarkPojo.getRemarkId() };
-
-		daoHelper.delete(tableName, keys, values);
-
-		return executeResult;
+		return remarkPojo;
 	}
 
-	public int change(RemarkPojo remarkPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
-
+	public RemarkPojo change(RemarkPojo remarkPojo) {
 		HashMap<String, String> keyValueMap = getKeyValueMapByRemarkPojo(remarkPojo);
 
 		String[] keys = new String[keyValueMap.size()];
@@ -64,14 +60,18 @@ public class RemarkDao {
 
 		daoHelper.update(tableName, keys, newValues, whereConditionKeys,
 				whereConditionValues);
+		remarkPojo = completeRemarkPojo(remarkPojo);
 
-		return executeResult;
+		return remarkPojo;
 	}
 
 	public HashMap<String, String> getKeyValueMapByRemarkPojo(
 			RemarkPojo remarkPojo) {
 		HashMap<String, String> keyValueMap = new HashMap<String, String>();
 
+		if (remarkPojo.getRemarkId() != null) {
+			keyValueMap.put("remarkId", remarkPojo.getRemarkId());
+		}
 		if (remarkPojo.getStudentId() != null) {
 			keyValueMap.put("studentId", remarkPojo.getStudentId());
 		}
@@ -102,7 +102,7 @@ public class RemarkDao {
 
 		Cursor remarkCursor = daoHelper.select(tableName, keys,
 				whereConditionKeys, whereConditionValues);
-		while (remarkCursor.moveToNext()) {
+		if (remarkCursor.moveToFirst()) {
 			remarkPojo.setRemarkId(remarkCursor.getString(remarkCursor
 					.getColumnIndex("remarkId")));
 			remarkPojo.setRemarkName(remarkCursor.getString(remarkCursor
@@ -119,6 +119,8 @@ public class RemarkDao {
 			remarkUpdateTime.parse3339(remarkCursor.getString(remarkCursor
 					.getColumnIndex("remarkUpdateTime")));
 			remarkPojo.setRemarkUpdateTime(remarkUpdateTime);
+		} else {
+			remarkPojo = null;
 		}
 
 		return remarkPojo;
@@ -135,7 +137,7 @@ public class RemarkDao {
 
 		Cursor remarkCursor = daoHelper.select(tableName, keys,
 				whereConditionKeys, whereConditionValues);
-		while (remarkCursor.moveToNext()) {
+		if (remarkCursor.moveToFirst()) {
 			remarkPojo.setRemarkId(remarkCursor.getString(remarkCursor
 					.getColumnIndex("remarkId")));
 			remarkPojo.setRemarkName(remarkCursor.getString(remarkCursor
@@ -152,6 +154,8 @@ public class RemarkDao {
 			remarkUpdateTime.parse3339(remarkCursor.getString(remarkCursor
 					.getColumnIndex("remarkUpdateTime")));
 			remarkPojo.setRemarkUpdateTime(remarkUpdateTime);
+		} else {
+			remarkPojo = null;
 		}
 
 		return remarkPojo;

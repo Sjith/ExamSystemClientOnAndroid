@@ -7,7 +7,7 @@ import org.scauhci.ExamSystem.android.pojo.CoursePojo;
 import org.scauhci.ExamSystem.android.pojo.ExamPojo;
 import org.scauhci.ExamSystem.android.pojo.ScorePojo;
 import org.scauhci.ExamSystem.android.pojo.StudentPojo;
-import org.scauhci.ExamSystem.android.tool.ExecuteResultFlag;
+import org.scauhci.ExamSystem.android.tool.Flag;
 import org.scauhci.ExamSystem.android.tool.HashValue;
 
 import android.database.Cursor;
@@ -21,9 +21,7 @@ public class ScoreDao {
 		// update();
 	}
 
-	public int add(ScorePojo scorePojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
-
+	public ScorePojo add(ScorePojo scorePojo) {
 		long scoreId;
 		for (scoreId = HashValue.getDJBHashValue(scorePojo.getExamId()
 				+ scorePojo.getStudentId()); getScorePojoByScoreId(Long
@@ -37,23 +35,22 @@ public class ScoreDao {
 
 		daoHelper.insert(tableName, keys, values);
 
-		return executeResult;
+		return scorePojo;
 	}
 
-	public int delete(ScorePojo scorePojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
+	public ScorePojo delete(ScorePojo scorePojo) {
 
-		String[] keys = { "scoreId" };
-		String[] values = { scorePojo.getScoreId() };
+		if ((scorePojo = completeScorePojo(scorePojo)) != null) {
+			String[] keys = { "scoreId" };
+			String[] values = { scorePojo.getScoreId() };
 
-		daoHelper.delete(tableName, keys, values);
+			daoHelper.delete(tableName, keys, values);
+		}
 
-		return executeResult;
+		return scorePojo;
 	}
 
-	public int change(ScorePojo scorePojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
-
+	public ScorePojo change(ScorePojo scorePojo) {
 		HashMap<String, String> keyValueMap = getKeyValueMapByScorePojo(scorePojo);
 
 		String[] keys = new String[keyValueMap.size()];
@@ -65,8 +62,9 @@ public class ScoreDao {
 
 		daoHelper.update(tableName, keys, newValues, whereConditionKeys,
 				whereConditionValues);
+		scorePojo = completeScorePojo(scorePojo);
 
-		return executeResult;
+		return scorePojo;
 	}
 
 	public HashMap<String, String> getKeyValueMapByScorePojo(ScorePojo scorePojo) {
@@ -97,7 +95,7 @@ public class ScoreDao {
 
 		Cursor scoreCursor = daoHelper.select(tableName, keys,
 				whereConditionKeys, whereConditionValues);
-		while (scoreCursor.moveToNext()) {
+		if (scoreCursor.moveToFirst()) {
 			scorePojo.setScoreId(scoreCursor.getString(scoreCursor
 					.getColumnIndex("scoreId")));
 			scorePojo.setStudentId(scoreCursor.getString(scoreCursor
@@ -106,6 +104,8 @@ public class ScoreDao {
 					.getColumnIndex("examId")));
 			scorePojo.setScore(scoreCursor.getFloat(scoreCursor
 					.getColumnIndex("score")));
+		} else {
+			scorePojo = null;
 		}
 
 		return scorePojo;
@@ -122,7 +122,7 @@ public class ScoreDao {
 
 		Cursor scoreCursor = daoHelper.select(tableName, keys,
 				whereConditionKeys, whereConditionValues);
-		while (scoreCursor.moveToNext()) {
+		if (scoreCursor.moveToFirst()) {
 			scorePojo.setScoreId(scoreCursor.getString(scoreCursor
 					.getColumnIndex("scoreId")));
 			scorePojo.setStudentId(scoreCursor.getString(scoreCursor
@@ -131,6 +131,8 @@ public class ScoreDao {
 					.getColumnIndex("examId")));
 			scorePojo.setScore(scoreCursor.getFloat(scoreCursor
 					.getColumnIndex("score")));
+		} else {
+			scorePojo = null;
 		}
 
 		return scorePojo;
@@ -147,7 +149,7 @@ public class ScoreDao {
 
 		Cursor scoreCursor = daoHelper.select(tableName, keys,
 				whereConditionKeys, whereConditionValues);
-		while (scoreCursor.moveToNext()) {
+		if (scoreCursor.moveToFirst()) {
 			scorePojo.setScoreId(scoreCursor.getString(scoreCursor
 					.getColumnIndex("scoreId")));
 			scorePojo.setStudentId(scoreCursor.getString(scoreCursor
@@ -156,6 +158,8 @@ public class ScoreDao {
 					.getColumnIndex("examId")));
 			scorePojo.setScore(scoreCursor.getFloat(scoreCursor
 					.getColumnIndex("score")));
+		} else {
+			scorePojo = null;
 		}
 
 		return scorePojo;

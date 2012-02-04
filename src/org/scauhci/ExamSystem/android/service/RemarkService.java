@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import org.scauhci.ExamSystem.android.dao.RemarkDao;
 import org.scauhci.ExamSystem.android.dao.StudentDao;
 import org.scauhci.ExamSystem.android.pojo.RemarkPojo;
-import org.scauhci.ExamSystem.android.tool.ExecuteResultFlag;
+import org.scauhci.ExamSystem.android.tool.Flag;
 
 public class RemarkService {
 
@@ -19,7 +19,7 @@ public class RemarkService {
 	}
 	
 	public int addRemarkPojo(RemarkPojo remarkPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
+		int executeResult = Flag.ERROR;
 		
 		RemarkDao remarkDao = new RemarkDao();
 		remarkDao.add(remarkPojo);
@@ -28,7 +28,7 @@ public class RemarkService {
 	}
 	
 	public int deleteRemarkPojo(RemarkPojo remarkPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
+		int executeResult = Flag.ERROR;
 		
 		RemarkDao remarkDao = new RemarkDao();
 		remarkDao.delete(remarkPojo);

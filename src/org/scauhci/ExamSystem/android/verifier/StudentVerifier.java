@@ -2,12 +2,12 @@ package org.scauhci.ExamSystem.android.verifier;
 
 import java.util.HashMap;
 
-import org.scauhci.ExamSystem.android.tool.ExecuteResultFlag;
+import org.scauhci.ExamSystem.android.tool.Flag;
 
 public class StudentVerifier {
 
 	public int verifyStudent(HashMap<String, Object> requestMap) {
-		int executeResult = ExecuteResultFlag.ERROR;
+		int executeResult = Flag.ERROR;
 		return executeResult;
 	}
 	

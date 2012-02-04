@@ -7,7 +7,7 @@ import org.scauhci.ExamSystem.android.pojo.CoursePojo;
 import org.scauhci.ExamSystem.android.pojo.ExamPojo;
 import org.scauhci.ExamSystem.android.pojo.PaperPojo;
 import org.scauhci.ExamSystem.android.pojo.RelationPaperQuestionPojo;
-import org.scauhci.ExamSystem.android.tool.ExecuteResultFlag;
+import org.scauhci.ExamSystem.android.tool.Flag;
 import org.scauhci.ExamSystem.android.tool.HashValue;
 
 import android.database.Cursor;
@@ -21,9 +21,7 @@ public class RelationPaperQuestionDao {
 		// update();
 	}
 
-	public int add(RelationPaperQuestionPojo relationPaperQuestionPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
-
+	public RelationPaperQuestionPojo add(RelationPaperQuestionPojo relationPaperQuestionPojo) {
 		long relationPaperQuestionId;
 		for (relationPaperQuestionId = HashValue
 				.getDJBHashValue(relationPaperQuestionPojo.getPaperId()
@@ -44,24 +42,22 @@ public class RelationPaperQuestionDao {
 
 		daoHelper.insert(tableName, keys, values);
 
-		return executeResult;
+		return relationPaperQuestionPojo;
 	}
 
-	public int delete(RelationPaperQuestionPojo relationPaperQuestionPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
+	public RelationPaperQuestionPojo delete(RelationPaperQuestionPojo relationPaperQuestionPojo) {
+		if ((relationPaperQuestionPojo = completeRelationPaperQuestionPojo(relationPaperQuestionPojo)) != null) {
+			String[] keys = { "relationPaperQuestionId" };
+			String[] values = { relationPaperQuestionPojo
+					.getRelationPaperQuestionId() };
+			
+			daoHelper.delete(tableName, keys, values);
+		}
 
-		String[] keys = { "relationPaperQuestionId" };
-		String[] values = { relationPaperQuestionPojo
-				.getRelationPaperQuestionId() };
-
-		daoHelper.delete(tableName, keys, values);
-
-		return executeResult;
+		return relationPaperQuestionPojo;
 	}
 
-	public int change(RelationPaperQuestionPojo relationPaperQuestionPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
-
+	public RelationPaperQuestionPojo change(RelationPaperQuestionPojo relationPaperQuestionPojo) {
 		HashMap<String, String> keyValueMap = getKeyValueMapByRelationPaperQuestionPojo(relationPaperQuestionPojo);
 
 		String[] keys = new String[keyValueMap.size()];
@@ -74,14 +70,18 @@ public class RelationPaperQuestionDao {
 
 		daoHelper.update(tableName, keys, newValues, whereConditionKeys,
 				whereConditionValues);
+		relationPaperQuestionPojo = completeRelationPaperQuestionPojo(relationPaperQuestionPojo);
 
-		return executeResult;
+		return relationPaperQuestionPojo;
 	}
 
 	public HashMap<String, String> getKeyValueMapByRelationPaperQuestionPojo(
 			RelationPaperQuestionPojo relationPaperQuestionPojo) {
 		HashMap<String, String> keyValueMap = new HashMap<String, String>();
 
+		if (relationPaperQuestionPojo.getRelationPaperQuestionId() != null) {
+			keyValueMap.put("relationPaperQuestionId", relationPaperQuestionPojo.getRelationPaperQuestionId());
+		}
 		if (relationPaperQuestionPojo.getExamId() != null) {
 			keyValueMap.put("examId", relationPaperQuestionPojo.getExamId());
 		}
@@ -110,7 +110,7 @@ public class RelationPaperQuestionDao {
 
 		Cursor relationPaperQuestionCursor = daoHelper.select(tableName, keys,
 				whereConditionKeys, whereConditionValues);
-		while (relationPaperQuestionCursor.moveToNext()) {
+		if (relationPaperQuestionCursor.moveToFirst()) {
 			relationPaperQuestionPojo
 					.setRelationPaperQuestionId(relationPaperQuestionCursor
 							.getString(relationPaperQuestionCursor
@@ -128,6 +128,8 @@ public class RelationPaperQuestionDao {
 					.setQuestionIndex(relationPaperQuestionCursor
 							.getInt(relationPaperQuestionCursor
 									.getColumnIndex("questionIndex")));
+		} else {
+			relationPaperQuestionPojo = null;
 		}
 
 		return relationPaperQuestionPojo;
@@ -144,7 +146,7 @@ public class RelationPaperQuestionDao {
 
 		Cursor relationPaperQuestionCursor = daoHelper.select(tableName, keys,
 				whereConditionKeys, whereConditionValues);
-		while (relationPaperQuestionCursor.moveToNext()) {
+		if (relationPaperQuestionCursor.moveToFirst()) {
 			relationPaperQuestionPojo
 					.setRelationPaperQuestionId(relationPaperQuestionCursor
 							.getString(relationPaperQuestionCursor
@@ -162,6 +164,8 @@ public class RelationPaperQuestionDao {
 					.setQuestionIndex(relationPaperQuestionCursor
 							.getInt(relationPaperQuestionCursor
 									.getColumnIndex("questionIndex")));
+		} else {
+			relationPaperQuestionPojo = null;
 		}
 
 		return relationPaperQuestionPojo;

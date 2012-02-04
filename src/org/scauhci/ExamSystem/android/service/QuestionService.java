@@ -6,12 +6,12 @@ import org.scauhci.ExamSystem.android.dao.QuestionDao;
 import org.scauhci.ExamSystem.android.dao.QuestionOptionDao;
 import org.scauhci.ExamSystem.android.pojo.QuestionOptionPojo;
 import org.scauhci.ExamSystem.android.pojo.QuestionPojo;
-import org.scauhci.ExamSystem.android.tool.ExecuteResultFlag;
+import org.scauhci.ExamSystem.android.tool.Flag;
 
 public class QuestionService {
 
-	QuestionOptionDao questionOptionDao = null;
-	ExamService b = new ExamService();
+	QuestionOptionDao questionOptionDao = new QuestionOptionDao();
+	QuestionDao questionDao = new QuestionDao();
 	
 	/*public ArrayList<QuestionPojo> getQuestionPojosByCoursePojo(CoursePojo coursePojo) {
 		ArrayList<QuestionPojo> questionPojos = null;
@@ -21,45 +21,28 @@ public class QuestionService {
 	public ArrayList<QuestionOptionPojo> getQuestionOptionPojosByQuestionPojo(QuestionPojo questionPojo) {
 		ArrayList<QuestionOptionPojo> questionOptionPojos = null;
 		
-		QuestionOptionDao questionOptionDao = new QuestionOptionDao();
 		questionOptionPojos = questionOptionDao.getQuestionOptionPojosByQuestionPojo(questionPojo);
 		
 		return questionOptionPojos;
 	}
 
-	public int addQuestionPojo(QuestionPojo questionPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
+	public QuestionPojo addQuestionPojo(QuestionPojo questionPojo) {
 		
-		QuestionDao questionDao = new QuestionDao();
-		questionDao.add(questionPojo);
-		
-		return executeResult;
+		return questionDao.add(questionPojo);
 	}
 	
-	public int deleteQuestionPojo(QuestionPojo questionPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
-		
-		QuestionDao questionDao = new QuestionDao();
-		questionDao.delete(questionPojo);
-		
-		return executeResult;
+	public QuestionPojo deleteQuestionPojo(QuestionPojo questionPojo) {
+
+		return questionDao.delete(questionPojo);
 	}
 
-	public int addQuestionOptionPojo(QuestionOptionPojo questionOptionPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
+	public QuestionOptionPojo addQuestionOptionPojo(QuestionOptionPojo questionOptionPojo) {
 		
-		QuestionOptionDao questionOptionDao = new QuestionOptionDao();
-		questionOptionDao.add(questionOptionPojo);
-		
-		return executeResult;
+		return questionOptionDao.add(questionOptionPojo);
 	}
 	
-	public int deleteQuestionOptionPojo(QuestionOptionPojo questionOptionPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
-		
-		QuestionOptionDao questionOptionDao = new QuestionOptionDao();
-		questionOptionDao.delete(questionOptionPojo);
-		
-		return executeResult;
+	public QuestionOptionPojo deleteQuestionOptionPojo(QuestionOptionPojo questionOptionPojo) {
+
+		return questionOptionDao.delete(questionOptionPojo);
 	}
 }

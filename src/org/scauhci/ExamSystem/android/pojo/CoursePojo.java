@@ -4,7 +4,7 @@ public class CoursePojo {
 	
 	private String courseId;
 	private String courseName;
-	private int courseType;
+	private int courseType = -1;
 
 	public String getCourseId() {
 		return courseId;

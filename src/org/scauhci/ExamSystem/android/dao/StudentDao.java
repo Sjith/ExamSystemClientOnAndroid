@@ -4,7 +4,7 @@ import java.util.HashMap;
 
 import org.scauhci.ExamSystem.android.pojo.CoursePojo;
 import org.scauhci.ExamSystem.android.pojo.StudentPojo;
-import org.scauhci.ExamSystem.android.tool.ExecuteResultFlag;
+import org.scauhci.ExamSystem.android.tool.Flag;
 import org.scauhci.ExamSystem.android.tool.HashValue;
 
 import android.database.Cursor;
@@ -19,32 +19,29 @@ public class StudentDao {
 		updateLatestStudentPojo(studentPojo);
 	}
 
-	public int add(StudentPojo studentPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
-		
+	public StudentPojo add(StudentPojo studentPojo) {
 		String[] keys = { "studentId", "studentName", "studentPassword" };
 		String[] values = { studentPojo.getStudentId(),
 				studentPojo.getStudentName(), studentPojo.getStudentPassword() };
 
 		daoHelper.insert(tableName, keys, values);
 
-		return executeResult;
+		return studentPojo;
 	}
 
-	public int delete(StudentPojo studentPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
+	public StudentPojo delete(StudentPojo studentPojo) {
 
-		String[] keys = { "studentId" };
-		String[] values = { studentPojo.getStudentId() };
+		if ((studentPojo = completeStudentPojo(studentPojo)) != null) {
+			String[] keys = { "studentId" };
+			String[] values = { studentPojo.getStudentId() };
 
-		daoHelper.delete(tableName, keys, values);
+			daoHelper.delete(tableName, keys, values);
+		}
 		
-		return executeResult;
+		return studentPojo;
 	}
 
-	public int change(StudentPojo studentPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
-		
+	public StudentPojo change(StudentPojo studentPojo) {
 		HashMap<String, String> keyValueMap = getKeyValueMapByStudentPojo(studentPojo);
 		
 		String[] keys = new String[keyValueMap.size()];
@@ -56,8 +53,9 @@ public class StudentDao {
 		
 		daoHelper.update(tableName, keys, newValues, whereConditionKeys,
 				whereConditionValues);
+		studentPojo = completeStudentPojo(studentPojo);
 		
-		return executeResult;
+		return studentPojo;
 	}
 
 	public HashMap<String, String> getKeyValueMapByStudentPojo(StudentPojo studentPojo){
@@ -76,31 +74,81 @@ public class StudentDao {
 		return keyValueMap;
 	}
 	
-	public StudentPojo getStudentPojoByStudentName(String studentName) {
+	public StudentPojo getStudentPojoByStudentId(String studentId) {
 		StudentPojo studentPojo = new StudentPojo();
 		
 		String[] keys = { "*" };
-		String[] whereConditionKeys = { "studentName" };
-		String[] whereConditionValues = { studentName };
+		String[] whereConditionKeys = { "studentId" };
+		String[] whereConditionValues = { studentId };
 
 		Cursor studentCursor = daoHelper.select(tableName, keys,
 				whereConditionKeys, whereConditionValues);
-		while (studentCursor.moveToNext()) {
+		if (studentCursor.moveToFirst()) {
 			studentPojo.setStudentId(studentCursor.getString(studentCursor
 					.getColumnIndex("studentId")));
 			studentPojo.setStudentName(studentCursor.getString(studentCursor
 					.getColumnIndex("studentName")));
 			studentPojo.setStudentPassword(studentCursor.getString(studentCursor
 					.getColumnIndex("studentPassword")));
+		} else {
+			studentPojo = null;
+		}
+		
+		return studentPojo;
+	}
+	
+	public StudentPojo completeStudentPojo(StudentPojo studentPojo) {
+		HashMap<String, String> keyValueMap = getKeyValueMapByStudentPojo(studentPojo);
+
+		String[] keys = { "*" };
+		String[] whereConditionKeys = new String[keyValueMap.size()];
+		keyValueMap.keySet().toArray(whereConditionKeys);
+		String[] whereConditionValues = new String[whereConditionKeys.length];
+		keyValueMap.values().toArray(whereConditionValues);
+		
+		Cursor studentCursor = daoHelper.select(tableName, keys,
+				whereConditionKeys, whereConditionValues);
+		if (studentCursor.moveToFirst()) {
+			studentPojo.setStudentId(studentCursor.getString(studentCursor
+					.getColumnIndex("studentId")));
+			studentPojo.setStudentName(studentCursor.getString(studentCursor
+					.getColumnIndex("studentName")));
+			studentPojo.setStudentPassword(studentCursor.getString(studentCursor
+					.getColumnIndex("studentPassword")));
+		} else {
+			studentPojo = null;
+		}
+		
+		return studentPojo;
+	}
+	
+	public StudentPojo getStudentPojoByStudentName(String studentName) {
+		StudentPojo studentPojo = new StudentPojo();
+		
+		String[] keys = { "*" };
+		String[] whereConditionKeys = { "studentName" };
+		String[] whereConditionValues = { studentName };
+		
+		Cursor studentCursor = daoHelper.select(tableName, keys,
+				whereConditionKeys, whereConditionValues);
+		if (studentCursor.moveToFirst()) {
+			studentPojo.setStudentId(studentCursor.getString(studentCursor
+					.getColumnIndex("studentId")));
+			studentPojo.setStudentName(studentCursor.getString(studentCursor
+					.getColumnIndex("studentName")));
+			studentPojo.setStudentPassword(studentCursor.getString(studentCursor
+					.getColumnIndex("studentPassword")));
+		} else {
+			studentPojo = null;
 		}
 		
 		return studentPojo;
 	}
 	
 	public void updateLatestStudentPojo(StudentPojo studentPojo) {
-		StudentPojo rawQueryStudentPojo = getStudentPojoByStudentName(studentPojo.getStudentName());
-		if (rawQueryStudentPojo.getStudentPassword() == studentPojo.getStudentPassword()) {
-			this.latestStudentPojo = studentPojo;
+		StudentPojo rawQueryStudentPojo = getStudentPojoByStudentId(studentPojo.getStudentId());
+		if (rawQueryStudentPojo.getStudentPassword().equals(studentPojo.getStudentPassword())) {
+			StudentDao.latestStudentPojo = studentPojo;
 		}
 	}
 

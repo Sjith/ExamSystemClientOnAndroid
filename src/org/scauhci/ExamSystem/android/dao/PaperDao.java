@@ -1,11 +1,12 @@
 package org.scauhci.ExamSystem.android.dao;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.scauhci.ExamSystem.android.pojo.CoursePojo;
 import org.scauhci.ExamSystem.android.pojo.ExamPojo;
 import org.scauhci.ExamSystem.android.pojo.PaperPojo;
-import org.scauhci.ExamSystem.android.tool.ExecuteResultFlag;
+import org.scauhci.ExamSystem.android.tool.Flag;
 import org.scauhci.ExamSystem.android.tool.HashValue;
 
 import android.database.Cursor;
@@ -21,9 +22,7 @@ public class PaperDao {
 		// update();
 	}
 
-	public int add(PaperPojo paperPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
-		
+	public PaperPojo add(PaperPojo paperPojo) {
 		long paperId;
 		for (paperId = HashValue.getDJBHashValue(paperPojo.getPaperName()); getPaperPojoByPaperId(Long
 				.toHexString(paperId)) != null; paperId++)
@@ -41,23 +40,22 @@ public class PaperDao {
 
 		daoHelper.insert(tableName, keys, values);
 
-		return executeResult;
+		return paperPojo;
 	}
 
-	public int delete(PaperPojo paperPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
+	public PaperPojo delete(PaperPojo paperPojo) {
 
-		String[] keys = { "paperId" };
-		String[] values = { paperPojo.getPaperId() };
+		if ((paperPojo = completePaperPojo(paperPojo)) != null) {
+			String[] keys = { "paperId" };
+			String[] values = { paperPojo.getPaperId() };
+			
+			daoHelper.delete(tableName, keys, values);
+		}
 
-		daoHelper.delete(tableName, keys, values);
-
-		return executeResult;
+		return paperPojo;
 	}
 
-	public int change(PaperPojo paperPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
-
+	public PaperPojo change(PaperPojo paperPojo) {
 		HashMap<String, String> keyValueMap = getKeyValueMapByPaperPojo(paperPojo);
 
 		String[] keys = new String[keyValueMap.size()];
@@ -69,16 +67,17 @@ public class PaperDao {
 
 		daoHelper.update(tableName, keys, newValues, whereConditionKeys,
 				whereConditionValues);
+		paperPojo = completePaperPojo(paperPojo);
 
-		return executeResult;
+		return paperPojo;
 	}
 
 	public HashMap<String, String> getKeyValueMapByPaperPojo(PaperPojo paperPojo){
 		HashMap<String, String> keyValueMap = new HashMap<String, String>();
 
-		/*if (paperPojo.getPaperId() != null) {
+		if (paperPojo.getPaperId() != null) {
 			keyValueMap.put("paperId", paperPojo.getPaperId());
-		}*/
+		}
 		if (paperPojo.getPaperName() != null) {
 			keyValueMap.put("paperName", paperPojo.getPaperName());
 		}
@@ -115,7 +114,7 @@ public class PaperDao {
 
 		Cursor paperCursor = daoHelper.select(tableName, keys,
 				whereConditionKeys, whereConditionValues);
-		while (paperCursor.moveToNext()) {
+		if (paperCursor.moveToFirst()) {
 			paperPojo.setPaperId(paperCursor.getString(paperCursor
 					.getColumnIndex("paperId")));
 			paperPojo.setPaperName(paperCursor.getString(paperCursor
@@ -134,6 +133,8 @@ public class PaperDao {
 			paperCreateTime.parse3339(paperCursor.getString(paperCursor
 					.getColumnIndex("paperCreateTime")));
 			paperPojo.setPaperCreateTime(paperCreateTime);
+		} else {
+			paperPojo = null;
 		}
 
 		return paperPojo;
@@ -150,7 +151,7 @@ public class PaperDao {
 
 		Cursor paperCursor = daoHelper.select(tableName, keys,
 				whereConditionKeys, whereConditionValues);
-		while (paperCursor.moveToNext()) {
+		if (paperCursor.moveToFirst()) {
 			paperPojo.setPaperId(paperCursor.getString(paperCursor
 					.getColumnIndex("paperId")));
 			paperPojo.setPaperName(paperCursor.getString(paperCursor
@@ -169,9 +170,46 @@ public class PaperDao {
 			paperCreateTime.parse3339(paperCursor.getString(paperCursor
 					.getColumnIndex("paperCreateTime")));
 			paperPojo.setPaperCreateTime(paperCreateTime);
+		} else {
+			paperPojo = null;
 		}
 		
 		return paperPojo;
+	}
+
+	public ArrayList<PaperPojo> getAllPaperPojo() {
+		ArrayList<PaperPojo> paperPojos = new ArrayList<PaperPojo>();
+
+		String[] keys = { "*" };
+		String[] whereConditionKeys = null;
+		String[] whereConditionValues = null;
+
+		Cursor paperCursor = daoHelper.select(tableName, keys,
+				whereConditionKeys, whereConditionValues);
+		while (paperCursor.moveToNext()) {
+			PaperPojo paperPojo = new PaperPojo();
+			paperPojo.setPaperId(paperCursor.getString(paperCursor
+					.getColumnIndex("paperId")));
+			paperPojo.setPaperName(paperCursor.getString(paperCursor
+					.getColumnIndex("paperName")));
+			paperPojo.setPaperType(paperCursor.getInt(paperCursor
+					.getColumnIndex("paperType")));
+			paperPojo.setTeacherId(paperCursor.getString(paperCursor
+					.getColumnIndex("teacherId")));
+			paperPojo.setCourseId(paperCursor.getString(paperCursor
+					.getColumnIndex("courseId")));
+			paperPojo.setPaperTotalScore(paperCursor.getFloat(paperCursor
+					.getColumnIndex("paperTotalScore")));
+			paperPojo.setPaperExplain(paperCursor.getString(paperCursor
+					.getColumnIndex("paperExplain")));
+			Time paperCreateTime = new Time();
+			paperCreateTime.parse3339(paperCursor.getString(paperCursor
+					.getColumnIndex("paperCreateTime")));
+			paperPojo.setPaperCreateTime(paperCreateTime);
+			paperPojos.add(paperPojo);
+		}
+		
+		return paperPojos;
 	}
 
 }

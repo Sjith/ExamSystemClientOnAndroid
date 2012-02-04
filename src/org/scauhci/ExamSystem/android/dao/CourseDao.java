@@ -3,7 +3,7 @@ package org.scauhci.ExamSystem.android.dao;
 import java.util.HashMap;
 
 import org.scauhci.ExamSystem.android.pojo.CoursePojo;
-import org.scauhci.ExamSystem.android.tool.ExecuteResultFlag;
+import org.scauhci.ExamSystem.android.tool.Flag;
 import org.scauhci.ExamSystem.android.tool.HashValue;
 
 import android.database.Cursor;
@@ -19,13 +19,15 @@ public class CourseDao {
 		// update();
 	}
 
-	public int add(CoursePojo coursePojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
-
+	public CoursePojo add(CoursePojo coursePojo) {
 		long courseId;
 		for (courseId = HashValue.getDJBHashValue(coursePojo.getCourseName()); getCoursePojoByCourseId(Long
 				.toHexString(courseId)) != null; courseId++)
 			;
+		/*
+		 * if((coursePojo = completeCoursePojo(coursePojo)) != null){ return
+		 * null; }
+		 */		
 		coursePojo.setCourseId(Long.toHexString(courseId));
 
 		String[] keys = { "courseId", "courseName", "courseType" };
@@ -34,23 +36,22 @@ public class CourseDao {
 
 		daoHelper.insert(tableName, keys, values);
 
-		return executeResult;
+		return coursePojo;
 	}
 
-	public int delete(CoursePojo coursePojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
+	public CoursePojo delete(CoursePojo coursePojo) {
+		
+		if ((coursePojo = completeCoursePojo(coursePojo)) != null) {
+			String[] keys = { "courseId" };
+			String[] values = { coursePojo.getCourseId() };
+		
+			daoHelper.delete(tableName, keys, values);
+		}
 
-		String[] keys = { "courseId" };
-		String[] values = { coursePojo.getCourseId() };
-
-		daoHelper.delete(tableName, keys, values);
-
-		return executeResult;
+		return coursePojo;
 	}
 
-	public int change(CoursePojo coursePojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
-
+	public CoursePojo change(CoursePojo coursePojo) {
 		HashMap<String, String> keyValueMap = getKeyValueMapByCoursePojo(coursePojo);
 
 		String[] keys = new String[keyValueMap.size()];
@@ -62,14 +63,18 @@ public class CourseDao {
 
 		daoHelper.update(tableName, keys, newValues, whereConditionKeys,
 				whereConditionValues);
+		coursePojo = completeCoursePojo(coursePojo);
 
-		return executeResult;
+		return coursePojo;
 	}
 
 	public HashMap<String, String> getKeyValueMapByCoursePojo(
 			CoursePojo coursePojo) {
 		HashMap<String, String> keyValueMap = new HashMap<String, String>();
 
+		if (coursePojo.getCourseId() != null) {
+			keyValueMap.put("courseId", coursePojo.getCourseId());
+		}
 		if (coursePojo.getCourseName() != null) {
 			keyValueMap.put("courseName", coursePojo.getCourseName());
 		}
@@ -89,13 +94,15 @@ public class CourseDao {
 
 		Cursor courseCursor = daoHelper.select(tableName, keys,
 				whereConditionKeys, whereConditionValues);
-		while (courseCursor.moveToNext()) {
+		if (courseCursor.moveToFirst()) {
 			coursePojo.setCourseId(courseCursor.getString(courseCursor
 					.getColumnIndex("courseId")));
 			coursePojo.setCourseName(courseCursor.getString(courseCursor
 					.getColumnIndex("courseName")));
 			coursePojo.setCourseType(courseCursor.getInt(courseCursor
 					.getColumnIndex("courseType")));
+		} else {
+			coursePojo = null;
 		}
 
 		return coursePojo;
@@ -112,13 +119,15 @@ public class CourseDao {
 
 		Cursor courseCursor = daoHelper.select(tableName, keys,
 				whereConditionKeys, whereConditionValues);
-		while (courseCursor.moveToNext()) {
+		if (courseCursor.moveToFirst()) {
 			coursePojo.setCourseId(courseCursor.getString(courseCursor
 					.getColumnIndex("courseId")));
 			coursePojo.setCourseName(courseCursor.getString(courseCursor
 					.getColumnIndex("courseName")));
 			coursePojo.setCourseType(courseCursor.getInt(courseCursor
 					.getColumnIndex("courseType")));
+		} else {
+			coursePojo = null;
 		}
 
 		return coursePojo;

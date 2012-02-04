@@ -5,7 +5,7 @@ import java.util.HashMap;
 
 import org.scauhci.ExamSystem.android.pojo.CoursePojo;
 import org.scauhci.ExamSystem.android.pojo.QuestionPojo;
-import org.scauhci.ExamSystem.android.tool.ExecuteResultFlag;
+import org.scauhci.ExamSystem.android.tool.Flag;
 import org.scauhci.ExamSystem.android.tool.HashValue;
 
 import android.database.Cursor;
@@ -20,9 +20,7 @@ public class QuestionDao {
 		// update();
 	}
 
-	public int add(QuestionPojo questionPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
-
+	public QuestionPojo add(QuestionPojo questionPojo) {
 		long questionId;
 		for (questionId = HashValue.getDJBHashValue(questionPojo
 				.getQuestionContent()); getQuestionPojoByQuestionId(Long
@@ -39,23 +37,22 @@ public class QuestionDao {
 
 		daoHelper.insert(tableName, keys, values);
 
-		return executeResult;
+		return questionPojo;
 	}
 
-	public int delete(QuestionPojo questionPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
+	public QuestionPojo delete(QuestionPojo questionPojo) {
 
-		String[] keys = { "questionId" };
-		String[] values = { questionPojo.getQuestionId() };
+		if ((questionPojo = completeQuestionPojo(questionPojo)) != null) {
+			String[] keys = { "questionId" };
+			String[] values = { questionPojo.getQuestionId() };
 
-		daoHelper.delete(tableName, keys, values);
+			daoHelper.delete(tableName, keys, values);
+		}
 
-		return executeResult;
+		return questionPojo;
 	}
 
-	public int change(QuestionPojo questionPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
-
+	public QuestionPojo change(QuestionPojo questionPojo) {
 		HashMap<String, String> keyValueMap = getKeyValueMapByQuestionPojo(questionPojo);
 
 		String[] keys = new String[keyValueMap.size()];
@@ -68,12 +65,16 @@ public class QuestionDao {
 		daoHelper.update(tableName, keys, newValues, whereConditionKeys,
 				whereConditionValues);
 
-		return executeResult;
+		return questionPojo;
 	}
 
-	public HashMap<String, String> getKeyValueMapByQuestionPojo(QuestionPojo questionPojo){
+	public HashMap<String, String> getKeyValueMapByQuestionPojo(
+			QuestionPojo questionPojo) {
 		HashMap<String, String> keyValueMap = new HashMap<String, String>();
 
+		if (questionPojo.getQuestionId() != null) {
+			keyValueMap.put("questionId", questionPojo.getQuestionId());
+		}
 		if (questionPojo.getQuestionContent() != null) {
 			keyValueMap.put("questionContent",
 					questionPojo.getQuestionContent());
@@ -87,12 +88,12 @@ public class QuestionDao {
 		}
 		if (questionPojo.getQuestionType() != -1) {
 			keyValueMap
-			.put("questionType", questionPojo.getQuestionType() + "");
+					.put("questionType", questionPojo.getQuestionType() + "");
 		}
-		
+
 		return keyValueMap;
 	}
-	
+
 	public QuestionPojo getQuestionPojoByQuestionId(String questionId) {
 		QuestionPojo questionPojo = new QuestionPojo();
 
@@ -102,7 +103,7 @@ public class QuestionDao {
 
 		Cursor questionCursor = daoHelper.select(tableName, keys,
 				whereConditionKeys, whereConditionValues);
-		while (questionCursor.moveToNext()) {
+		if (questionCursor.moveToFirst()) {
 			questionPojo.setQuestionId(questionCursor.getString(questionCursor
 					.getColumnIndex("questionId")));
 			questionPojo
@@ -115,11 +116,13 @@ public class QuestionDao {
 							.getColumnIndex("questionStdAnswer")));
 			questionPojo.setQuestionType(questionCursor.getInt(questionCursor
 					.getColumnIndex("questionType")));
+		} else {
+			questionPojo = null;
 		}
 
 		return questionPojo;
 	}
-	
+
 	public QuestionPojo completeQuestionPojo(QuestionPojo questionPojo) {
 		HashMap<String, String> keyValueMap = getKeyValueMapByQuestionPojo(questionPojo);
 
@@ -131,7 +134,7 @@ public class QuestionDao {
 
 		Cursor questionCursor = daoHelper.select(tableName, keys,
 				whereConditionKeys, whereConditionValues);
-		while (questionCursor.moveToNext()) {
+		if (questionCursor.moveToFirst()) {
 			questionPojo.setQuestionId(questionCursor.getString(questionCursor
 					.getColumnIndex("questionId")));
 			questionPojo
@@ -144,8 +147,10 @@ public class QuestionDao {
 							.getColumnIndex("questionStdAnswer")));
 			questionPojo.setQuestionType(questionCursor.getInt(questionCursor
 					.getColumnIndex("questionType")));
+		} else {
+			questionPojo = null;
 		}
-		
+
 		return questionPojo;
 	}
 

@@ -1,7 +1,7 @@
 package org.scauhci.ExamSystem.android.dao;
 
-import org.scauhci.ExamSystem.android.tool.ExecuteResultFlag;
-import org.scauhci.ExamSystem.android.tool.LogLabelFlag;
+import org.scauhci.ExamSystem.android.tool.Flag;
+
 import org.scauhci.ExamSystem.android.tool.SQLStatement;
 
 import android.content.Context;
@@ -17,7 +17,7 @@ public class DaoHelper extends SQLiteOpenHelper {
 	public DaoHelper(Context context, String databasePath,
 			CursorFactory cursorFactory, int databaseVersion) {
 		super(context, databasePath, cursorFactory, databaseVersion);
-		Log.e(LogLabelFlag.DEBUG, "The database creates sucessfully.");
+		Log.e(Flag.DEBUG, "The database creates sucessfully.");
 	}
 
 	@Override
@@ -33,18 +33,18 @@ public class DaoHelper extends SQLiteOpenHelper {
 		database.execSQL(SQLStatement.CREATE_TABLE_SCORE);
 		database.execSQL(SQLStatement.CREATE_TABLE_STUDENT);
 		database.execSQL(SQLStatement.CREATE_TABLE_SUBMIT_ANSWER);
-		Log.e(LogLabelFlag.DEBUG, "The tables create successfully.");
+		Log.e(Flag.DEBUG, "The tables create successfully.");
 	}
 
 	@Override
 	public void onUpgrade(SQLiteDatabase database, int oldVersion,
 			int newVersion) {
-		Log.e(LogLabelFlag.DEBUG, "The database upgrade from version "
+		Log.e(Flag.DEBUG, "The database upgrade from version "
 				+ oldVersion + " to version " + newVersion);
 	}
 
 	public int insert(String tableName, String[] keys, String[] values) {
-		int executeResult = ExecuteResultFlag.ERROR;
+		int executeResult = Flag.ERROR;
 
 		String allKey = null, allValue = null;
 
@@ -57,14 +57,14 @@ public class DaoHelper extends SQLiteOpenHelper {
 
 		String[] bindArgs = { tableName, allKey, allValue };
 		this.getReadableDatabase().execSQL(SQLStatement.INSERT, bindArgs);
-		Log.e(LogLabelFlag.DEBUG, "The record inserts successfully.");
+		Log.e(Flag.DEBUG, "The record inserts successfully.");
 
 		return executeResult;
 	}
 
 	public int delete(String tableName, String[] whereConditionKeys,
 			String[] whereConditionValues) {
-		int executeResult = ExecuteResultFlag.ERROR;
+		int executeResult = Flag.ERROR;
 
 		String whereConditions = null;
 
@@ -77,14 +77,14 @@ public class DaoHelper extends SQLiteOpenHelper {
 
 		String[] bindArgs = { tableName, whereConditions };
 		this.getReadableDatabase().execSQL(SQLStatement.DELETE, bindArgs);
-		Log.e(LogLabelFlag.DEBUG, "The record deletes successfully.");
+		Log.e(Flag.DEBUG, "The record deletes successfully.");
 
 		return executeResult;
 	}
 
 	public int update(String tableName, String[] keys, String[] newValues,
 			String[] whereConditionKeys, String[] whereConditionValues) {
-		int executeResult = ExecuteResultFlag.ERROR;
+		int executeResult = Flag.ERROR;
 
 		String setConditions = null, whereConditions = null;
 
@@ -101,7 +101,7 @@ public class DaoHelper extends SQLiteOpenHelper {
 
 		String[] bindArgs = { setConditions, tableName, whereConditions };
 		this.getReadableDatabase().execSQL(SQLStatement.UPDATE, bindArgs);
-		Log.e(LogLabelFlag.DEBUG, "The record updates successfully.");
+		Log.e(Flag.DEBUG, "The record updates successfully.");
 
 		return executeResult;
 	}
@@ -114,7 +114,7 @@ public class DaoHelper extends SQLiteOpenHelper {
 		String selectConditions = null, whereConditions = null;
 
 		for (int i = 0; i < keys.length; i++) {
-			selectConditions += keys + ",";
+			selectConditions += keys[i] + ",";
 		}
 		selectConditions = selectConditions.substring(0,
 				selectConditions.length() - 2);
@@ -131,7 +131,7 @@ public class DaoHelper extends SQLiteOpenHelper {
 		}
 		Cursor cursor = getReadableDatabase().rawQuery(SQLStatement.SELECT,
 				selectionArgs);
-		Log.e(LogLabelFlag.DEBUG, "Get the records successfully.");
+		Log.e(Flag.DEBUG, "Get the records successfully.");
 
 		return cursor;
 	}

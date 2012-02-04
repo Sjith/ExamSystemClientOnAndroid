@@ -6,7 +6,7 @@ import java.util.HashMap;
 import org.scauhci.ExamSystem.android.pojo.CoursePojo;
 import org.scauhci.ExamSystem.android.pojo.NoticePojo;
 import org.scauhci.ExamSystem.android.pojo.StudentPojo;
-import org.scauhci.ExamSystem.android.tool.ExecuteResultFlag;
+import org.scauhci.ExamSystem.android.tool.Flag;
 import org.scauhci.ExamSystem.android.tool.HashValue;
 
 import android.database.Cursor;
@@ -17,9 +17,7 @@ public class NoticeDao {
 	DaoHelper daoHelper = new DaoHelper(null, "exam_online.db", null, 0);
 	String tableName = "notice";
 
-	public int add(NoticePojo noticePojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
-
+	public NoticePojo add(NoticePojo noticePojo) {
 		long noticeId;
 		for (noticeId = HashValue.getDJBHashValue(noticePojo.getNoticeName()); getNoticePojoByNoticeId(Long
 				.toHexString(noticeId)) != null; noticeId++)
@@ -34,23 +32,21 @@ public class NoticeDao {
 
 		daoHelper.insert(tableName, keys, values);
 
-		return executeResult;
+		return noticePojo;
 	}
 
-	public int delete(NoticePojo noticePojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
+	public NoticePojo delete(NoticePojo noticePojo) {
+		if ((noticePojo = completeNoticePojo(noticePojo)) != null) {
+			String[] keys = { "noticeId" };
+			String[] values = { noticePojo.getNoticeId() };
+			
+			daoHelper.delete(tableName, keys, values);
+		}
 
-		String[] keys = { "noticeId" };
-		String[] values = { noticePojo.getNoticeId() };
-
-		daoHelper.delete(tableName, keys, values);
-
-		return executeResult;
+		return noticePojo;
 	}
 
-	public int change(NoticePojo noticePojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
-
+	public NoticePojo change(NoticePojo noticePojo) {
 		HashMap<String, String> keyValueMap = getKeyValueMapByNoticePojo(noticePojo);
 
 		String[] keys = new String[keyValueMap.size()];
@@ -62,13 +58,17 @@ public class NoticeDao {
 
 		daoHelper.update(tableName, keys, newValues, whereConditionKeys,
 				whereConditionValues);
+		noticePojo = completeNoticePojo(noticePojo);
 
-		return executeResult;
+		return noticePojo;
 	}
 	
 	public HashMap<String, String> getKeyValueMapByNoticePojo(NoticePojo noticePojo){
 		HashMap<String, String> keyValueMap = new HashMap<String, String>();
 
+		if (noticePojo.getNoticeId() != null) {
+			keyValueMap.put("noticeId", noticePojo.getNoticeId());
+		}
 		if (noticePojo.getNoticeName() != null) {
 			keyValueMap.put("noticeName", noticePojo.getNoticeName());
 		}
@@ -92,7 +92,7 @@ public class NoticeDao {
 
 		Cursor noticeCursor = daoHelper.select(tableName, keys,
 				whereConditionKeys, whereConditionValues);
-		while (noticeCursor.moveToNext()) {
+		if (noticeCursor.moveToFirst()) {
 			noticePojo.setNoticeId(noticeCursor.getString(noticeCursor
 					.getColumnIndex("noticeId")));
 			noticePojo.setNoticeName(noticeCursor.getString(noticeCursor
@@ -103,6 +103,8 @@ public class NoticeDao {
 			noticePublicTime.parse3339(noticeCursor.getString(noticeCursor
 					.getColumnIndex("noticePublicTime")));
 			noticePojo.setNoticePublicTime(noticePublicTime);
+		} else {
+			noticePojo = null;
 		}
 
 		return noticePojo;
@@ -119,7 +121,7 @@ public class NoticeDao {
 
 		Cursor noticeCursor = daoHelper.select(tableName, keys,
 				whereConditionKeys, whereConditionValues);
-		while (noticeCursor.moveToNext()) {
+		if (noticeCursor.moveToFirst()) {
 			noticePojo.setNoticeId(noticeCursor.getString(noticeCursor
 					.getColumnIndex("noticeId")));
 			noticePojo.setNoticeName(noticeCursor.getString(noticeCursor
@@ -130,6 +132,8 @@ public class NoticeDao {
 			noticePublicTime.parse3339(noticeCursor.getString(noticeCursor
 					.getColumnIndex("noticePublicTime")));
 			noticePojo.setNoticePublicTime(noticePublicTime);
+		} else {
+			noticePojo = null;
 		}
 
 		return noticePojo;

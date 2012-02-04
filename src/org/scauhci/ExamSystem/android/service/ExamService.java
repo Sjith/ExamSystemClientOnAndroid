@@ -6,103 +6,179 @@ import org.scauhci.ExamSystem.android.dao.ExamDao;
 import org.scauhci.ExamSystem.android.dao.PaperDao;
 import org.scauhci.ExamSystem.android.dao.QuestionDao;
 import org.scauhci.ExamSystem.android.dao.RelationPaperQuestionDao;
+import org.scauhci.ExamSystem.android.dao.ScoreDao;
+import org.scauhci.ExamSystem.android.dao.StudentDao;
 import org.scauhci.ExamSystem.android.dao.SubmitAnswerDao;
 import org.scauhci.ExamSystem.android.pojo.ExamPojo;
 import org.scauhci.ExamSystem.android.pojo.PaperPojo;
 import org.scauhci.ExamSystem.android.pojo.QuestionPojo;
 import org.scauhci.ExamSystem.android.pojo.RelationPaperQuestionPojo;
+import org.scauhci.ExamSystem.android.pojo.ScorePojo;
+import org.scauhci.ExamSystem.android.pojo.StudentPojo;
 import org.scauhci.ExamSystem.android.pojo.SubmitAnswerPojo;
-import org.scauhci.ExamSystem.android.tool.ExecuteResultFlag;
+import org.scauhci.ExamSystem.android.tool.Flag;
 
 import android.text.format.Time;
 
 public class ExamService {
 
 	ExamDao examDao = new ExamDao();
-	ExamPojo examPojo = new ExamPojo();
 	PaperDao paperDao = new PaperDao();
+	ScoreDao scoreDao = new ScoreDao();
+	QuestionDao questionDao = new QuestionDao();
+	SubmitAnswerDao submitAnswerDao = new SubmitAnswerDao();
+	RelationPaperQuestionDao relationPaperQuestionDao = new RelationPaperQuestionDao();
 
-	public ExamPojo getExamPojo() {
-		return ExamDao.getLatestExamPojo();
+	public Time getRemainTime(ExamPojo examPojo) {
+		Time remainTime = new Time();
+		Time targetTime = new Time();
+		Time examEndTime = examPojo.getExamEndTime();
+		Time examStartTime = examPojo.getExamStartTime();
+
+		targetTime.setToNow();
+		if (targetTime.before(examPojo.getExamStartTime())) {
+			remainTime.set(targetTime.toMillis(false)
+					- examStartTime.toMillis(false));
+		} else {
+			remainTime.set(examEndTime.toMillis(false)
+					- targetTime.toMillis(false));
+		}
+
+		return remainTime;
 	}
 
-	public Time getRemainTime() {
-		return examDao.getRemainTime();
+	/*
+	 * public ExamPojo getLatestExamPojo() { return ExamDao.getLatestExamPojo();
+	 * }
+	 * 
+	 * public PaperPojo getLatestPaperPojo() { return
+	 * getPaperPojoByExamPojo(getLatestExamPojo()); }
+	 */
+
+	public ArrayList<ExamPojo> getAllExamPojo() {
+		return examDao.getAllExamPojo();
+	}
+
+	public ArrayList<PaperPojo> getAllPaperPojo() {
+		return paperDao.getAllPaperPojo();
 	}
 
 	public PaperPojo getPaperPojoByExamPojo(ExamPojo examPojo) {
+		examPojo = examDao.completeExamPojo(examPojo);
 		return paperDao.getPaperPojoByPaperId(examPojo.getPaperId());
+	}
+
+	public QuestionPojo getQuestionPojoByRelationPaperQuestionPojo(
+			RelationPaperQuestionPojo relationPaperQuestionPojo) {
+
+		relationPaperQuestionPojo = relationPaperQuestionDao
+				.completeRelationPaperQuestionPojo(relationPaperQuestionPojo);
+
+		return questionDao
+				.getQuestionPojoByQuestionId(relationPaperQuestionPojo
+						.getQuestionId());
 	}
 
 	public ArrayList<QuestionPojo> getQuestionPojosByPaperPojo(
 			PaperPojo paperPojo) {
-		RelationPaperQuestionDao relationPaperQuestionDao = new RelationPaperQuestionDao();
 		ArrayList<RelationPaperQuestionPojo> relationPaperQuestionPojos = relationPaperQuestionDao
 				.getRelationPaperQuestionPojosByPaperPojo(paperPojo);
-		QuestionDao questionDao = new QuestionDao();
 		ArrayList<QuestionPojo> questionPojos = new ArrayList<QuestionPojo>();
-		
+
 		for (RelationPaperQuestionPojo relationPaperQuestionPojo : relationPaperQuestionPojos) {
 			QuestionPojo questionPojo = questionDao
 					.getQuestionPojoByQuestionId(relationPaperQuestionPojo
 							.getQuestionId());
 			questionPojos.add(questionPojo);
 		}
-		
+
 		return questionPojos;
 	}
 
-	public int addSubmitAnswerPojo(SubmitAnswerPojo submitAnswerPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
-		
-		SubmitAnswerDao submitAnswerDao = new SubmitAnswerDao();
-		submitAnswerDao.add(submitAnswerPojo);
-		
-		return executeResult;
+	public SubmitAnswerPojo getStandardSubmitAnswerPojoByExamPojoAndQuestionPojo(
+			ExamPojo examPojo, QuestionPojo questionPojo) {
+		return submitAnswerDao
+				.getStandardSubmitAnswerPojoByExamPojoAndQuestionPojo(examPojo,
+						questionPojo);
 	}
 
-	public int deleteSubmitAnswerPojo(SubmitAnswerPojo submitAnswerPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
-		
-		SubmitAnswerDao submitAnswerDao = new SubmitAnswerDao();
-		submitAnswerDao.delete(submitAnswerPojo);
-		
-		return executeResult;
+	public ArrayList<SubmitAnswerPojo> getStandardSubmitAnswerPojosOfExamPojo(
+			ExamPojo examPojo) {
+		return submitAnswerDao.getStandardSubmitAnswerPojosOfExamPojo(examPojo);
 	}
 
-	public int addPaperPojo(PaperPojo paperPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
+	public SubmitAnswerPojo addSubmitAnswerPojo(SubmitAnswerPojo submitAnswerPojo) {
+
+		if (submitAnswerPojo.getStudentId() == null) {
+			submitAnswerPojo.setStudentId(StudentDao.getLatestStudentPojo()
+					.getStudentId());
+		}
 		
-		PaperDao paperDao = new PaperDao();
-		paperDao.add(paperPojo);
-		
-		return executeResult;
+		return submitAnswerDao.add(submitAnswerPojo);
 	}
 
-	public int deletePaperPojo(PaperPojo paperPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
-		
-		PaperDao paperDao = new PaperDao();
-		paperDao.delete(paperPojo);
-		
-		return executeResult;
+	public SubmitAnswerPojo deleteSubmitAnswerPojo(SubmitAnswerPojo submitAnswerPojo) {
+
+		if (submitAnswerPojo.getStudentId() == null) {
+			submitAnswerPojo.setStudentId(StudentDao.getLatestStudentPojo()
+					.getStudentId());
+		}
+
+		return submitAnswerDao.delete(submitAnswerPojo);
 	}
 
-	public int addExamPojo(ExamPojo examPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
+	/* incomplete */
+	public ScorePojo finishExam(ArrayList<SubmitAnswerPojo> submitAnswerPojos) {
+		/*
+		 * Did't verify whether the value of submitAnswerPojo is identical and
+		 * whether the value of studentPojo and submitAnswerPojo is identical.
+		 */
+		ScorePojo scorePojo = new ScorePojo();
+		StudentPojo studentPojo = StudentDao.getLatestStudentPojo();
+		ExamPojo examPojo = examDao.getExamPojoByExamId(submitAnswerPojos
+				.get(0).getExamId());
+
+		for (SubmitAnswerPojo submitAnswerPojo : submitAnswerPojos) {
+			addSubmitAnswerPojo(submitAnswerPojo);
+		}
+
+		scorePojo.setExamId(examPojo.getExamId());
+		scorePojo.setStudentId(studentPojo.getStudentId());
+		scorePojo.setScore(submitAnswerDao
+				.getTotalScoreOfExamPojoByStudentPojo(studentPojo, examPojo));
 		
-		ExamDao examDao = new ExamDao();
-		examDao.add(examPojo);
-		
-		return executeResult;
+		return scoreDao.add(scorePojo);
 	}
 
-	public int deleteExamPojo(ExamPojo examPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
-		
-		ExamDao examDao = new ExamDao();
-		examDao.delete(examPojo);
-		
-		return executeResult;
+	public PaperPojo addPaperPojo(PaperPojo paperPojo) {
+
+		return paperDao.add(paperPojo);
+	}
+
+	public PaperPojo deletePaperPojo(PaperPojo paperPojo) {
+
+		return paperDao.delete(paperPojo);
+	}
+
+	public ExamPojo addExamPojo(ExamPojo examPojo) {
+
+		return examDao.add(examPojo);
+	}
+
+	public ExamPojo deleteExamPojo(ExamPojo examPojo) {
+
+		return examDao.delete(examPojo);
+	}
+
+	public RelationPaperQuestionPojo addRelationPaperQuestionPojo(
+			RelationPaperQuestionPojo relationPaperQuestionPojo) {
+
+		return relationPaperQuestionDao.add(relationPaperQuestionPojo);
+	}
+
+	public RelationPaperQuestionPojo deleteRelationPaperQuestionPojo(
+			RelationPaperQuestionPojo relationPaperQuestionPojo) {
+
+		return relationPaperQuestionDao.delete(relationPaperQuestionPojo);
 	}
 }

@@ -8,7 +8,7 @@ import org.scauhci.ExamSystem.android.pojo.ExamPojo;
 import org.scauhci.ExamSystem.android.pojo.QuestionPojo;
 import org.scauhci.ExamSystem.android.pojo.StudentPojo;
 import org.scauhci.ExamSystem.android.pojo.SubmitAnswerPojo;
-import org.scauhci.ExamSystem.android.tool.ExecuteResultFlag;
+import org.scauhci.ExamSystem.android.tool.Flag;
 import org.scauhci.ExamSystem.android.tool.HashValue;
 
 import android.database.Cursor;
@@ -22,9 +22,7 @@ public class SubmitAnswerDao {
 		// update();
 	}
 
-	public int add(SubmitAnswerPojo submitAnswerPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
-
+	public SubmitAnswerPojo add(SubmitAnswerPojo submitAnswerPojo) {
 		long submitAnswerId;
 		for (submitAnswerId = HashValue.getDJBHashValue(submitAnswerPojo
 				.getExamId()
@@ -44,23 +42,22 @@ public class SubmitAnswerDao {
 
 		daoHelper.insert(tableName, keys, values);
 
-		return executeResult;
+		return submitAnswerPojo;
 	}
 
-	public int delete(SubmitAnswerPojo submitAnswerPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
+	public SubmitAnswerPojo delete(SubmitAnswerPojo submitAnswerPojo) {
 
-		String[] keys = { "submitAnswerId" };
-		String[] values = { submitAnswerPojo.getSubmitAnswerId() };
+		if ((completeSubmitAnswerPojo(submitAnswerPojo)) != null) {
+			String[] keys = { "submitAnswerId" };
+			String[] values = { submitAnswerPojo.getSubmitAnswerId() };
 
-		daoHelper.delete(tableName, keys, values);
-
-		return executeResult;
+			daoHelper.delete(tableName, keys, values);
+		}
+		
+		return submitAnswerPojo;
 	}
-	
-	public int change(SubmitAnswerPojo submitAnswerPojo) {
-		int executeResult = ExecuteResultFlag.ERROR;
 
+	public SubmitAnswerPojo change(SubmitAnswerPojo submitAnswerPojo) {
 		HashMap<String, String> keyValueMap = getKeyValueMapBySubmitAnswerPojo(submitAnswerPojo);
 
 		String[] keys = new String[keyValueMap.size()];
@@ -72,13 +69,15 @@ public class SubmitAnswerDao {
 
 		daoHelper.update(tableName, keys, newValues, whereConditionKeys,
 				whereConditionValues);
+		submitAnswerPojo = completeSubmitAnswerPojo(submitAnswerPojo);
 
-		return executeResult;
+		return submitAnswerPojo;
 	}
-	
-	public HashMap<String, String> getKeyValueMapBySubmitAnswerPojo(SubmitAnswerPojo submitAnswerPojo){
+
+	public HashMap<String, String> getKeyValueMapBySubmitAnswerPojo(
+			SubmitAnswerPojo submitAnswerPojo) {
 		HashMap<String, String> keyValueMap = new HashMap<String, String>();
-		
+
 		if (submitAnswerPojo.getSubmitAnswerId() != null) {
 			keyValueMap.put("submitAnswerId",
 					submitAnswerPojo.getSubmitAnswerId());
@@ -100,7 +99,7 @@ public class SubmitAnswerDao {
 			keyValueMap.put("questionScore",
 					submitAnswerPojo.getQuestionScore() + "");
 		}
-		
+
 		return keyValueMap;
 	}
 
@@ -114,7 +113,7 @@ public class SubmitAnswerDao {
 
 		Cursor submitAnswerCursor = daoHelper.select(tableName, keys,
 				whereConditionKeys, whereConditionValues);
-		while (submitAnswerCursor.moveToNext()) {
+		if (submitAnswerCursor.moveToFirst()) {
 			submitAnswerPojo.setSubmitAnswerId(submitAnswerCursor
 					.getString(submitAnswerCursor
 							.getColumnIndex("submitAnswerId")));
@@ -132,12 +131,15 @@ public class SubmitAnswerDao {
 			submitAnswerPojo.setQuestionStdScore(submitAnswerCursor
 					.getFloat(submitAnswerCursor
 							.getColumnIndex("questionStdScore")));
+		} else {
+			submitAnswerPojo = null;
 		}
 
 		return submitAnswerPojo;
 	}
 
-	public SubmitAnswerPojo completeSubmitAnswerPojo(SubmitAnswerPojo submitAnswerPojo) {
+	public SubmitAnswerPojo completeSubmitAnswerPojo(
+			SubmitAnswerPojo submitAnswerPojo) {
 		HashMap<String, String> keyValueMap = getKeyValueMapBySubmitAnswerPojo(submitAnswerPojo);
 
 		String[] keys = { "*" };
@@ -148,7 +150,7 @@ public class SubmitAnswerDao {
 
 		Cursor submitAnswerCursor = daoHelper.select(tableName, keys,
 				whereConditionKeys, whereConditionValues);
-		while (submitAnswerCursor.moveToNext()) {
+		if (submitAnswerCursor.moveToFirst()) {
 			submitAnswerPojo.setSubmitAnswerId(submitAnswerCursor
 					.getString(submitAnswerCursor
 							.getColumnIndex("submitAnswerId")));
@@ -166,9 +168,20 @@ public class SubmitAnswerDao {
 			submitAnswerPojo.setQuestionStdScore(submitAnswerCursor
 					.getFloat(submitAnswerCursor
 							.getColumnIndex("questionStdScore")));
+		} else {
+			submitAnswerPojo = null;
 		}
-		
+
 		return submitAnswerPojo;
+	}
+
+	public SubmitAnswerPojo getStandardSubmitAnswerPojoByExamPojoAndQuestionPojo(
+			ExamPojo examPojo, QuestionPojo questionPojo) {
+
+		StudentPojo studentPojo = new StudentPojo();
+		studentPojo.setStudentId(Flag.STANDARD);
+		
+		return getSubmitAnswerPojoByStudentPojoAndExamPojoAndQuestionPojo(studentPojo, examPojo, questionPojo);
 	}
 
 	public SubmitAnswerPojo getSubmitAnswerPojoByStudentPojoAndExamPojoAndQuestionPojo(
@@ -183,7 +196,7 @@ public class SubmitAnswerDao {
 
 		Cursor submitAnswerCursor = daoHelper.select(tableName, keys,
 				whereConditionKeys, whereConditionValues);
-		while (submitAnswerCursor.moveToNext()) {
+		if (submitAnswerCursor.moveToFirst()) {
 			submitAnswerPojo.setSubmitAnswerId(submitAnswerCursor
 					.getString(submitAnswerCursor
 							.getColumnIndex("submitAnswerId")));
@@ -201,11 +214,21 @@ public class SubmitAnswerDao {
 			submitAnswerPojo.setQuestionStdScore(submitAnswerCursor
 					.getFloat(submitAnswerCursor
 							.getColumnIndex("questionStdScore")));
+		} else {
+			submitAnswerPojo = null;
 		}
 
 		return submitAnswerPojo;
 	}
 
+	public ArrayList<SubmitAnswerPojo> getStandardSubmitAnswerPojosOfExamPojo(ExamPojo examPojo) {
+		
+		StudentPojo studentPojo = new StudentPojo();
+		studentPojo.setStudentId(Flag.STANDARD);
+		
+		return getSubmitAnswerPojosOfExamPojoByStudentPojo(studentPojo, examPojo);
+	}
+	
 	public ArrayList<SubmitAnswerPojo> getSubmitAnswerPojosOfExamPojoByStudentPojo(
 			StudentPojo studentPojo, ExamPojo examPojo) {
 		ArrayList<SubmitAnswerPojo> submitAnswerPojos = new ArrayList<SubmitAnswerPojo>();
@@ -242,7 +265,7 @@ public class SubmitAnswerDao {
 		return submitAnswerPojos;
 	}
 
-	public float getTotalScoreOfExamIdByStudentId(StudentPojo studentPojo,
+	public float getTotalScoreOfExamPojoByStudentPojo(StudentPojo studentPojo,
 			ExamPojo examPojo) {
 		float totalScore = 0;
 
@@ -253,9 +276,11 @@ public class SubmitAnswerDao {
 
 		Cursor submitAnswerCursor = daoHelper.select(tableName, keys,
 				whereConditionKeys, whereConditionValues);
-		while (submitAnswerCursor.moveToNext()) {
+		if (submitAnswerCursor.moveToFirst()) {
 			totalScore = submitAnswerCursor.getInt(submitAnswerCursor
 					.getColumnIndex("SUM(questionScore)"));
+		} else {
+			totalScore = 0;
 		}
 
 		return totalScore;

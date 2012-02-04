@@ -4,7 +4,7 @@ import java.io.FileNotFoundException;
 import java.io.InputStream;
 import java.io.OutputStream;
 
-import org.scauhci.ExamSystem.android.tool.ExecuteResultFlag;
+import org.scauhci.ExamSystem.android.tool.Flag;
 import org.scauhci.ExamSystem.android.tool.GetThing;
 
 import android.app.Activity;
@@ -14,7 +14,7 @@ import android.net.Uri;
 public class NativeConnection {
 	public int saveToNativeFile(InputStream inputStream, String sourcePath,
 			String targetPath) {
-		int executeResult = ExecuteResultFlag.ERROR;
+		int executeResult = Flag.ERROR;
 		return executeResult;
 	}
 

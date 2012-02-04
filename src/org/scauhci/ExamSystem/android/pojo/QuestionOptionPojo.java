@@ -5,7 +5,7 @@ public class QuestionOptionPojo {
 	private String questionOptionId;
 	private String questionId;
 	private String questionOptionContent;
-	private boolean isQuestionStdAnswer;
+	private boolean isQuestionStdAnswer = false;
 	
 	public String getQuestionOptionId() {
 		return questionOptionId;
