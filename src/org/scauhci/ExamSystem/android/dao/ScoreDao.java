@@ -22,18 +22,23 @@ public class ScoreDao {
 	}
 
 	public ScorePojo add(ScorePojo scorePojo) {
-		long scoreId;
-		for (scoreId = HashValue.getDJBHashValue(scorePojo.getExamId()
-				+ scorePojo.getStudentId()); getScorePojoByScoreId(Long
-				.toHexString(scoreId)) != null; scoreId++)
-			;
-		scorePojo.setScoreId(Long.toHexString(scoreId));
-
-		String[] keys = { "scoreId", "examId", "studentId", "paperScore" };
-		String[] values = { scorePojo.getScoreId(), scorePojo.getExamId(),
-				scorePojo.getStudentId(), scorePojo.getPaperScore() + "" };
-
-		daoHelper.insert(tableName, keys, values);
+		
+		if (completeScorePojo(scorePojo) == null) {
+			long scoreId;
+			for (scoreId = HashValue.getDJBHashValue(scorePojo.getExamId()
+					+ scorePojo.getStudentId()); getScorePojoByScoreId(Long
+							.toHexString(scoreId)) != null; scoreId++)
+				;
+			scorePojo.setScoreId(Long.toHexString(scoreId));
+			
+			String[] keys = { "scoreId", "examId", "studentId", "paperScore" };
+			String[] values = { scorePojo.getScoreId(), scorePojo.getExamId(),
+					scorePojo.getStudentId(), scorePojo.getPaperScore() + "" };
+			
+			daoHelper.insert(tableName, keys, values);
+		} else {
+			scorePojo = null;
+		}
 
 		return scorePojo;
 	}

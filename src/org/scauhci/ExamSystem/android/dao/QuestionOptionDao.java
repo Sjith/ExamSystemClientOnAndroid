@@ -19,22 +19,27 @@ public class QuestionOptionDao {
 	private QuestionOptionPojo latestQuestionOptionPojo = null;
 
 	public QuestionOptionPojo add(QuestionOptionPojo questionOptionPojo) {
-		long questionOptionId;
-		for (questionOptionId = HashValue.getDJBHashValue(questionOptionPojo
-				.getQuestionOptionContent()); getQuestionOptionPojoByQuestionOptionId(Long
-				.toHexString(questionOptionId)) != null; questionOptionId++)
-			;
-		questionOptionPojo.setQuestionOptionId(Long
-				.toHexString(questionOptionId));
-
-		String[] keys = { "questionOptionId", "questionId",
-				"questionOptionContent", "isQuestionStdAnswer" };
-		String[] values = { questionOptionPojo.getQuestionOptionId(),
-				questionOptionPojo.getQuestionId(),
-				questionOptionPojo.getQuestionOptionContent(),
-				questionOptionPojo.isQuestionStdAnswer() + "" };
-
-		daoHelper.insert(tableName, keys, values);
+		
+		if (completeQuestionOptionPojo(questionOptionPojo) == null) {
+			long questionOptionId;
+			for (questionOptionId = HashValue.getDJBHashValue(questionOptionPojo
+					.getQuestionOptionContent()); getQuestionOptionPojoByQuestionOptionId(Long
+							.toHexString(questionOptionId)) != null; questionOptionId++)
+				;
+			questionOptionPojo.setQuestionOptionId(Long
+					.toHexString(questionOptionId));
+			
+			String[] keys = { "questionOptionId", "questionId",
+					"questionOptionContent", "isQuestionStdAnswer" };
+			String[] values = { questionOptionPojo.getQuestionOptionId(),
+					questionOptionPojo.getQuestionId(),
+					questionOptionPojo.getQuestionOptionContent(),
+					questionOptionPojo.isQuestionStdAnswer() + "" };
+			
+			daoHelper.insert(tableName, keys, values);
+		} else {
+			questionOptionPojo = null;
+		}
 
 		return questionOptionPojo;
 	}

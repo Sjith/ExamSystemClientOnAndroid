@@ -22,23 +22,28 @@ public class ExamDao {
 	}
 
 	public ExamPojo add(ExamPojo examPojo) {
-		long examId;
-		for (examId = HashValue.getDJBHashValue(examPojo.getExamName()); getExamPojoByExamId(Long
-				.toHexString(examId)) != null; examId++)
-			;
-		examPojo.setExamId(Long.toHexString(examId));
-
-		String[] keys = { "examId", "courseId", "teacherId", "paperId",
-				"examExplain", "examName", "examCreateTime", "examStartTime",
-				"examEndTime" };
-		String[] values = { examPojo.getExamId(), examPojo.getCourseId(),
-				examPojo.getTeacherId(), examPojo.getPaperId(),
-				examPojo.getExamExplain(), examPojo.getExamName(),
-				examPojo.getExamCreateTime().format3339(true),
-				examPojo.getExamStartTime().format3339(true),
-				examPojo.getExamEndTime().format3339(true) };
-
-		daoHelper.insert(tableName, keys, values);
+		
+		if (completeExamPojo(examPojo) == null) {
+			long examId;
+			for (examId = HashValue.getDJBHashValue(examPojo.getExamName()); getExamPojoByExamId(Long
+					.toHexString(examId)) != null; examId++)
+				;
+			examPojo.setExamId(Long.toHexString(examId));
+			
+			String[] keys = { "examId", "courseId", "teacherId", "paperId",
+					"examExplain", "examName", "examCreateTime", "examStartTime",
+			"examEndTime" };
+			String[] values = { examPojo.getExamId(), examPojo.getCourseId(),
+					examPojo.getTeacherId(), examPojo.getPaperId(),
+					examPojo.getExamExplain(), examPojo.getExamName(),
+					examPojo.getExamCreateTime().format3339(true),
+					examPojo.getExamStartTime().format3339(true),
+					examPojo.getExamEndTime().format3339(true) };
+			
+			daoHelper.insert(tableName, keys, values);
+		} else {
+			examPojo = null;
+		}
 
 		return examPojo;
 	}

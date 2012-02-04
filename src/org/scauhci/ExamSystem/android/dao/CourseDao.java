@@ -20,31 +20,33 @@ public class CourseDao {
 	}
 
 	public CoursePojo add(CoursePojo coursePojo) {
-		long courseId;
-		for (courseId = HashValue.getDJBHashValue(coursePojo.getCourseName()); getCoursePojoByCourseId(Long
-				.toHexString(courseId)) != null; courseId++)
-			;
-		/*
-		 * if((coursePojo = completeCoursePojo(coursePojo)) != null){ return
-		 * null; }
-		 */		
-		coursePojo.setCourseId(Long.toHexString(courseId));
-
-		String[] keys = { "courseId", "courseName", "courseType" };
-		String[] values = { coursePojo.getCourseId(),
-				coursePojo.getCourseName(), coursePojo.getCourseType() + "" };
-
-		daoHelper.insert(tableName, keys, values);
+		
+		if (completeCoursePojo(coursePojo) == null) {
+			long courseId;
+			for (courseId = HashValue.getDJBHashValue(coursePojo.getCourseName()); getCoursePojoByCourseId(Long
+					.toHexString(courseId)) != null; courseId++)
+				;
+			
+			coursePojo.setCourseId(Long.toHexString(courseId));
+			
+			String[] keys = { "courseId", "courseName", "courseType" };
+			String[] values = { coursePojo.getCourseId(),
+					coursePojo.getCourseName(), coursePojo.getCourseType() + "" };
+			
+			daoHelper.insert(tableName, keys, values);
+		} else {
+			coursePojo = null;
+		}
 
 		return coursePojo;
 	}
 
 	public CoursePojo delete(CoursePojo coursePojo) {
-		
+
 		if ((coursePojo = completeCoursePojo(coursePojo)) != null) {
 			String[] keys = { "courseId" };
 			String[] values = { coursePojo.getCourseId() };
-		
+
 			daoHelper.delete(tableName, keys, values);
 		}
 

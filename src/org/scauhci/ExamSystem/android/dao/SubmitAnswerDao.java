@@ -23,24 +23,29 @@ public class SubmitAnswerDao {
 	}
 
 	public SubmitAnswerPojo add(SubmitAnswerPojo submitAnswerPojo) {
-		long submitAnswerId;
-		for (submitAnswerId = HashValue.getDJBHashValue(submitAnswerPojo
-				.getExamId()
-				+ submitAnswerPojo.getQuestionId()
-				+ submitAnswerPojo.getStudentId()); getSubmitAnswerPojoBySubmitAnswerId(Long
-				.toHexString(submitAnswerId)) != null; submitAnswerId++)
-			;
-		submitAnswerPojo.setSubmitAnswerId(Long.toHexString(submitAnswerId));
-
-		String[] keys = { "submitAnswerId", "questionId", "examId",
-				"studentId", "questionStdScore", "questionScore" };
-		String[] values = { submitAnswerPojo.getSubmitAnswerId(),
-				submitAnswerPojo.getQuestionId(), submitAnswerPojo.getExamId(),
-				submitAnswerPojo.getStudentId(),
-				submitAnswerPojo.getQuestionStdScore() + "",
-				submitAnswerPojo.getQuestionScore() + "" };
-
-		daoHelper.insert(tableName, keys, values);
+		
+		if (completeSubmitAnswerPojo(submitAnswerPojo) == null) {
+			long submitAnswerId;
+			for (submitAnswerId = HashValue.getDJBHashValue(submitAnswerPojo
+					.getExamId()
+					+ submitAnswerPojo.getQuestionId()
+					+ submitAnswerPojo.getStudentId()); getSubmitAnswerPojoBySubmitAnswerId(Long
+							.toHexString(submitAnswerId)) != null; submitAnswerId++)
+				;
+			submitAnswerPojo.setSubmitAnswerId(Long.toHexString(submitAnswerId));
+			
+			String[] keys = { "submitAnswerId", "questionId", "examId",
+					"studentId", "questionStdScore", "questionScore" };
+			String[] values = { submitAnswerPojo.getSubmitAnswerId(),
+					submitAnswerPojo.getQuestionId(), submitAnswerPojo.getExamId(),
+					submitAnswerPojo.getStudentId(),
+					submitAnswerPojo.getQuestionStdScore() + "",
+					submitAnswerPojo.getQuestionScore() + "" };
+			
+			daoHelper.insert(tableName, keys, values);
+		} else {
+			submitAnswerPojo = null;
+		}
 
 		return submitAnswerPojo;
 	}

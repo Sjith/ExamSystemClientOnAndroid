@@ -9,31 +9,37 @@ import org.scauhci.ExamSystem.android.tool.Flag;
 
 public class RemarkService {
 
-	public ArrayList<RemarkPojo> getAllRemarkPojos() {
+	RemarkDao remarkDao = new RemarkDao();
+
+	public ArrayList<RemarkPojo> getAllRemarkPojosOfStudent() {
 		ArrayList<RemarkPojo> remarkPojos = null;
 	
-		RemarkDao remarkDao = new RemarkDao();
 		remarkPojos = remarkDao.getRemarkPojosByStudentPojo(StudentDao.getLatestStudentPojo());
 		
 		return remarkPojos;
 	}
 	
-	public int addRemarkPojo(RemarkPojo remarkPojo) {
-		int executeResult = Flag.ERROR;
+	public RemarkPojo addRemarkPojo(RemarkPojo remarkPojo) {
+
+		if (remarkPojo.getStudentId() == null) {
+			remarkPojo.setStudentId(StudentDao.getLatestStudentPojo().getStudentId());
+		}
 		
-		RemarkDao remarkDao = new RemarkDao();
-		remarkDao.add(remarkPojo);
-		
-		return executeResult;
+		return remarkDao.add(remarkPojo);
 	}
 	
-	public int deleteRemarkPojo(RemarkPojo remarkPojo) {
-		int executeResult = Flag.ERROR;
+	public RemarkPojo deleteRemarkPojo(RemarkPojo remarkPojo) {
+
+		if (remarkPojo.getStudentId() == null) {
+			remarkPojo.setStudentId(StudentDao.getLatestStudentPojo().getStudentId());
+		}
 		
-		RemarkDao remarkDao = new RemarkDao();
-		remarkDao.delete(remarkPojo);
+		return remarkDao.delete(remarkPojo);
+	}
+	
+	public RemarkPojo changeRemarkPojo(RemarkPojo remarkPojo) {
 		
-		return executeResult;
+		return remarkDao.change(remarkPojo);
 	}
 
 }

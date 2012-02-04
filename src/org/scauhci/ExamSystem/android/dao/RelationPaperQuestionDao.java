@@ -22,25 +22,30 @@ public class RelationPaperQuestionDao {
 	}
 
 	public RelationPaperQuestionPojo add(RelationPaperQuestionPojo relationPaperQuestionPojo) {
-		long relationPaperQuestionId;
-		for (relationPaperQuestionId = HashValue
-				.getDJBHashValue(relationPaperQuestionPojo.getPaperId()
-						+ relationPaperQuestionPojo.getQuestionId()); getRelationPaperQuestionPojoByRelationPaperQuestionId(Long
-				.toHexString(relationPaperQuestionId)) != null; relationPaperQuestionId++)
-			;
-		relationPaperQuestionPojo.setRelationPaperQuestionId(Long
-				.toHexString(relationPaperQuestionId));
-
-		String[] keys = { "relationPaperQuestionId", "examId", "paperId",
-				"questionId", "questionIndex" };
-		String[] values = {
-				relationPaperQuestionPojo.getRelationPaperQuestionId(),
-				relationPaperQuestionPojo.getExamId(),
-				relationPaperQuestionPojo.getPaperId(),
-				relationPaperQuestionPojo.getQuestionId(),
-				relationPaperQuestionPojo.getQuestionIndex() + "" };
-
-		daoHelper.insert(tableName, keys, values);
+		
+		if (completeRelationPaperQuestionPojo(relationPaperQuestionPojo) == null) {
+			long relationPaperQuestionId;
+			for (relationPaperQuestionId = HashValue
+					.getDJBHashValue(relationPaperQuestionPojo.getPaperId()
+							+ relationPaperQuestionPojo.getQuestionId()); getRelationPaperQuestionPojoByRelationPaperQuestionId(Long
+									.toHexString(relationPaperQuestionId)) != null; relationPaperQuestionId++)
+				;
+			relationPaperQuestionPojo.setRelationPaperQuestionId(Long
+					.toHexString(relationPaperQuestionId));
+			
+			String[] keys = { "relationPaperQuestionId", "examId", "paperId",
+					"questionId", "questionIndex" };
+			String[] values = {
+					relationPaperQuestionPojo.getRelationPaperQuestionId(),
+					relationPaperQuestionPojo.getExamId(),
+					relationPaperQuestionPojo.getPaperId(),
+					relationPaperQuestionPojo.getQuestionId(),
+					relationPaperQuestionPojo.getQuestionIndex() + "" };
+			
+			daoHelper.insert(tableName, keys, values);
+		} else {
+			relationPaperQuestionPojo = null;
+		}
 
 		return relationPaperQuestionPojo;
 	}

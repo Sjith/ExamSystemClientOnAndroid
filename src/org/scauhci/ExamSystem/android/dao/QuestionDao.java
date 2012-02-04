@@ -21,21 +21,26 @@ public class QuestionDao {
 	}
 
 	public QuestionPojo add(QuestionPojo questionPojo) {
-		long questionId;
-		for (questionId = HashValue.getDJBHashValue(questionPojo
-				.getQuestionContent()); getQuestionPojoByQuestionId(Long
-				.toHexString(questionId)) != null; questionId++)
-			;
-		questionPojo.setQuestionId(Long.toHexString(questionId));
-
-		String[] keys = { "questionId", "questionContent", "questionType",
-				"courseId", "questionStdAnswer" };
-		String[] values = { questionPojo.getQuestionId(),
-				questionPojo.getQuestionContent(),
-				questionPojo.getQuestionType() + "",
-				questionPojo.getCourseId(), questionPojo.getQuestionStdAnswer() };
-
-		daoHelper.insert(tableName, keys, values);
+		
+		if (completeQuestionPojo(questionPojo) == null) {
+			long questionId;
+			for (questionId = HashValue.getDJBHashValue(questionPojo
+					.getQuestionContent()); getQuestionPojoByQuestionId(Long
+							.toHexString(questionId)) != null; questionId++)
+				;
+			questionPojo.setQuestionId(Long.toHexString(questionId));
+			
+			String[] keys = { "questionId", "questionContent", "questionType",
+					"courseId", "questionStdAnswer" };
+			String[] values = { questionPojo.getQuestionId(),
+					questionPojo.getQuestionContent(),
+					questionPojo.getQuestionType() + "",
+					questionPojo.getCourseId(), questionPojo.getQuestionStdAnswer() };
+			
+			daoHelper.insert(tableName, keys, values);
+		} else {
+			questionPojo = null;
+		}
 
 		return questionPojo;
 	}

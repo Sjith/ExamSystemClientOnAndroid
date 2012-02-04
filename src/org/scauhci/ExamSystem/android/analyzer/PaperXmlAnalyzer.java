@@ -85,8 +85,10 @@ public class PaperXmlAnalyzer {
 					coursePojo = new CoursePojo();
 					coursePojo.setCourseName(xmlPullParser.getAttributeValue(
 							null, "courseName"));
-					if ((coursePojo = courseDao.completeCoursePojo(coursePojo)) == null){
+					if ((courseDao.completeCoursePojo(coursePojo)) == null){
 						courseDao.add(coursePojo);
+					} else {
+						coursePojo = courseDao.completeCoursePojo(coursePojo);
 					}
 					
 					paperPojo.setCourseId(coursePojo.getCourseId());

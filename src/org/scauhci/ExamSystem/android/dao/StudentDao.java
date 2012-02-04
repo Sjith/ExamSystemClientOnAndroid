@@ -20,11 +20,16 @@ public class StudentDao {
 	}
 
 	public StudentPojo add(StudentPojo studentPojo) {
-		String[] keys = { "studentId", "studentName", "studentPassword" };
-		String[] values = { studentPojo.getStudentId(),
-				studentPojo.getStudentName(), studentPojo.getStudentPassword() };
-
-		daoHelper.insert(tableName, keys, values);
+		
+		if (completeStudentPojo(studentPojo) == null) {
+			String[] keys = { "studentId", "studentName", "studentPassword" };
+			String[] values = { studentPojo.getStudentId(),
+					studentPojo.getStudentName(), studentPojo.getStudentPassword() };
+			
+			daoHelper.insert(tableName, keys, values);
+		} else {
+			studentPojo = null;
+		}
 
 		return studentPojo;
 	}

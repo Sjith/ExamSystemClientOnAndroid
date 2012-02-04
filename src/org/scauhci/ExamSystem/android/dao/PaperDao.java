@@ -23,22 +23,27 @@ public class PaperDao {
 	}
 
 	public PaperPojo add(PaperPojo paperPojo) {
-		long paperId;
-		for (paperId = HashValue.getDJBHashValue(paperPojo.getPaperName()); getPaperPojoByPaperId(Long
-				.toHexString(paperId)) != null; paperId++)
-			;
-		paperPojo.setPaperId(Long.toHexString(paperId));
-
-		String[] keys = { "paperId", "paperName", "paperType", "teacherId",
-				"paperCreateTime", "courseId", "paperTotalScore",
-				"paperExplain" };
-		String[] values = { paperPojo.getPaperId(), paperPojo.getPaperName(),
-				paperPojo.getPaperType() + "", paperPojo.getTeacherId(),
-				paperPojo.getPaperCreateTime().format3339(true),
-				paperPojo.getCourseId(), paperPojo.getPaperTotalScore() + "",
-				paperPojo.getPaperExplain() };
-
-		daoHelper.insert(tableName, keys, values);
+		
+		if (completePaperPojo(paperPojo) == null) {
+			long paperId;
+			for (paperId = HashValue.getDJBHashValue(paperPojo.getPaperName()); getPaperPojoByPaperId(Long
+					.toHexString(paperId)) != null; paperId++)
+				;
+			paperPojo.setPaperId(Long.toHexString(paperId));
+			
+			String[] keys = { "paperId", "paperName", "paperType", "teacherId",
+					"paperCreateTime", "courseId", "paperTotalScore",
+			"paperExplain" };
+			String[] values = { paperPojo.getPaperId(), paperPojo.getPaperName(),
+					paperPojo.getPaperType() + "", paperPojo.getTeacherId(),
+					paperPojo.getPaperCreateTime().format3339(true),
+					paperPojo.getCourseId(), paperPojo.getPaperTotalScore() + "",
+					paperPojo.getPaperExplain() };
+			
+			daoHelper.insert(tableName, keys, values);
+		} else {
+			paperPojo = null;
+		}
 
 		return paperPojo;
 	}

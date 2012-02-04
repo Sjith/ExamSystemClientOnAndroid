@@ -18,21 +18,26 @@ public class RemarkDao {
 	String tableName = "remark";
 
 	public RemarkPojo add(RemarkPojo remarkPojo) {
-		long remarkId;
-		for (remarkId = HashValue.getDJBHashValue(remarkPojo.getRemarkName()); getRemarkPojoByRemarkId(Long
-				.toHexString(remarkId)) != null; remarkId++)
-			;
-		remarkPojo.setRemarkId(Long.toHexString(remarkId));
-
-		String[] keys = { "remarkId", "studentId", "remarkName",
-				"remarkContent", "remarkCreateTime", "remarkUpdateTime" };
-		String[] values = { remarkPojo.getRemarkId(),
-				remarkPojo.getStudentId(), remarkPojo.getRemarkName(),
-				remarkPojo.getRemarkContent(),
-				remarkPojo.getRemarkCreateTime().format3339(true),
-				remarkPojo.getRemarkUpdateTime().format3339(true) };
-
-		daoHelper.insert(tableName, keys, values);
+		
+		if (completeRemarkPojo(remarkPojo) == null) {
+			long remarkId;
+			for (remarkId = HashValue.getDJBHashValue(remarkPojo.getRemarkName()); getRemarkPojoByRemarkId(Long
+					.toHexString(remarkId)) != null; remarkId++)
+				;
+			remarkPojo.setRemarkId(Long.toHexString(remarkId));
+			
+			String[] keys = { "remarkId", "studentId", "remarkName",
+					"remarkContent", "remarkCreateTime", "remarkUpdateTime" };
+			String[] values = { remarkPojo.getRemarkId(),
+					remarkPojo.getStudentId(), remarkPojo.getRemarkName(),
+					remarkPojo.getRemarkContent(),
+					remarkPojo.getRemarkCreateTime().format3339(true),
+					remarkPojo.getRemarkUpdateTime().format3339(true) };
+			
+			daoHelper.insert(tableName, keys, values);
+		} else {
+			remarkPojo = null;
+		}
 
 		return remarkPojo;
 	}

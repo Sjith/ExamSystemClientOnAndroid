@@ -18,19 +18,24 @@ public class NoticeDao {
 	String tableName = "notice";
 
 	public NoticePojo add(NoticePojo noticePojo) {
-		long noticeId;
-		for (noticeId = HashValue.getDJBHashValue(noticePojo.getNoticeName()); getNoticePojoByNoticeId(Long
-				.toHexString(noticeId)) != null; noticeId++)
-			;
-		noticePojo.setNoticeId(Long.toHexString(noticeId));
-
-		String[] keys = { "noticeId", "noticeName", "noticeContent",
-				"noticePublicTime" };
-		String[] values = { noticePojo.getNoticeId(),
-				noticePojo.getNoticeName(), noticePojo.getNoticeContent(),
-				noticePojo.getNoticePublicTime().format3339(true) };
-
-		daoHelper.insert(tableName, keys, values);
+		
+		if (completeNoticePojo(noticePojo) == null) {
+			long noticeId;
+			for (noticeId = HashValue.getDJBHashValue(noticePojo.getNoticeName()); getNoticePojoByNoticeId(Long
+					.toHexString(noticeId)) != null; noticeId++)
+				;
+			noticePojo.setNoticeId(Long.toHexString(noticeId));
+			
+			String[] keys = { "noticeId", "noticeName", "noticeContent",
+			"noticePublicTime" };
+			String[] values = { noticePojo.getNoticeId(),
+					noticePojo.getNoticeName(), noticePojo.getNoticeContent(),
+					noticePojo.getNoticePublicTime().format3339(true) };
+			
+			daoHelper.insert(tableName, keys, values);
+		} else {
+			noticePojo = null;
+		}
 
 		return noticePojo;
 	}
