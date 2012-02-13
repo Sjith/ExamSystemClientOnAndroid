@@ -1,0 +1,400 @@
+<resources>
+    <!-- Base application theme is the default theme. -->
+    <style name="Theme" parent="android:style/Theme" />
+
+    <!-- Variation on the Light theme that turns off the title -->
+    <style name="Theme.ExamSystem" parent="@style/Theme.Sherlock.Light">
+        <item name="android:windowContentOverlay">@null</item>
+        <item name="selectableItemBackground">@drawable/item_background_light</item>
+        <item name="abIcon">@drawable/logo_exam_system_small</item>
+        <item name="abTitleTextStyle">@style/ActionBarText</item>
+        <item name="android:textColor">@color/black_text_primary</item>
+
+        <!-- custom attributes -->
+        <!--
+        <item name="android:windowNoTitle">true</item>
+        <item name="textHeaderMaxLines">@integer/text_header_max_lines</item>
+        <item name="trackAbstractMaxLines">@integer/track_abstract_max_lines</item>
+        -->
+
+
+        <!-- for programmatic instantiation -->
+        <!--
+        <item name="actionbarCompatButtonStyle">@style/ActionBarCompatButton</item>
+        <item name="actionbarCompatProgressIndicatorStyle">@style/ActionBarCompatProgressIndicator</item>
+        <item name="actionbarCompatSeparatorStyle">@style/ActionBarCompatSeparator</item>
+        <item name="actionbarCompatLogoStyle">@style/ActionBarCompatLogo</item>
+        <item name="actionbarCompatTextStyle">@style/ActionBarCompatText</item>
+        -->
+
+    </style>
+
+    <!-- Start with the Holographic Light theme -->
+    <style name="Theme.ExamSystem.Dashboard" parent="style/Theme.ExamSystem">
+        <!-- <item name="android:windowBackground">@drawable/background_noise</item> -->
+        <item name="abTitle">@string/dashboard_title</item>
+    </style>
+
+    <style name="Theme.ExamSystem.ExamList" parent="style/Theme.ExamSystem">
+        <!-- <item name="android:windowBackground">@drawable/background_noise</item> -->
+        <item name="abTitle">@string/exam_list_title</item>
+        <item name="abDisplayOptions">useLogo|showHome|showTitle|homeAsUp</item>
+    </style>
+
+    <style name="Theme.ExamSystem.Paper" parent="style/Theme.ExamSystem">
+        <!-- <item name="android:windowBackground">@drawable/background_noise</item> -->
+        <item name="abTitle">@string/exam_list_title</item>
+        <item name="abDisplayOptions">useLogo|showHome|showTitle|homeAsUp</item>
+    </style>
+    
+    <style name="ActionBarText">
+        <item name="android:textSize">@dimen/text_size_xlarge</item>
+    </style>
+
+    <!-- <style name="ActionBarCompat">
+        <item name="android:id">@id/actionbar_compat</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/actionbar_compat_height</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@drawable/actionbar_compat_background</item>
+    </style>
+
+    <style name="ActionBarCompatButton">
+        <item name="android:layout_width">@dimen/actionbar_compat_height</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:scaleType">center</item>
+        <item name="android:background">@drawable/actionbar_compat_button</item>
+    </style>
+
+    <style name="ActionBarCompatProgressIndicator" parent="android:style/Widget.ProgressBar.Small">
+        <item name="android:indeterminate">true</item>
+    </style>
+
+    <style name="ActionBarCompatSeparator">
+        <item name="android:layout_width">2px</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:background">@drawable/actionbar_compat_separator</item>
+    </style>
+
+    <style name="ActionBarCompatLogo">
+        <item name="android:id">@id/actionbar_compat_logo</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:clickable">false</item>
+        <item name="android:scaleType">center</item>
+        <item name="android:contentDescription">@string/description_logo</item>
+        <item name="android:src">@drawable/actionbar_compat_logo</item>
+    </style>
+
+    <style name="ActionBarCompatText">
+        <item name="android:id">@id/actionbar_compat_text</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/actionbar_text</item>
+        <item name="android:shadowColor">#fff</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">0.00001</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style> -->
+
+    <style name="DashboardButton">
+        <item name="android:layout_gravity">center_vertical</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_horizontal</item>
+        <item name="android:drawablePadding">2dp</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/primary</item>
+        <item name="android:background">@null</item>
+    </style>
+    
+    <style name="DashboardSlidingDrawer">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">fill_parent</item>
+    </style>
+    
+    <style name="DashboardSlidingDrawerHandle">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:paddingLeft">@dimen/padding_small</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/dashboard_sliding_drawer_handle</item>
+    </style>
+    
+    <style name="DashboardSlidingDrawerTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:text">@string/dashboard_sliding_drawer_title</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+    </style>
+    
+    <style name="DashboardSlidingDrawerSubtitleViewFlipper" parent="DashboardSlidingDrawerTitle">
+        <item name="android:inAnimation">@anim/push_up_in</item>
+        <item name="android:outAnimation">@anim/push_up_out</item>
+        <item name="android:autoStart">true</item>
+        <item name="android:flipInterval">@integer/flip_interval_medium</item>
+    </style>
+
+    <style name="DashboardSlidingDrawerSubtitle" parent="DashboardSlidingDrawerSubtitleViewFlipper">
+        <item name="android:text">@string/app_name</item>
+        <item name="android:singleLine">true</item>
+    </style>
+        
+    <style name="DashboardSlidingDrawerContent">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:background">@drawable/dashboard_sliding_drawer_content</item>
+    </style>
+    
+    <style name="ExamListPager">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+    
+    <style name="ExamListFragment">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+    
+    <style name="CreateExamFragment">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+        
+    <style name="DashboardSlidingDrawerContentNoticeList">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+    
+    <style name="ExamList">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:orientation">vertical</item>
+    </style>
+    
+    <style name="NoticeListItem">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingLeft">@dimen/padding_small</item>
+        <item name="android:paddingRight">@dimen/padding_small</item>
+    </style>
+    
+    <style name="ExamListItem">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:orientation">vertical</item>
+        <item name="android:paddingLeft">@dimen/padding_small</item>
+        <item name="android:paddingRight">@dimen/padding_small</item>
+    </style>
+    
+    <style name="NoticeListItemName">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_gravity">center_vertical|left</item>
+        <item name="android:textColor">@color/black_text_darker</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    
+    <style name="ExamListItemName">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_gravity">center_vertical|left</item>
+        <item name="android:textColor">@color/black_text_darker</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:singleLine">true</item>
+    </style>
+    
+    <style name="NoticeListItemPublicTime" parent="NoticeListItemName">
+        <item name="android:layout_gravity">center_vertical|right</item>
+        <item name="android:layout_weight">0</item>
+        <item name="android:textColor">@color/black_text_primary</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:singleLine">false</item>
+    </style>
+    
+    <style name="ExamListItemLastTime" parent="ExamListItemName">
+        <item name="android:layout_gravity">center_vertical|right</item>
+        <item name="android:layout_weight">0</item>
+        <item name="android:textColor">@color/black_text_primary</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:singleLine">false</item>
+    </style>
+    
+    <style name="NoticeListItemContent" parent="NoticeListItemName">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:textColor">@color/black_text_primary</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:singleLine">false</item>
+        <item name="android:visibility">gone</item>
+    </style>
+
+    <style name="ExamListItemStartTime" parent="ExamListItemName">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_gravity">center|left</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:textColor">@color/black_text_primary</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+    </style>
+
+    <style name="ExamListItemEndTime" parent="ExamListItemStartTime">
+        <item name="android:layout_gravity">center|right</item>
+        <item name="android:gravity">center|right</item>
+    </style>
+    
+    <style name="ExamEditLayout">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:padding">@dimen/padding_small</item>
+        <item name="android:orientation">horizontal</item>
+    </style>
+
+    <style name="ExamEditTitle">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:gravity">center_vertical|left</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+        <item name="android:textColor">@color/black_text_darker</item>
+    </style>
+
+    <style name="ExamEdit">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+    <!--
+    <style name="ListItemTitle">
+        <item name="android:textStyle">bold</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:textColor">@color/body_text_1</item>
+    </style>
+
+    <style name="ListItemSubtitle">
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textColor">@color/body_text_2</item>
+    </style>
+
+    <style name="ListItemContainerBase">
+        <item name="android:minHeight">?android:attr/listPreferredItemHeight</item>
+    </style>
+
+    a simple list item is one whose container and content are the same view
+    <style name="SimpleListItem" parent="style/ListItemContainerBase">
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+    </style>
+
+    used for more complex list items, e.g. those with stars aligned to the top-right
+
+    <style name="ListItemContainer" parent="style/ListItemContainerBase" />
+
+    <style name="ListItemContent">
+        <item name="android:paddingLeft">10dp</item>
+        <item name="android:paddingRight">10dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+    </style>
+
+    What's On section in Home activity
+
+    <style name="WhatsOnItemBase">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/body_text_1</item>
+        <item name="android:maxLines">2</item>
+        <item name="android:paddingLeft">@dimen/whats_on_item_padding</item>
+        <item name="android:paddingRight">@dimen/whats_on_item_padding</item>
+        <item name="android:gravity">center</item>
+    </style>
+
+    <style name="WhatsOnStaticItem" parent="style/WhatsOnItemBase">
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/body_text_1</item>
+        <item name="android:maxLines">2</item>
+    </style>
+
+    <style name="WhatsOnButtonItem" parent="style/WhatsOnStaticItem">
+        <item name="android:textColor">@color/accent_1</item>
+        <item name="android:background">@drawable/whats_on_button</item>
+        <item name="android:paddingRight">@dimen/whats_on_button_right_padding</item>
+        <item name="android:focusable">true</item>
+        <item name="android:clickable">true</item>
+    </style>
+
+    body content
+
+    <style name="TextHeader">
+        <item name="android:textSize">@dimen/text_size_xlarge</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/body_text_1</item>
+        <item name="android:maxLines">?attr/textHeaderMaxLines</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:textIsSelectable">true</item>
+    </style>
+
+    <style name="TextHeaderSub">
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:textStyle">normal</item>
+        <item name="android:textColor">@color/body_text_2</item>
+        <item name="android:textIsSelectable">true</item>
+    </style>
+
+    <style name="TextHeader2">
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/accent_1</item>
+        <item name="android:textIsSelectable">true</item>
+    </style>
+
+    <style name="TextHeader3">
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/body_text_1</item>
+        <item name="android:textIsSelectable">true</item>
+    </style>
+
+    <style name="TextBody">
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:lineSpacingMultiplier">1.1</item>
+        <item name="android:textColor">@color/body_text_1</item>
+        <item name="android:textIsSelectable">true</item>
+    </style>
+
+    <style name="PushButton">
+        <item name="android:textSize">@dimen/text_size_small</item>
+        <item name="android:background">@drawable/btn</item>
+    </style>
+    -->
+
+
+</resources>

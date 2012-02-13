@@ -1,0 +1,44 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/CreateExamFragment" >
+
+    <LinearLayout
+        style="@style/ExamEditLayout" >
+
+        <TextView 
+            android:id="@+id/exam_name_edit_title"
+            style="@style/ExamEditTitle"
+            android:text="@string/exam_name_edit_title"/>
+        <EditText
+            android:id="@+id/exam_name_edit"
+            style="@style/ExamEdit"
+            android:hint="@string/exam_name_edit_hint" />
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/ExamEditLayout" >
+
+        <TextView 
+            android:id="@+id/exam_start_time_edit_title"
+            style="@style/ExamEditTitle"
+            android:text="@string/exam_start_time_edit_title"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/ExamEditLayout" >
+
+        <TextView 
+            android:id="@+id/exam_end_time_edit_title"
+            style="@style/ExamEditTitle"
+            android:text="@string/exam_end_time_edit_title"/>
+    </LinearLayout>
+
+    <LinearLayout
+        style="@style/ExamEditLayout" >
+
+        <TextView 
+            android:id="@+id/exam_choose_paper_edit_title"
+            style="@style/ExamEditTitle"
+            android:text="@string/exam_paper_choose_title"/>
+    </LinearLayout>
+
+</LinearLayout>

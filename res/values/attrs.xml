@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<resources>
+    <!-- These are the attributes that we want to retrieve for
+         app/FragmentArguments.java -->
+
+    <declare-styleable name="DashboardSlidingDrawerSubtitle">
+        <attr name="android:text" />
+        <attr name="android:singleLine" />
+    </declare-styleable>
+
+</resources>

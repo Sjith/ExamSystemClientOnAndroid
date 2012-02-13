@@ -8,17 +8,2094 @@
 package org.scauhci.ExamSystem.android;
 
 public final class R {
+    public static final class anim {
+        public static final int push_up_in=0x7f040000;
+        public static final int push_up_out=0x7f040001;
+    }
     public static final class attr {
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int abBackground=0x7f010039;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int abBackgroundStacked=0x7f01003a;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int abCustomNavigationLayout=0x7f01003b;
+        /** <p>Must be one or more (separated by '|') of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>useLogo</code></td><td>0x1</td><td></td></tr>
+<tr><td><code>showHome</code></td><td>0x2</td><td></td></tr>
+<tr><td><code>homeAsUp</code></td><td>0x4</td><td></td></tr>
+<tr><td><code>showTitle</code></td><td>0x8</td><td></td></tr>
+<tr><td><code>showCustom</code></td><td>0x10</td><td></td></tr>
+</table>
+         */
+        public static final int abDisplayOptions=0x7f010031;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int abDivider=0x7f010038;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+         */
+        public static final int abHeight=0x7f01003c;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int abHomeLayout=0x7f01003d;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int abIcon=0x7f010036;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int abIndeterminateProgressStyle=0x7f01003f;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int abItemPadding=0x7f010041;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int abLogo=0x7f010037;
+        /** <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>normal</code></td><td>0</td><td></td></tr>
+<tr><td><code>listMode</code></td><td>1</td><td></td></tr>
+<tr><td><code>tabMode</code></td><td>2</td><td></td></tr>
+</table>
+         */
+        public static final int abNavigationMode=0x7f010030;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int abProgressBarPadding=0x7f010040;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int abProgressBarStyle=0x7f01003e;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int abSubtitle=0x7f010033;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int abSubtitleTextStyle=0x7f010035;
+        /** <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int abTitle=0x7f010032;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int abTitleTextStyle=0x7f010034;
+        /** attr name="actionBarStyle" format="reference" /
+         <p>May be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+<p>May be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>wrap_content</code></td><td>0</td><td></td></tr>
+</table>
+         */
+        public static final int actionBarSize=0x7f010020;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionBarTabBarStyle=0x7f01001c;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionBarTabStyle=0x7f01001b;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionBarTabTextStyle=0x7f01001d;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionButtonStyle=0x7f01001a;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionDropDownStyle=0x7f010019;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionHomeButtonStyle=0x7f01001f;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionMenuTextAppearance=0x7f010021;
+        /** <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+         */
+        public static final int actionMenuTextColor=0x7f010022;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionModeBackground=0x7f010024;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionModeCloseButtonStyle=0x7f010023;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionModeCloseDrawable=0x7f010025;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionOverflowButtonStyle=0x7f01001e;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int actionSpinnerItemStyle=0x7f01002b;
+        /**  Whether or not the indicators should be centered. 
+         <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int centered=0x7f010004;
+        /**  Screen edge padding. 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int clipPadding=0x7f01000c;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int dropDownListViewStyle=0x7f010028;
+        /** <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int dropdownListPreferredItemHeight=0x7f01002a;
+        /**  Color of the filled circle that represents the current page. 
+         <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int fillColor=0x7f010005;
+        /**  Color of the footer line and indicator. 
+         <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int footerColor=0x7f01000d;
+        /**  Height of the indicator above the footer line. 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int footerIndicatorHeight=0x7f010010;
+        /**  Style of the indicator. Default is triangle. 
+         <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>0</td><td></td></tr>
+<tr><td><code>triangle</code></td><td>1</td><td></td></tr>
+<tr><td><code>underline</code></td><td>2</td><td></td></tr>
+</table>
+         */
+        public static final int footerIndicatorStyle=0x7f01000f;
+        /**  Left and right padding of the underline indicator. 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int footerIndicatorUnderlinePadding=0x7f010011;
+        /**  Height of the footer line. 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int footerLineHeight=0x7f01000e;
+        /**  Padding between the bottom of the title and the footer. 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int footerPadding=0x7f010012;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int homeAsUpIndicator=0x7f010026;
+        /**  Orientation of the indicator. 
+         <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>horizontal</code></td><td>0</td><td></td></tr>
+<tr><td><code>vertical</code></td><td>1</td><td></td></tr>
+</table>
+         */
+        public static final int orientation=0x7f010007;
+        /**  Color of the filled circles that represents pages. 
+         <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int pageColor=0x7f010006;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int popupMenuStyle=0x7f010029;
+        /**  Radius of the circles. This is also the spacing between circles. 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int radius=0x7f010008;
+        /** <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int selectableItemBackground=0x7f010027;
+        /**  Whether or not the selected item is displayed as bold. 
+         <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int selectedBold=0x7f010014;
+        /**  Color of the selected title. 
+         <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int selectedColor=0x7f010013;
+        /**  Whether or not the selected indicator snaps to the circles. 
+         <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int snap=0x7f010009;
+        /**  Color of the open circles. 
+         <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int strokeColor=0x7f01000a;
+        /**  Width of the stroke used to draw the circles. 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int strokeWidth=0x7f01000b;
+        /**  Color of regular titles. 
+         <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int textColor=0x7f010015;
+        /**  Size of title text. 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int textSize=0x7f010016;
+        /**  Padding between titles when bumping into each other. 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int titlePadding=0x7f010017;
+        /**  Padding between titles and the top of the View. 
+         <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int topPadding=0x7f010018;
+        /**  Style of the circle indicator. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int vpiCirclePageIndicatorStyle=0x7f010000;
+        /**  Style of the tab indicator. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int vpiTabPageIndicatorStyle=0x7f010002;
+        /**  Style of the text in a tab. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int vpiTabTextStyle=0x7f010003;
+        /**  Style of the title indicator. 
+         <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+         */
+        public static final int vpiTitlePageIndicatorStyle=0x7f010001;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int windowActionBar=0x7f01002d;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int windowActionBarOverlay=0x7f01002e;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int windowActionModeOverlay=0x7f01002f;
+        /** <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+         */
+        public static final int windowNoTitle=0x7f01002c;
+    }
+    public static final class bool {
+        /**  Whether action menu items should obey the "withText" showAsAction
+         flag. This may be set to false for situations where space is
+         extremely limited. 
+ Whether action menu items should obey the "withText" showAsAction
+         flag. This may be set to false for situations where space is
+         extremely limited. 
+         */
+        public static final int abs__config_allowActionMenuItemTextWithIcon=0x7f070003;
+        public static final int default_circle_indicator_centered=0x7f070000;
+        public static final int default_circle_indicator_snap=0x7f070001;
+        public static final int default_title_indicator_selected_bold=0x7f070002;
+    }
+    public static final class color {
+        public static final int abs__item_bg=0x7f060012;
+        public static final int abs__item_focused=0x7f06000e;
+        public static final int abs__tab_text_color_dark=0x7f060013;
+        public static final int abs__tab_text_color_light=0x7f060014;
+        public static final int black_text_darker=0x7f060010;
+        public static final int black_text_primary=0x7f060011;
+        public static final int default_circle_indicator_fill_color=0x7f060008;
+        public static final int default_circle_indicator_page_color=0x7f060009;
+        public static final int default_circle_indicator_stroke_color=0x7f06000a;
+        public static final int default_title_indicator_footer_color=0x7f06000b;
+        public static final int default_title_indicator_selected_color=0x7f06000c;
+        public static final int default_title_indicator_text_color=0x7f06000d;
+        public static final int primary=0x7f06000f;
+        public static final int vpi__background_holo_dark=0x7f060000;
+        public static final int vpi__background_holo_light=0x7f060001;
+        public static final int vpi__bright_foreground_disabled_holo_dark=0x7f060004;
+        public static final int vpi__bright_foreground_disabled_holo_light=0x7f060005;
+        public static final int vpi__bright_foreground_holo_dark=0x7f060002;
+        public static final int vpi__bright_foreground_holo_light=0x7f060003;
+        public static final int vpi__bright_foreground_inverse_holo_dark=0x7f060006;
+        public static final int vpi__bright_foreground_inverse_holo_light=0x7f060007;
+        public static final int vpi__dark_theme=0x7f060015;
+        public static final int vpi__light_theme=0x7f060016;
+    }
+    public static final class dimen {
+        /**  Default height of an action bar. 
+ Default height of an action bar. 
+ Default height of an action bar. 
+ Default height of an action bar. 
+ Default height of an action bar. 
+         */
+        public static final int abs__action_bar_default_height=0x7f09000a;
+        /**  Bottom margin for action bar subtitles 
+ Bottom margin for action bar subtitles 
+ Bottom margin for action bar subtitles 
+         */
+        public static final int abs__action_bar_subtitle_bottom_margin=0x7f09000e;
+        /**  Text size for action bar subtitles 
+ Text size for action bar subtitles 
+ Text size for action bar subtitles 
+         */
+        public static final int abs__action_bar_subtitle_text_size=0x7f09000c;
+        /**  Top margin for action bar subtitles 
+ Top margin for action bar subtitles 
+ Top margin for action bar subtitles 
+         */
+        public static final int abs__action_bar_subtitle_top_margin=0x7f09000d;
+        /**  Text size for action bar titles 
+ Text size for action bar titles 
+ Text size for action bar titles 
+         */
+        public static final int abs__action_bar_title_text_size=0x7f09000b;
+        public static final int colorstrip_height=0x7f09000f;
+        public static final int default_circle_indicator_radius=0x7f090000;
+        public static final int default_circle_indicator_stroke_width=0x7f090001;
+        public static final int default_title_indicator_clip_padding=0x7f090002;
+        public static final int default_title_indicator_footer_indicator_height=0x7f090004;
+        public static final int default_title_indicator_footer_indicator_underline_padding=0x7f090005;
+        public static final int default_title_indicator_footer_line_height=0x7f090003;
+        public static final int default_title_indicator_footer_padding=0x7f090006;
+        public static final int default_title_indicator_text_size=0x7f090007;
+        public static final int default_title_indicator_title_padding=0x7f090008;
+        public static final int default_title_indicator_top_padding=0x7f090009;
+        public static final int padding_large=0x7f090016;
+        public static final int padding_medium=0x7f090015;
+        public static final int padding_small=0x7f090014;
+        public static final int text_size_large=0x7f090012;
+        public static final int text_size_medium=0x7f090011;
+        /**  UI elements 
+
+    <dimen name="time_normal">3000</dimen>
+    <dimen name="actionbar_compat_height">45dp</dimen>
+    <dimen name="whats_on_height">70dp</dimen>
+    <dimen name="whats_on_item_padding">10dp</dimen>
+    <dimen name="whats_on_button_right_padding">20dp</dimen>
+    <dimen name="schedule_header_padding">10dp</dimen>
+    <dimen name="schedule_hour_height">60dp</dimen>
+    <dimen name="schedule_label_header_width">46dp</dimen>
+    <dimen name="schedule_label_padding">5dp</dimen>
+    <dimen name="star_button_padding">3dp</dimen>
+    <dimen name="tab_height">38dp</dimen>
+    <dimen name="tab_side_padding">2dp</dimen>
+    <dimen name="track_icon_width">40dp</dimen>
+    <dimen name="track_icon_padding">4dp</dimen>
+    
+ body content 
+
+    <dimen name="body_padding_medium">10dp</dimen>
+    <dimen name="body_padding_large">10dp</dimen>
+    
+         */
+        public static final int text_size_small=0x7f090010;
+        public static final int text_size_xlarge=0x7f090013;
     }
     public static final class drawable {
-        public static final int ic_launcher=0x7f020000;
+        public static final int abs__ab_solid_dark_holo=0x7f020000;
+        public static final int abs__ab_stacked_transparent_dark_holo=0x7f020001;
+        public static final int abs__ab_stacked_transparent_light_holo=0x7f020002;
+        public static final int abs__action_item_divider=0x7f020003;
+        public static final int abs__cab_background_holo_dark=0x7f020004;
+        public static final int abs__cab_background_holo_light=0x7f020005;
+        public static final int abs__cab_ic_close_focused_holo=0x7f020006;
+        public static final int abs__cab_ic_close_holo=0x7f020007;
+        public static final int abs__cab_ic_close_normal_holo=0x7f020008;
+        public static final int abs__cab_ic_close_pressed_holo=0x7f020009;
+        public static final int abs__ic_ab_back_holo_dark=0x7f02000a;
+        public static final int abs__ic_ab_back_holo_light=0x7f02000b;
+        public static final int abs__item_background_holo_dark=0x7f02000c;
+        public static final int abs__item_background_holo_light=0x7f02000d;
+        public static final int abs__list_focused_holo=0x7f02000e;
+        public static final int abs__list_longpressed_holo=0x7f02000f;
+        public static final int abs__list_pressed_holo_dark=0x7f020010;
+        public static final int abs__list_pressed_holo_light=0x7f020011;
+        public static final int abs__list_selector_background_transition_holo_dark=0x7f020012;
+        public static final int abs__list_selector_background_transition_holo_light=0x7f020013;
+        public static final int abs__list_selector_disabled_holo_dark=0x7f020014;
+        public static final int abs__list_selector_disabled_holo_light=0x7f020015;
+        public static final int abs__spinner_background_holo_dark=0x7f020016;
+        public static final int abs__spinner_background_holo_light=0x7f020017;
+        public static final int abs__spinner_default_holo_dark=0x7f020018;
+        public static final int abs__spinner_default_holo_light=0x7f020019;
+        public static final int abs__spinner_disabled_holo_dark=0x7f02001a;
+        public static final int abs__spinner_disabled_holo_light=0x7f02001b;
+        public static final int abs__spinner_focused_holo_dark=0x7f02001c;
+        public static final int abs__spinner_focused_holo_light=0x7f02001d;
+        public static final int abs__spinner_pressed_holo_dark=0x7f02001e;
+        public static final int abs__spinner_pressed_holo_light=0x7f02001f;
+        public static final int abs__tab_indicator_holo=0x7f020020;
+        public static final int abs__tab_selected_focused_holo=0x7f020021;
+        public static final int abs__tab_selected_holo=0x7f020022;
+        public static final int abs__tab_selected_pressed_focused_holo=0x7f020023;
+        public static final int abs__tab_selected_pressed_holo=0x7f020024;
+        public static final int abs__tab_unselected_focused_holo=0x7f020025;
+        public static final int abs__tab_unselected_holo=0x7f020026;
+        public static final int abs__tab_unselected_pressed_focused_holo=0x7f020027;
+        public static final int abs__tab_unselected_pressed_holo=0x7f020028;
+        public static final int background_noise=0x7f020029;
+        public static final int background_noise_tile=0x7f02002a;
+        public static final int colorstrip=0x7f02002b;
+        public static final int dashboard_button_course=0x7f02002c;
+        public static final int dashboard_button_course_default=0x7f02002d;
+        public static final int dashboard_button_course_pressed=0x7f02002e;
+        public static final int dashboard_button_course_selected=0x7f02002f;
+        public static final int dashboard_button_exam=0x7f020030;
+        public static final int dashboard_button_exam_default=0x7f020031;
+        public static final int dashboard_button_exam_pressed=0x7f020032;
+        public static final int dashboard_button_exam_selected=0x7f020033;
+        public static final int dashboard_button_remark=0x7f020034;
+        public static final int dashboard_button_remark_default=0x7f020035;
+        public static final int dashboard_button_remark_pressed=0x7f020036;
+        public static final int dashboard_button_remark_selected=0x7f020037;
+        public static final int dashboard_button_statistics=0x7f020038;
+        public static final int dashboard_button_statistics_default=0x7f020039;
+        public static final int dashboard_button_statistics_pressed=0x7f02003a;
+        public static final int dashboard_button_statistics_selected=0x7f02003b;
+        public static final int dashboard_sliding_drawer_content=0x7f02003c;
+        public static final int dashboard_sliding_drawer_handle=0x7f02003d;
+        public static final int ic_launcher=0x7f02003e;
+        public static final int item_background_light=0x7f02003f;
+        public static final int item_background_light_disabled=0x7f020040;
+        public static final int item_background_light_focused=0x7f020041;
+        public static final int item_background_light_pressed_transition=0x7f020042;
+        public static final int item_background_light_pressed_transition_longpressed=0x7f020043;
+        public static final int item_background_light_pressed_transition_pressed=0x7f020044;
+        public static final int logo_exam_system_small=0x7f020045;
+        public static final int menu_item_preferences=0x7f020046;
+        public static final int menu_item_preferences_default=0x7f020047;
+        public static final int menu_item_preferences_pressed=0x7f020048;
+        public static final int menu_item_preferences_selected=0x7f020049;
+        public static final int shadow_background=0x7f02004a;
+        public static final int shadow_foreground=0x7f02004b;
+        public static final int vpi__tab_indicator=0x7f02004c;
+        public static final int vpi__tab_selected_focused_holo=0x7f02004d;
+        public static final int vpi__tab_selected_holo=0x7f02004e;
+        public static final int vpi__tab_selected_pressed_holo=0x7f02004f;
+        public static final int vpi__tab_unselected_focused_holo=0x7f020050;
+        public static final int vpi__tab_unselected_holo=0x7f020051;
+        public static final int vpi__tab_unselected_pressed_holo=0x7f020052;
+        public static final int wheel_bg=0x7f020053;
+        public static final int wheel_val=0x7f020054;
+    }
+    public static final class id {
+        public static final int abs__action_bar=0x7f050020;
+        public static final int abs__action_bar_container=0x7f05001f;
+        public static final int abs__action_bar_subtitle=0x7f05001c;
+        public static final int abs__action_bar_title=0x7f05001b;
+        public static final int abs__action_menu_presenter=0x7f05000e;
+        public static final int abs__actions=0x7f050010;
+        public static final int abs__content=0x7f050021;
+        public static final int abs__custom=0x7f050013;
+        public static final int abs__home=0x7f050016;
+        public static final int abs__home_wrapper=0x7f05000f;
+        public static final int abs__imageButton=0x7f05001d;
+        public static final int abs__iprogress=0x7f050011;
+        public static final int abs__nav_list=0x7f050012;
+        public static final int abs__nav_tabs=0x7f050014;
+        public static final int abs__nav_tabs_layout=0x7f050017;
+        public static final int abs__tab=0x7f050019;
+        public static final int abs__tab_custom=0x7f05001a;
+        public static final int abs__tab_icon=0x7f050018;
+        public static final int abs__textButton=0x7f05001e;
+        public static final int abs__up=0x7f050015;
+        public static final int colorstrip=0x7f05002c;
+        public static final int dashboard_button_course=0x7f050032;
+        public static final int dashboard_button_exam=0x7f050033;
+        public static final int dashboard_button_remark=0x7f050035;
+        public static final int dashboard_button_statistics=0x7f050034;
+        public static final int dashboard_sliding_drawer=0x7f050023;
+        public static final int dashboard_sliding_drawer_content=0x7f050024;
+        public static final int dashboard_sliding_drawer_content_list_notice=0x7f050028;
+        public static final int dashboard_sliding_drawer_handle=0x7f050025;
+        public static final int dashboard_sliding_drawer_subtitle_view_flipper=0x7f050027;
+        public static final int dashboard_sliding_drawer_title=0x7f050026;
+        public static final int exam_choose_paper_edit_title=0x7f050031;
+        public static final int exam_end_time_edit_title=0x7f050030;
+        public static final int exam_list_pager=0x7f050029;
+        public static final int exam_name_edit=0x7f05002e;
+        public static final int exam_name_edit_title=0x7f05002d;
+        public static final int exam_start_time_edit_title=0x7f05002f;
+        public static final int fragment_dashboard=0x7f050022;
+        public static final int homeAsUp=0x7f05000b;
+        public static final int horizontal=0x7f050000;
+        public static final int listMode=0x7f050007;
+        public static final int list_exam=0x7f050036;
+        public static final int list_exam_item_name=0x7f050037;
+        public static final int list_exam_item_time_end=0x7f05003a;
+        public static final int list_exam_item_time_last=0x7f050038;
+        public static final int list_exam_item_time_start=0x7f050039;
+        public static final int list_notice_item_content=0x7f05003d;
+        public static final int list_notice_item_name=0x7f05003b;
+        public static final int list_notice_item_time_public=0x7f05003c;
+        public static final int none=0x7f050002;
+        public static final int normal=0x7f050006;
+        public static final int paper_indicator=0x7f05002a;
+        public static final int paper_pager=0x7f05002b;
+        public static final int showCustom=0x7f05000d;
+        public static final int showHome=0x7f05000a;
+        public static final int showTitle=0x7f05000c;
+        public static final int tabMode=0x7f050008;
+        public static final int triangle=0x7f050003;
+        public static final int underline=0x7f050004;
+        public static final int useLogo=0x7f050009;
+        public static final int vertical=0x7f050001;
+        public static final int wrap_content=0x7f050005;
+    }
+    public static final class integer {
+        public static final int abs__max_action_buttons=0x7f080002;
+        public static final int default_circle_indicator_orientation=0x7f080000;
+        public static final int default_title_indicator_footer_indicator_style=0x7f080001;
+        public static final int flip_interval_medium=0x7f080003;
     }
     public static final class layout {
-        public static final int main=0x7f030000;
+        public static final int abs__action_bar=0x7f030000;
+        public static final int abs__action_bar_home=0x7f030001;
+        public static final int abs__action_bar_inline=0x7f030002;
+        public static final int abs__action_bar_tab_layout=0x7f030003;
+        public static final int abs__action_bar_title_item=0x7f030004;
+        public static final int abs__action_menu_item_layout=0x7f030005;
+        public static final int abs__action_menu_layout=0x7f030006;
+        public static final int abs__screen_action_bar=0x7f030007;
+        public static final int abs__screen_action_bar_overlay=0x7f030008;
+        public static final int abs__screen_simple=0x7f030009;
+        public static final int abs__simple_spinner_item=0x7f03000a;
+        public static final int activity_dashboard=0x7f03000b;
+        public static final int activity_exam_list=0x7f03000c;
+        public static final int activity_paper=0x7f03000d;
+        public static final int colorstrip=0x7f03000e;
+        public static final int dashboard_sliding_drawer_subtitle=0x7f03000f;
+        public static final int fragment_create_exam=0x7f030010;
+        public static final int fragment_dashboard=0x7f030011;
+        public static final int fragment_exam_list=0x7f030012;
+        public static final int fragment_paper=0x7f030013;
+        public static final int list_exam_item=0x7f030014;
+        public static final int list_notice_item=0x7f030015;
+        public static final int main=0x7f030016;
+        public static final int vpi__tab=0x7f030017;
     }
     public static final class string {
-        public static final int app_name=0x7f040001;
-        public static final int database_name=0x7f040002;
-        public static final int hello=0x7f040000;
+        public static final int abs__tab_under_ab_tag=0x7f0b0000;
+        public static final int app_name=0x7f0b0002;
+        public static final int button_course=0x7f0b0008;
+        public static final int button_exam=0x7f0b0009;
+        public static final int button_remark=0x7f0b000b;
+        public static final int button_statistics=0x7f0b000a;
+        public static final int create_exam_title=0x7f0b0007;
+        public static final int dashboard_sliding_drawer_title=0x7f0b0005;
+        public static final int dashboard_title=0x7f0b0004;
+        public static final int database_name=0x7f0b0003;
+        public static final int exam_end_time_edit_title=0x7f0b000f;
+        public static final int exam_list_title=0x7f0b0006;
+        public static final int exam_name_edit_hint=0x7f0b0011;
+        public static final int exam_name_edit_title=0x7f0b000d;
+        public static final int exam_paper_choose_title=0x7f0b0010;
+        public static final int exam_start_time_edit_title=0x7f0b000e;
+        public static final int hello=0x7f0b0001;
+        public static final int menu_item_preferences=0x7f0b000c;
     }
+    public static final class style {
+        public static final int ActionBarText=0x7f0a002b;
+        public static final int CreateExamFragment=0x7f0a0035;
+        /**  <style name="ActionBarCompat">
+        <item name="android:id">@id/actionbar_compat</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">@dimen/actionbar_compat_height</item>
+        <item name="android:orientation">horizontal</item>
+        <item name="android:background">@drawable/actionbar_compat_background</item>
+    </style>
+
+    <style name="ActionBarCompatButton">
+        <item name="android:layout_width">@dimen/actionbar_compat_height</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:scaleType">center</item>
+        <item name="android:background">@drawable/actionbar_compat_button</item>
+    </style>
+
+    <style name="ActionBarCompatProgressIndicator" parent="android:style/Widget.ProgressBar.Small">
+        <item name="android:indeterminate">true</item>
+    </style>
+
+    <style name="ActionBarCompatSeparator">
+        <item name="android:layout_width">2px</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:background">@drawable/actionbar_compat_separator</item>
+    </style>
+
+    <style name="ActionBarCompatLogo">
+        <item name="android:id">@id/actionbar_compat_logo</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:clickable">false</item>
+        <item name="android:scaleType">center</item>
+        <item name="android:contentDescription">@string/description_logo</item>
+        <item name="android:src">@drawable/actionbar_compat_logo</item>
+    </style>
+
+    <style name="ActionBarCompatText">
+        <item name="android:id">@id/actionbar_compat_text</item>
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">fill_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:gravity">center_vertical</item>
+        <item name="android:textSize">@dimen/text_size_medium</item>
+        <item name="android:paddingLeft">12dp</item>
+        <item name="android:paddingRight">12dp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/actionbar_text</item>
+        <item name="android:shadowColor">#fff</item>
+        <item name="android:shadowDx">0</item>
+        <item name="android:shadowDy">1</item>
+        <item name="android:shadowRadius">0.00001</item>
+        <item name="android:singleLine">true</item>
+        <item name="android:ellipsize">end</item>
+    </style> 
+         */
+        public static final int DashboardButton=0x7f0a002c;
+        public static final int DashboardSlidingDrawer=0x7f0a002d;
+        public static final int DashboardSlidingDrawerContent=0x7f0a0032;
+        public static final int DashboardSlidingDrawerContentNoticeList=0x7f0a0036;
+        public static final int DashboardSlidingDrawerHandle=0x7f0a002e;
+        public static final int DashboardSlidingDrawerSubtitle=0x7f0a0031;
+        public static final int DashboardSlidingDrawerSubtitleViewFlipper=0x7f0a0030;
+        public static final int DashboardSlidingDrawerTitle=0x7f0a002f;
+        public static final int ExamEdit=0x7f0a0043;
+        public static final int ExamEditLayout=0x7f0a0041;
+        public static final int ExamEditTitle=0x7f0a0042;
+        public static final int ExamList=0x7f0a0037;
+        public static final int ExamListFragment=0x7f0a0034;
+        public static final int ExamListItem=0x7f0a0039;
+        public static final int ExamListItemEndTime=0x7f0a0040;
+        public static final int ExamListItemLastTime=0x7f0a003d;
+        public static final int ExamListItemName=0x7f0a003b;
+        public static final int ExamListItemStartTime=0x7f0a003f;
+        public static final int ExamListPager=0x7f0a0033;
+        public static final int Internal_Widget_Sherlock_ActionBar=0x7f0a0023;
+        public static final int Internal_Widget_Sherlock_Light_ActionBar=0x7f0a0024;
+        public static final int NoticeListItem=0x7f0a0038;
+        public static final int NoticeListItemContent=0x7f0a003e;
+        public static final int NoticeListItemName=0x7f0a003a;
+        public static final int NoticeListItemPublicTime=0x7f0a003c;
+        public static final int TextAppearance_TabPageIndicator=0x7f0a0006;
+        public static final int TextAppearance_Widget_Subtitle=0x7f0a0022;
+        public static final int TextAppearance_Widget_Title=0x7f0a0021;
+        /**  Base application theme is the default theme. 
+         */
+        public static final int Theme=0x7f0a0026;
+        /**  Variation on the Light theme that turns off the title 
+ custom attributes 
+
+        <item name="android:windowNoTitle">true</item>
+        <item name="textHeaderMaxLines">@integer/text_header_max_lines</item>
+        <item name="trackAbstractMaxLines">@integer/track_abstract_max_lines</item>
+        
+ for programmatic instantiation 
+
+        <item name="actionbarCompatButtonStyle">@style/ActionBarCompatButton</item>
+        <item name="actionbarCompatProgressIndicatorStyle">@style/ActionBarCompatProgressIndicator</item>
+        <item name="actionbarCompatSeparatorStyle">@style/ActionBarCompatSeparator</item>
+        <item name="actionbarCompatLogoStyle">@style/ActionBarCompatLogo</item>
+        <item name="actionbarCompatTextStyle">@style/ActionBarCompatText</item>
+        
+         */
+        public static final int Theme_ExamSystem=0x7f0a0027;
+        /**  Start with the Holographic Light theme 
+         */
+        public static final int Theme_ExamSystem_Dashboard=0x7f0a0028;
+        public static final int Theme_ExamSystem_ExamList=0x7f0a0029;
+        public static final int Theme_ExamSystem_Paper=0x7f0a002a;
+        public static final int Theme_PageIndicatorDefaults=0x7f0a0000;
+        public static final int Theme_Sherlock=0x7f0a0007;
+        public static final int Theme_Sherlock_Light=0x7f0a0014;
+        public static final int Widget=0x7f0a0001;
+        public static final int Widget_CirclePageIndicator=0x7f0a0002;
+        public static final int Widget_Sherlock_ActionBar_TabBar=0x7f0a0008;
+        public static final int Widget_Sherlock_ActionBar_TabText=0x7f0a000a;
+        public static final int Widget_Sherlock_ActionBar_TabView=0x7f0a0009;
+        public static final int Widget_Sherlock_ActionButton=0x7f0a000b;
+        public static final int Widget_Sherlock_ActionButton_CloseMode=0x7f0a000d;
+        public static final int Widget_Sherlock_ActionButton_Home=0x7f0a000e;
+        public static final int Widget_Sherlock_ActionButton_Overflow=0x7f0a000f;
+        public static final int Widget_Sherlock_Light_ActionBar_TabBar=0x7f0a0015;
+        public static final int Widget_Sherlock_Light_ActionBar_TabText=0x7f0a0017;
+        /**  Tabs are in AB here, so we need Dark Variant of Theme 
+ Tabs are in AB here, so we need Dark Variant of Theme 
+         */
+        public static final int Widget_Sherlock_Light_ActionBar_TabText_Inverse=0x7f0a0025;
+        public static final int Widget_Sherlock_Light_ActionBar_TabView=0x7f0a0016;
+        public static final int Widget_Sherlock_Light_ActionButton=0x7f0a0018;
+        public static final int Widget_Sherlock_Light_ActionButton_CloseMode=0x7f0a001d;
+        public static final int Widget_Sherlock_Light_ActionButton_Home=0x7f0a0019;
+        public static final int Widget_Sherlock_Light_ActionButton_Overflow=0x7f0a001a;
+        public static final int Widget_Sherlock_Light_ListPopupWindow=0x7f0a001f;
+        public static final int Widget_Sherlock_Light_ListView_DropDown=0x7f0a001e;
+        public static final int Widget_Sherlock_Light_PopupMenu=0x7f0a0020;
+        public static final int Widget_Sherlock_Light_Spinner=0x7f0a001c;
+        public static final int Widget_Sherlock_Light_TextView_SpinnerItem_ActionBar=0x7f0a001b;
+        public static final int Widget_Sherlock_ListPopupWindow=0x7f0a0011;
+        public static final int Widget_Sherlock_ListView_DropDown=0x7f0a0012;
+        public static final int Widget_Sherlock_PopupMenu=0x7f0a0013;
+        public static final int Widget_Sherlock_Spinner=0x7f0a000c;
+        public static final int Widget_Sherlock_TextView_SpinnerItem_ActionBar=0x7f0a0010;
+        public static final int Widget_TabPageIndicator=0x7f0a0004;
+        public static final int Widget_TabPageIndicator_Text=0x7f0a0005;
+        public static final int Widget_TitlePageIndicator=0x7f0a0003;
+    }
+    public static final class styleable {
+        /** Attributes that can be used with a CirclePageIndicator.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #CirclePageIndicator_centered org.scauhci.ExamSystem.android:centered}</code></td><td> Whether or not the indicators should be centered.</td></tr>
+           <tr><td><code>{@link #CirclePageIndicator_fillColor org.scauhci.ExamSystem.android:fillColor}</code></td><td> Color of the filled circle that represents the current page.</td></tr>
+           <tr><td><code>{@link #CirclePageIndicator_orientation org.scauhci.ExamSystem.android:orientation}</code></td><td> Orientation of the indicator.</td></tr>
+           <tr><td><code>{@link #CirclePageIndicator_pageColor org.scauhci.ExamSystem.android:pageColor}</code></td><td> Color of the filled circles that represents pages.</td></tr>
+           <tr><td><code>{@link #CirclePageIndicator_radius org.scauhci.ExamSystem.android:radius}</code></td><td> Radius of the circles.</td></tr>
+           <tr><td><code>{@link #CirclePageIndicator_snap org.scauhci.ExamSystem.android:snap}</code></td><td> Whether or not the selected indicator snaps to the circles.</td></tr>
+           <tr><td><code>{@link #CirclePageIndicator_strokeColor org.scauhci.ExamSystem.android:strokeColor}</code></td><td> Color of the open circles.</td></tr>
+           <tr><td><code>{@link #CirclePageIndicator_strokeWidth org.scauhci.ExamSystem.android:strokeWidth}</code></td><td> Width of the stroke used to draw the circles.</td></tr>
+           </table>
+           @see #CirclePageIndicator_centered
+           @see #CirclePageIndicator_fillColor
+           @see #CirclePageIndicator_orientation
+           @see #CirclePageIndicator_pageColor
+           @see #CirclePageIndicator_radius
+           @see #CirclePageIndicator_snap
+           @see #CirclePageIndicator_strokeColor
+           @see #CirclePageIndicator_strokeWidth
+         */
+        public static final int[] CirclePageIndicator = {
+            0x7f010004, 0x7f010005, 0x7f010006, 0x7f010007,
+            0x7f010008, 0x7f010009, 0x7f01000a, 0x7f01000b
+        };
+        /**
+          <p>
+          @attr description
+           Whether or not the indicators should be centered. 
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:centered
+        */
+        public static final int CirclePageIndicator_centered = 0;
+        /**
+          <p>
+          @attr description
+           Color of the filled circle that represents the current page. 
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:fillColor
+        */
+        public static final int CirclePageIndicator_fillColor = 1;
+        /**
+          <p>
+          @attr description
+           Orientation of the indicator. 
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>horizontal</code></td><td>0</td><td></td></tr>
+<tr><td><code>vertical</code></td><td>1</td><td></td></tr>
+</table>
+          <p>This is a private symbol.
+          @attr name android:orientation
+        */
+        public static final int CirclePageIndicator_orientation = 3;
+        /**
+          <p>
+          @attr description
+           Color of the filled circles that represents pages. 
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:pageColor
+        */
+        public static final int CirclePageIndicator_pageColor = 2;
+        /**
+          <p>
+          @attr description
+           Radius of the circles. This is also the spacing between circles. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:radius
+        */
+        public static final int CirclePageIndicator_radius = 4;
+        /**
+          <p>
+          @attr description
+           Whether or not the selected indicator snaps to the circles. 
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:snap
+        */
+        public static final int CirclePageIndicator_snap = 5;
+        /**
+          <p>
+          @attr description
+           Color of the open circles. 
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:strokeColor
+        */
+        public static final int CirclePageIndicator_strokeColor = 6;
+        /**
+          <p>
+          @attr description
+           Width of the stroke used to draw the circles. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:strokeWidth
+        */
+        public static final int CirclePageIndicator_strokeWidth = 7;
+        /**  These are the attributes that we want to retrieve for
+         app/FragmentArguments.java 
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #DashboardSlidingDrawerSubtitle_android_singleLine org.scauhci.ExamSystem.android:android_singleLine}</code></td><td></td></tr>
+           <tr><td><code>{@link #DashboardSlidingDrawerSubtitle_android_text org.scauhci.ExamSystem.android:android_text}</code></td><td></td></tr>
+           </table>
+           @see #DashboardSlidingDrawerSubtitle_android_singleLine
+           @see #DashboardSlidingDrawerSubtitle_android_text
+         */
+        public static final int[] DashboardSlidingDrawerSubtitle = {
+            0x0101014f, 0x0101015d
+        };
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#android_singleLine}
+          attribute's value can be found in the {@link #DashboardSlidingDrawerSubtitle} array.
+          @attr name android:android_singleLine
+        */
+        public static final int DashboardSlidingDrawerSubtitle_android_singleLine = 1;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#android_text}
+          attribute's value can be found in the {@link #DashboardSlidingDrawerSubtitle} array.
+          @attr name android:android_text
+        */
+        public static final int DashboardSlidingDrawerSubtitle_android_text = 0;
+        /** Attributes that can be used with a SherlockTheme.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #SherlockTheme_abBackground org.scauhci.ExamSystem.android:abBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_abBackgroundStacked org.scauhci.ExamSystem.android:abBackgroundStacked}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_abCustomNavigationLayout org.scauhci.ExamSystem.android:abCustomNavigationLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_abDisplayOptions org.scauhci.ExamSystem.android:abDisplayOptions}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_abDivider org.scauhci.ExamSystem.android:abDivider}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_abHeight org.scauhci.ExamSystem.android:abHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_abHomeLayout org.scauhci.ExamSystem.android:abHomeLayout}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_abIcon org.scauhci.ExamSystem.android:abIcon}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_abIndeterminateProgressStyle org.scauhci.ExamSystem.android:abIndeterminateProgressStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_abItemPadding org.scauhci.ExamSystem.android:abItemPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_abLogo org.scauhci.ExamSystem.android:abLogo}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_abNavigationMode org.scauhci.ExamSystem.android:abNavigationMode}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_abProgressBarPadding org.scauhci.ExamSystem.android:abProgressBarPadding}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_abProgressBarStyle org.scauhci.ExamSystem.android:abProgressBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_abSubtitle org.scauhci.ExamSystem.android:abSubtitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_abSubtitleTextStyle org.scauhci.ExamSystem.android:abSubtitleTextStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_abTitle org.scauhci.ExamSystem.android:abTitle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_abTitleTextStyle org.scauhci.ExamSystem.android:abTitleTextStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionBarSize org.scauhci.ExamSystem.android:actionBarSize}</code></td><td>attr name="actionBarStyle" format="reference" /</td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionBarTabBarStyle org.scauhci.ExamSystem.android:actionBarTabBarStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionBarTabStyle org.scauhci.ExamSystem.android:actionBarTabStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionBarTabTextStyle org.scauhci.ExamSystem.android:actionBarTabTextStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionButtonStyle org.scauhci.ExamSystem.android:actionButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionDropDownStyle org.scauhci.ExamSystem.android:actionDropDownStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionHomeButtonStyle org.scauhci.ExamSystem.android:actionHomeButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionMenuTextAppearance org.scauhci.ExamSystem.android:actionMenuTextAppearance}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionMenuTextColor org.scauhci.ExamSystem.android:actionMenuTextColor}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionModeBackground org.scauhci.ExamSystem.android:actionModeBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionModeCloseButtonStyle org.scauhci.ExamSystem.android:actionModeCloseButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionModeCloseDrawable org.scauhci.ExamSystem.android:actionModeCloseDrawable}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionOverflowButtonStyle org.scauhci.ExamSystem.android:actionOverflowButtonStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_actionSpinnerItemStyle org.scauhci.ExamSystem.android:actionSpinnerItemStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_dropDownListViewStyle org.scauhci.ExamSystem.android:dropDownListViewStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_dropdownListPreferredItemHeight org.scauhci.ExamSystem.android:dropdownListPreferredItemHeight}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_homeAsUpIndicator org.scauhci.ExamSystem.android:homeAsUpIndicator}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_popupMenuStyle org.scauhci.ExamSystem.android:popupMenuStyle}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_selectableItemBackground org.scauhci.ExamSystem.android:selectableItemBackground}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_windowActionBar org.scauhci.ExamSystem.android:windowActionBar}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_windowActionBarOverlay org.scauhci.ExamSystem.android:windowActionBarOverlay}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_windowActionModeOverlay org.scauhci.ExamSystem.android:windowActionModeOverlay}</code></td><td></td></tr>
+           <tr><td><code>{@link #SherlockTheme_windowNoTitle org.scauhci.ExamSystem.android:windowNoTitle}</code></td><td></td></tr>
+           </table>
+           @see #SherlockTheme_abBackground
+           @see #SherlockTheme_abBackgroundStacked
+           @see #SherlockTheme_abCustomNavigationLayout
+           @see #SherlockTheme_abDisplayOptions
+           @see #SherlockTheme_abDivider
+           @see #SherlockTheme_abHeight
+           @see #SherlockTheme_abHomeLayout
+           @see #SherlockTheme_abIcon
+           @see #SherlockTheme_abIndeterminateProgressStyle
+           @see #SherlockTheme_abItemPadding
+           @see #SherlockTheme_abLogo
+           @see #SherlockTheme_abNavigationMode
+           @see #SherlockTheme_abProgressBarPadding
+           @see #SherlockTheme_abProgressBarStyle
+           @see #SherlockTheme_abSubtitle
+           @see #SherlockTheme_abSubtitleTextStyle
+           @see #SherlockTheme_abTitle
+           @see #SherlockTheme_abTitleTextStyle
+           @see #SherlockTheme_actionBarSize
+           @see #SherlockTheme_actionBarTabBarStyle
+           @see #SherlockTheme_actionBarTabStyle
+           @see #SherlockTheme_actionBarTabTextStyle
+           @see #SherlockTheme_actionButtonStyle
+           @see #SherlockTheme_actionDropDownStyle
+           @see #SherlockTheme_actionHomeButtonStyle
+           @see #SherlockTheme_actionMenuTextAppearance
+           @see #SherlockTheme_actionMenuTextColor
+           @see #SherlockTheme_actionModeBackground
+           @see #SherlockTheme_actionModeCloseButtonStyle
+           @see #SherlockTheme_actionModeCloseDrawable
+           @see #SherlockTheme_actionOverflowButtonStyle
+           @see #SherlockTheme_actionSpinnerItemStyle
+           @see #SherlockTheme_dropDownListViewStyle
+           @see #SherlockTheme_dropdownListPreferredItemHeight
+           @see #SherlockTheme_homeAsUpIndicator
+           @see #SherlockTheme_popupMenuStyle
+           @see #SherlockTheme_selectableItemBackground
+           @see #SherlockTheme_windowActionBar
+           @see #SherlockTheme_windowActionBarOverlay
+           @see #SherlockTheme_windowActionModeOverlay
+           @see #SherlockTheme_windowNoTitle
+         */
+        public static final int[] SherlockTheme = {
+            0x7f010019, 0x7f01001a, 0x7f01001b, 0x7f01001c,
+            0x7f01001d, 0x7f01001e, 0x7f01001f, 0x7f010020,
+            0x7f010021, 0x7f010022, 0x7f010023, 0x7f010024,
+            0x7f010025, 0x7f010026, 0x7f010027, 0x7f010028,
+            0x7f010029, 0x7f01002a, 0x7f01002b, 0x7f01002c,
+            0x7f01002d, 0x7f01002e, 0x7f01002f, 0x7f010030,
+            0x7f010031, 0x7f010032, 0x7f010033, 0x7f010034,
+            0x7f010035, 0x7f010036, 0x7f010037, 0x7f010038,
+            0x7f010039, 0x7f01003a, 0x7f01003b, 0x7f01003c,
+            0x7f01003d, 0x7f01003e, 0x7f01003f, 0x7f010040,
+            0x7f010041
+        };
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#abBackground}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          @attr name android:abBackground
+        */
+        public static final int SherlockTheme_abBackground = 32;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#abBackgroundStacked}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          @attr name android:abBackgroundStacked
+        */
+        public static final int SherlockTheme_abBackgroundStacked = 33;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#abCustomNavigationLayout}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:abCustomNavigationLayout
+        */
+        public static final int SherlockTheme_abCustomNavigationLayout = 34;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#abDisplayOptions}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be one or more (separated by '|') of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>useLogo</code></td><td>0x1</td><td></td></tr>
+<tr><td><code>showHome</code></td><td>0x2</td><td></td></tr>
+<tr><td><code>homeAsUp</code></td><td>0x4</td><td></td></tr>
+<tr><td><code>showTitle</code></td><td>0x8</td><td></td></tr>
+<tr><td><code>showCustom</code></td><td>0x10</td><td></td></tr>
+</table>
+          @attr name android:abDisplayOptions
+        */
+        public static final int SherlockTheme_abDisplayOptions = 24;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#abDivider}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          @attr name android:abDivider
+        */
+        public static final int SherlockTheme_abDivider = 31;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#abHeight}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+          @attr name android:abHeight
+        */
+        public static final int SherlockTheme_abHeight = 35;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#abHomeLayout}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:abHomeLayout
+        */
+        public static final int SherlockTheme_abHomeLayout = 36;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#abIcon}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:abIcon
+        */
+        public static final int SherlockTheme_abIcon = 29;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#abIndeterminateProgressStyle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:abIndeterminateProgressStyle
+        */
+        public static final int SherlockTheme_abIndeterminateProgressStyle = 38;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#abItemPadding}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:abItemPadding
+        */
+        public static final int SherlockTheme_abItemPadding = 40;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#abLogo}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:abLogo
+        */
+        public static final int SherlockTheme_abLogo = 30;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#abNavigationMode}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>normal</code></td><td>0</td><td></td></tr>
+<tr><td><code>listMode</code></td><td>1</td><td></td></tr>
+<tr><td><code>tabMode</code></td><td>2</td><td></td></tr>
+</table>
+          @attr name android:abNavigationMode
+        */
+        public static final int SherlockTheme_abNavigationMode = 23;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#abProgressBarPadding}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:abProgressBarPadding
+        */
+        public static final int SherlockTheme_abProgressBarPadding = 39;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#abProgressBarStyle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:abProgressBarStyle
+        */
+        public static final int SherlockTheme_abProgressBarStyle = 37;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#abSubtitle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:abSubtitle
+        */
+        public static final int SherlockTheme_abSubtitle = 26;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#abSubtitleTextStyle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:abSubtitleTextStyle
+        */
+        public static final int SherlockTheme_abSubtitleTextStyle = 28;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#abTitle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a string value, using '\\;' to escape characters such as '\\n' or '\\uxxxx' for a unicode character.
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:abTitle
+        */
+        public static final int SherlockTheme_abTitle = 25;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#abTitleTextStyle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:abTitleTextStyle
+        */
+        public static final int SherlockTheme_abTitleTextStyle = 27;
+        /**
+          <p>
+          @attr description
+          attr name="actionBarStyle" format="reference" /
+
+
+          <p>May be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+<p>May be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>wrap_content</code></td><td>0</td><td></td></tr>
+</table>
+          <p>This is a private symbol.
+          @attr name android:actionBarSize
+        */
+        public static final int SherlockTheme_actionBarSize = 7;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#actionBarTabBarStyle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:actionBarTabBarStyle
+        */
+        public static final int SherlockTheme_actionBarTabBarStyle = 3;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#actionBarTabStyle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:actionBarTabStyle
+        */
+        public static final int SherlockTheme_actionBarTabStyle = 2;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#actionBarTabTextStyle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:actionBarTabTextStyle
+        */
+        public static final int SherlockTheme_actionBarTabTextStyle = 4;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#actionButtonStyle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:actionButtonStyle
+        */
+        public static final int SherlockTheme_actionButtonStyle = 1;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#actionDropDownStyle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:actionDropDownStyle
+        */
+        public static final int SherlockTheme_actionDropDownStyle = 0;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#actionHomeButtonStyle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:actionHomeButtonStyle
+        */
+        public static final int SherlockTheme_actionHomeButtonStyle = 6;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#actionMenuTextAppearance}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:actionMenuTextAppearance
+        */
+        public static final int SherlockTheme_actionMenuTextAppearance = 8;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#actionMenuTextColor}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>May be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+<p>May be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+          @attr name android:actionMenuTextColor
+        */
+        public static final int SherlockTheme_actionMenuTextColor = 9;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#actionModeBackground}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:actionModeBackground
+        */
+        public static final int SherlockTheme_actionModeBackground = 11;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#actionModeCloseButtonStyle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:actionModeCloseButtonStyle
+        */
+        public static final int SherlockTheme_actionModeCloseButtonStyle = 10;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#actionModeCloseDrawable}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:actionModeCloseDrawable
+        */
+        public static final int SherlockTheme_actionModeCloseDrawable = 12;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#actionOverflowButtonStyle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:actionOverflowButtonStyle
+        */
+        public static final int SherlockTheme_actionOverflowButtonStyle = 5;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#actionSpinnerItemStyle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:actionSpinnerItemStyle
+        */
+        public static final int SherlockTheme_actionSpinnerItemStyle = 18;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#dropDownListViewStyle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:dropDownListViewStyle
+        */
+        public static final int SherlockTheme_dropDownListViewStyle = 15;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#dropdownListPreferredItemHeight}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:dropdownListPreferredItemHeight
+        */
+        public static final int SherlockTheme_dropdownListPreferredItemHeight = 17;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#homeAsUpIndicator}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:homeAsUpIndicator
+        */
+        public static final int SherlockTheme_homeAsUpIndicator = 13;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#popupMenuStyle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:popupMenuStyle
+        */
+        public static final int SherlockTheme_popupMenuStyle = 16;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#selectableItemBackground}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          @attr name android:selectableItemBackground
+        */
+        public static final int SherlockTheme_selectableItemBackground = 14;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#windowActionBar}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:windowActionBar
+        */
+        public static final int SherlockTheme_windowActionBar = 20;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#windowActionBarOverlay}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:windowActionBarOverlay
+        */
+        public static final int SherlockTheme_windowActionBarOverlay = 21;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#windowActionModeOverlay}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:windowActionModeOverlay
+        */
+        public static final int SherlockTheme_windowActionModeOverlay = 22;
+        /**
+          <p>This symbol is the offset where the {@link org.scauhci.ExamSystem.android.R.attr#windowNoTitle}
+          attribute's value can be found in the {@link #SherlockTheme} array.
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          @attr name android:windowNoTitle
+        */
+        public static final int SherlockTheme_windowNoTitle = 19;
+        /** Attributes that can be used with a TitlePageIndicator.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #TitlePageIndicator_clipPadding org.scauhci.ExamSystem.android:clipPadding}</code></td><td> Screen edge padding.</td></tr>
+           <tr><td><code>{@link #TitlePageIndicator_footerColor org.scauhci.ExamSystem.android:footerColor}</code></td><td> Color of the footer line and indicator.</td></tr>
+           <tr><td><code>{@link #TitlePageIndicator_footerIndicatorHeight org.scauhci.ExamSystem.android:footerIndicatorHeight}</code></td><td> Height of the indicator above the footer line.</td></tr>
+           <tr><td><code>{@link #TitlePageIndicator_footerIndicatorStyle org.scauhci.ExamSystem.android:footerIndicatorStyle}</code></td><td> Style of the indicator.</td></tr>
+           <tr><td><code>{@link #TitlePageIndicator_footerIndicatorUnderlinePadding org.scauhci.ExamSystem.android:footerIndicatorUnderlinePadding}</code></td><td> Left and right padding of the underline indicator.</td></tr>
+           <tr><td><code>{@link #TitlePageIndicator_footerLineHeight org.scauhci.ExamSystem.android:footerLineHeight}</code></td><td> Height of the footer line.</td></tr>
+           <tr><td><code>{@link #TitlePageIndicator_footerPadding org.scauhci.ExamSystem.android:footerPadding}</code></td><td> Padding between the bottom of the title and the footer.</td></tr>
+           <tr><td><code>{@link #TitlePageIndicator_selectedBold org.scauhci.ExamSystem.android:selectedBold}</code></td><td> Whether or not the selected item is displayed as bold.</td></tr>
+           <tr><td><code>{@link #TitlePageIndicator_selectedColor org.scauhci.ExamSystem.android:selectedColor}</code></td><td> Color of the selected title.</td></tr>
+           <tr><td><code>{@link #TitlePageIndicator_textColor org.scauhci.ExamSystem.android:textColor}</code></td><td> Color of regular titles.</td></tr>
+           <tr><td><code>{@link #TitlePageIndicator_textSize org.scauhci.ExamSystem.android:textSize}</code></td><td> Size of title text.</td></tr>
+           <tr><td><code>{@link #TitlePageIndicator_titlePadding org.scauhci.ExamSystem.android:titlePadding}</code></td><td> Padding between titles when bumping into each other.</td></tr>
+           <tr><td><code>{@link #TitlePageIndicator_topPadding org.scauhci.ExamSystem.android:topPadding}</code></td><td> Padding between titles and the top of the View.</td></tr>
+           </table>
+           @see #TitlePageIndicator_clipPadding
+           @see #TitlePageIndicator_footerColor
+           @see #TitlePageIndicator_footerIndicatorHeight
+           @see #TitlePageIndicator_footerIndicatorStyle
+           @see #TitlePageIndicator_footerIndicatorUnderlinePadding
+           @see #TitlePageIndicator_footerLineHeight
+           @see #TitlePageIndicator_footerPadding
+           @see #TitlePageIndicator_selectedBold
+           @see #TitlePageIndicator_selectedColor
+           @see #TitlePageIndicator_textColor
+           @see #TitlePageIndicator_textSize
+           @see #TitlePageIndicator_titlePadding
+           @see #TitlePageIndicator_topPadding
+         */
+        public static final int[] TitlePageIndicator = {
+            0x7f01000c, 0x7f01000d, 0x7f01000e, 0x7f01000f,
+            0x7f010010, 0x7f010011, 0x7f010012, 0x7f010013,
+            0x7f010014, 0x7f010015, 0x7f010016, 0x7f010017,
+            0x7f010018
+        };
+        /**
+          <p>
+          @attr description
+           Screen edge padding. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:clipPadding
+        */
+        public static final int TitlePageIndicator_clipPadding = 0;
+        /**
+          <p>
+          @attr description
+           Color of the footer line and indicator. 
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:footerColor
+        */
+        public static final int TitlePageIndicator_footerColor = 1;
+        /**
+          <p>
+          @attr description
+           Height of the indicator above the footer line. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:footerIndicatorHeight
+        */
+        public static final int TitlePageIndicator_footerIndicatorHeight = 4;
+        /**
+          <p>
+          @attr description
+           Style of the indicator. Default is triangle. 
+
+
+          <p>Must be one of the following constant values.</p>
+<table>
+<colgroup align="left" />
+<colgroup align="left" />
+<colgroup align="left" />
+<tr><th>Constant</th><th>Value</th><th>Description</th></tr>
+<tr><td><code>none</code></td><td>0</td><td></td></tr>
+<tr><td><code>triangle</code></td><td>1</td><td></td></tr>
+<tr><td><code>underline</code></td><td>2</td><td></td></tr>
+</table>
+          <p>This is a private symbol.
+          @attr name android:footerIndicatorStyle
+        */
+        public static final int TitlePageIndicator_footerIndicatorStyle = 3;
+        /**
+          <p>
+          @attr description
+           Left and right padding of the underline indicator. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:footerIndicatorUnderlinePadding
+        */
+        public static final int TitlePageIndicator_footerIndicatorUnderlinePadding = 5;
+        /**
+          <p>
+          @attr description
+           Height of the footer line. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:footerLineHeight
+        */
+        public static final int TitlePageIndicator_footerLineHeight = 2;
+        /**
+          <p>
+          @attr description
+           Padding between the bottom of the title and the footer. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:footerPadding
+        */
+        public static final int TitlePageIndicator_footerPadding = 6;
+        /**
+          <p>
+          @attr description
+           Whether or not the selected item is displayed as bold. 
+
+
+          <p>Must be a boolean value, either "<code>true</code>" or "<code>false</code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:selectedBold
+        */
+        public static final int TitlePageIndicator_selectedBold = 8;
+        /**
+          <p>
+          @attr description
+           Color of the selected title. 
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:selectedColor
+        */
+        public static final int TitlePageIndicator_selectedColor = 7;
+        /**
+          <p>
+          @attr description
+           Color of regular titles. 
+
+
+          <p>Must be a color value, in the form of "<code>#<i>rgb</i></code>", "<code>#<i>argb</i></code>",
+"<code>#<i>rrggbb</i></code>", or "<code>#<i>aarrggbb</i></code>".
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:textColor
+        */
+        public static final int TitlePageIndicator_textColor = 9;
+        /**
+          <p>
+          @attr description
+           Size of title text. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:textSize
+        */
+        public static final int TitlePageIndicator_textSize = 10;
+        /**
+          <p>
+          @attr description
+           Padding between titles when bumping into each other. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:titlePadding
+        */
+        public static final int TitlePageIndicator_titlePadding = 11;
+        /**
+          <p>
+          @attr description
+           Padding between titles and the top of the View. 
+
+
+          <p>Must be a dimension value, which is a floating point number appended with a unit such as "<code>14.5sp</code>".
+Available units are: px (pixels), dp (density-independent pixels), sp (scaled pixels based on preferred font size),
+in (inches), mm (millimeters).
+<p>This may also be a reference to a resource (in the form
+"<code>@[<i>package</i>:]<i>type</i>:<i>name</i></code>") or
+theme attribute (in the form
+"<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>")
+containing a value of this type.
+          <p>This is a private symbol.
+          @attr name android:topPadding
+        */
+        public static final int TitlePageIndicator_topPadding = 12;
+        /** Attributes that can be used with a ViewPagerIndicator.
+           <p>Includes the following attributes:</p>
+           <table>
+           <colgroup align="left" />
+           <colgroup align="left" />
+           <tr><th>Attribute</th><th>Description</th></tr>
+           <tr><td><code>{@link #ViewPagerIndicator_vpiCirclePageIndicatorStyle org.scauhci.ExamSystem.android:vpiCirclePageIndicatorStyle}</code></td><td> Style of the circle indicator.</td></tr>
+           <tr><td><code>{@link #ViewPagerIndicator_vpiTabPageIndicatorStyle org.scauhci.ExamSystem.android:vpiTabPageIndicatorStyle}</code></td><td> Style of the tab indicator.</td></tr>
+           <tr><td><code>{@link #ViewPagerIndicator_vpiTabTextStyle org.scauhci.ExamSystem.android:vpiTabTextStyle}</code></td><td> Style of the text in a tab.</td></tr>
+           <tr><td><code>{@link #ViewPagerIndicator_vpiTitlePageIndicatorStyle org.scauhci.ExamSystem.android:vpiTitlePageIndicatorStyle}</code></td><td> Style of the title indicator.</td></tr>
+           </table>
+           @see #ViewPagerIndicator_vpiCirclePageIndicatorStyle
+           @see #ViewPagerIndicator_vpiTabPageIndicatorStyle
+           @see #ViewPagerIndicator_vpiTabTextStyle
+           @see #ViewPagerIndicator_vpiTitlePageIndicatorStyle
+         */
+        public static final int[] ViewPagerIndicator = {
+            0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003
+        };
+        /**
+          <p>
+          @attr description
+           Style of the circle indicator. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:vpiCirclePageIndicatorStyle
+        */
+        public static final int ViewPagerIndicator_vpiCirclePageIndicatorStyle = 0;
+        /**
+          <p>
+          @attr description
+           Style of the tab indicator. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:vpiTabPageIndicatorStyle
+        */
+        public static final int ViewPagerIndicator_vpiTabPageIndicatorStyle = 2;
+        /**
+          <p>
+          @attr description
+           Style of the text in a tab. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:vpiTabTextStyle
+        */
+        public static final int ViewPagerIndicator_vpiTabTextStyle = 3;
+        /**
+          <p>
+          @attr description
+           Style of the title indicator. 
+
+
+          <p>Must be a reference to another resource, in the form "<code>@[+][<i>package</i>:]<i>type</i>:<i>name</i></code>"
+or to a theme attribute in the form "<code>?[<i>package</i>:][<i>type</i>:]<i>name</i></code>".
+          <p>This is a private symbol.
+          @attr name android:vpiTitlePageIndicatorStyle
+        */
+        public static final int ViewPagerIndicator_vpiTitlePageIndicatorStyle = 1;
+    };
 }

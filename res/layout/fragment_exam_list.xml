@@ -1,0 +1,9 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ExamListFragment" >
+
+    <org.scauhci.ExamSystem.android.view.exam.ExamListView
+        android:id="@+id/list_exam"
+        style="@style/ExamList" >
+    </org.scauhci.ExamSystem.android.view.exam.ExamListView>
+
+</LinearLayout>

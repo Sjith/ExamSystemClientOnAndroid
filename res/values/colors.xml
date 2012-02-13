@@ -1,0 +1,6 @@
+<resources>
+	<color name="primary">#ff29549f</color>
+	
+	<color name="black_text_darker">#1E1C1C</color>
+	<color name="black_text_primary">#525051</color>
+</resources>

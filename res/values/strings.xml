@@ -4,5 +4,25 @@
     <string name="hello">Hello World, ExamSystemClientOnAndroidActivity!</string>
     <string name="app_name">ExamSystemClientOnAndroid</string>
     <string name="database_name">exam_online.db</string>
+    
+    <string name="dashboard_title">考试系统</string>
+    <string name="dashboard_sliding_drawer_title">通知：</string>
+    
+    <string name="exam_list_title">考试列表</string>
+    <string name="create_exam_title">创建考试</string>
 
+    <string name="button_course">课程练习</string>
+    <string name="button_exam">  模拟测验</string>
+    <string name="button_statistics">图表统计</string>
+    <string name="button_remark">备注</string>
+
+    <string name="menu_item_preferences">设置</string>
+    
+    <string name="exam_name_edit_title">考试名称：</string>
+    <string name="exam_start_time_edit_title">开始时间：</string>
+    <string name="exam_end_time_edit_title">结束时间：</string>
+    <string name="exam_paper_choose_title">选择试卷：</string>
+    
+    <string name="exam_name_edit_hint">请输入考试名称</string>
+    
 </resources>

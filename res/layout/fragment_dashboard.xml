@@ -1,0 +1,39 @@
+<!--
+  Copyright 2011 Google Inc.
+
+  Licensed under the Apache License, Version 2.0 (the "License");
+  you may not use this file except in compliance with the License.
+  You may obtain a copy of the License at
+
+       http://www.apache.org/licenses/LICENSE-2.0
+
+  Unless required by applicable law or agreed to in writing, software
+  distributed under the License is distributed on an "AS IS" BASIS,
+  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+  See the License for the specific language governing permissions and
+  limitations under the License.
+  -->
+<org.scauhci.ExamSystem.android.view.dashboard.DashboardLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background_noise">
+
+    <Button android:id="@+id/dashboard_button_course"
+        style="@style/DashboardButton"
+        android:text="@string/button_course"
+        android:drawableTop="@drawable/dashboard_button_course" />
+    <Button android:id="@+id/dashboard_button_exam"
+        style="@style/DashboardButton"
+        android:text="@string/button_exam"
+        android:drawableTop="@drawable/dashboard_button_exam" />
+    <Button android:id="@+id/dashboard_button_statistics"
+        style="@style/DashboardButton"
+        android:text="@string/button_statistics"
+        android:drawableTop="@drawable/dashboard_button_statistics" />
+    <Button android:id="@+id/dashboard_button_remark"
+        style="@style/DashboardButton"
+        android:text="@string/button_remark"
+        android:drawableTop="@drawable/dashboard_button_remark" />
+
+</org.scauhci.ExamSystem.android.view.dashboard.DashboardLayout>

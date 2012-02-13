@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/ExamListItem" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/list_exam_item_name"
+            style="@style/ExamListItemName" />
+
+        <TextView
+            android:id="@+id/list_exam_item_time_last"
+            style="@style/ExamListItemLastTime" />
+        
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:id="@+id/list_exam_item_time_start"
+            style="@style/ExamListItemStartTime" />
+
+        <TextView
+            android:id="@+id/list_exam_item_time_end"
+            style="@style/ExamListItemEndTime" />
+        
+    </LinearLayout>
+
+</LinearLayout>
