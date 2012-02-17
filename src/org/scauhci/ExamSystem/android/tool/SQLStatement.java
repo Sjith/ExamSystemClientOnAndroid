@@ -13,11 +13,11 @@ public class SQLStatement {
 			+ "  `courseId` char(32) NOT NULL,"
 			+ "  `teacherId` char(32) NOT NULL,"
 			+ "  `paperId` char(32) NOT NULL,"
-			+ "  `examExplain` mediumtext,"
+			+ "  `examExplain` mediumtext NULL,"
 			+ "  `examName` varchar(100) NOT NULL,"
-			+ "  `examCreatetime` datetime NOT NULL,"
-			+ "  `examStartTime` datetime NOT NULL,"
-			+ "  `examEndTime` datetime NOT NULL,"
+			+ "  `examCreateTime` datetime NULL,"
+			+ "  `examStartTime` datetime NULL,"
+			+ "  `examEndTime` datetime NULL,"
 			+ "  PRIMARY KEY (`examId`),"
 			+ "  CONSTRAINT `FK_Reference_29` FOREIGN KEY (`courseId`) REFERENCES `course` (`courseId`) ON DELETE CASCADE ON UPDATE CASCADE,"
 			+ "  CONSTRAINT `FK_Reference_34` FOREIGN KEY (`teacherId`) REFERENCES `teacher` (`teacherId`) ON DELETE CASCADE ON UPDATE CASCADE,"
@@ -107,6 +107,7 @@ public class SQLStatement {
 
 	public static final String CREATE_TABLE_REMARK = "CREATE TABLE `remark` ("
 			+ "  `remarkId` char(32) NOT NULL,"
+			+ "  `studentId` varchar(32) NOT NULL,"
 			+ "  `remarkName` varchar(100) NOT NULL,"
 			+ "  `remarkContent` text NOT NULL,"
 			+ "  `remarkCreateTime` datetime NOT NULL,"
@@ -115,11 +116,11 @@ public class SQLStatement {
 			+ "  CONSTRAINT `FK_Reference_67` FOREIGN KEY (`studentId`) REFERENCES `student` (`studentId`) ON DELETE CASCADE ON UPDATE CASCADE"
 			+ ") ;";
 
-	public static final String INSERT = "INSERT INTO ? (?) VALUES (?)";
+	public static final String INSERT = "INSERT INTO ? (?) VALUES (?);";
 
-	public static final String DELETE = "DELETE FROM ? WHERE ?";
+	public static final String DELETE = "DELETE FROM ? WHERE ?;";
 
-	public static final String UPDATE = "UPDATE ? SET ? WHERE ?";
+	public static final String UPDATE = "UPDATE ? SET ? WHERE ?;";
 
-	public static final String SELECT = "SELECT ? FROM ?";
+	public static final String SELECT = "SELECT ? FROM ?;";
 }

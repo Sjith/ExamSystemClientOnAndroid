@@ -30,20 +30,31 @@ public class ExamService {
 	RelationPaperQuestionDao relationPaperQuestionDao = new RelationPaperQuestionDao();
 
 	public Time getRemainTime(ExamPojo examPojo) {
-		Time remainTime = new Time();
 		Time targetTime = new Time();
+		targetTime.setToNow();
+		
+		return getRemainTime(examPojo, targetTime);
+	}
+	
+	public Time getLastTime(ExamPojo examPojo){
+		return getRemainTime(examPojo, examPojo.getExamStartTime());
+	}
+	
+	public Time getRemainTime(ExamPojo examPojo, Time targetTime){
+		Time remainTime = new Time();
 		Time examEndTime = examPojo.getExamEndTime();
 		Time examStartTime = examPojo.getExamStartTime();
-
-		targetTime.setToNow();
-		if (targetTime.before(examPojo.getExamStartTime())) {
-			remainTime.set(targetTime.toMillis(false)
-					- examStartTime.toMillis(false));
-		} else {
-			remainTime.set(examEndTime.toMillis(false)
-					- targetTime.toMillis(false));
+		
+		if (examPojo.getExamStartTime() != null && examStartTime != null && examEndTime != null) {
+			if (targetTime.before(examPojo.getExamStartTime())) {
+				remainTime.set(targetTime.toMillis(false)
+						- examStartTime.toMillis(false));
+			} else {
+				remainTime.set(examEndTime.toMillis(false)
+						- targetTime.toMillis(false));
+			}
 		}
-
+		
 		return remainTime;
 	}
 

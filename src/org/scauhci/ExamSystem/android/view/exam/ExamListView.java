@@ -9,22 +9,41 @@ import org.scauhci.ExamSystem.android.view.paper.PaperAcitvity;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Bundle;
 import android.util.AttributeSet;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
+import android.widget.TextView;
 
 public class ExamListView extends ListView {
 
 	SimpleAdapter examListAdapter;
+	ArrayList<HashMap<String, Object>> examListItemDatas;
 	AdapterView.OnItemClickListener examListItemOnClickListener = new AdapterView.OnItemClickListener() {
 		public void onItemClick(AdapterView<?> parent, View examListItemView,
 				int position, long id) {
-			Log.e(Flag.DEBUG, "You are click the item " + position + " in ExamList");
-			Log.e(Flag.DEBUG, getContext().getClass().getName());
+			
+			Log.e(Flag.DEBUG, "You are click the item " + position
+					+ " in ExamList");
+			
 			Intent intent = new Intent(getContext(), PaperAcitvity.class);
+			String examListItemName = (String) ((TextView) examListItemView
+					.findViewById(R.id.list_exam_item_name)).getText();
+			
+			for (HashMap<String, Object> examListItemData : examListItemDatas) {
+				if (examListItemData.get("examName").equals(examListItemName)) {
+					Bundle args = new Bundle();
+					
+					args.putString("paperId", examListItemData.get("paperId")
+							+ "");
+					Log.e("paperId", examListItemData.get("paperId") + "");
+					intent.putExtras(args);
+					break;
+				}
+			}
 			getContext().startActivity(intent);
 		}
 	};
@@ -42,6 +61,12 @@ public class ExamListView extends ListView {
 	}
 
 	public void setData(ArrayList<HashMap<String, Object>> examListItemDatas) {
+
+		this.examListItemDatas = examListItemDatas;
+		initData();
+	}
+
+	public void initData() {
 
 		examListAdapter = new SimpleAdapter(getContext(), examListItemDatas,
 				R.layout.list_exam_item, new String[] { "examName",

@@ -111,6 +111,8 @@ public class NoticeDao {
 		} else {
 			noticePojo = null;
 		}
+		
+		noticeCursor.close();
 
 		return noticePojo;
 	}
@@ -140,6 +142,8 @@ public class NoticeDao {
 		} else {
 			noticePojo = null;
 		}
+		
+		noticeCursor.close();
 
 		return noticePojo;
 	}
@@ -168,6 +172,8 @@ public class NoticeDao {
 			noticePojo.setNoticePublicTime(noticePublicTime);
 			noticePojos.add(noticePojo);
 		}
+		
+		noticeCursor.close();
 
 		return noticePojos;
 	}

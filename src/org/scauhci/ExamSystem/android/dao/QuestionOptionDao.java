@@ -119,6 +119,8 @@ public class QuestionOptionDao {
 		} else {
 			questionOptionPojo = null;
 		}
+		
+		questionOptionCursor.close();
 
 		return questionOptionPojo;
 	}
@@ -150,6 +152,8 @@ public class QuestionOptionDao {
 			questionOptionPojo = null;
 		}
 
+		questionOptionCursor.close();
+		
 		return questionOptionPojo;
 	}
 
@@ -158,7 +162,7 @@ public class QuestionOptionDao {
 		ArrayList<QuestionOptionPojo> questionOptionPojos = new ArrayList<QuestionOptionPojo>();
 
 		String[] keys = { "*" };
-		String[] whereConditionKeys = { "questionOptionId" };
+		String[] whereConditionKeys = { "questionId" };
 		String[] whereConditionValues = { questionPojo.getQuestionId() };
 
 		Cursor questionOptionCursor = daoHelper.select(tableName, keys,
@@ -180,6 +184,8 @@ public class QuestionOptionDao {
 									.getColumnIndex("isQuestionStdAnswer"))));
 			questionOptionPojos.add(questionOptionPojo);
 		}
+		
+		questionOptionCursor.close();
 
 		return questionOptionPojos;
 	}

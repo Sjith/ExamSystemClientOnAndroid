@@ -113,6 +113,8 @@ public class ScoreDao {
 			scorePojo = null;
 		}
 
+		scoreCursor.close();
+		
 		return scorePojo;
 	}
 
@@ -139,6 +141,8 @@ public class ScoreDao {
 		} else {
 			scorePojo = null;
 		}
+		
+		scoreCursor.close();
 
 		return scorePojo;
 	}
@@ -166,6 +170,8 @@ public class ScoreDao {
 		} else {
 			scorePojo = null;
 		}
+		
+		scoreCursor.close();
 
 		return scorePojo;
 	}
@@ -192,6 +198,8 @@ public class ScoreDao {
 					.getColumnIndex("score")));
 			scorePojos.add(scorePojo);
 		}
+		
+		scoreCursor.close();
 
 		return scorePojos;
 	}

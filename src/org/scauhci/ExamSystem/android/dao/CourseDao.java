@@ -106,6 +106,8 @@ public class CourseDao {
 		} else {
 			coursePojo = null;
 		}
+		
+		courseCursor.close();
 
 		return coursePojo;
 	}
@@ -131,6 +133,8 @@ public class CourseDao {
 		} else {
 			coursePojo = null;
 		}
+		
+		courseCursor.close();
 
 		return coursePojo;
 	}

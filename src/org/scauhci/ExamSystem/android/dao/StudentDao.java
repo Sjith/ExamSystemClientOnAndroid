@@ -99,6 +99,8 @@ public class StudentDao {
 			studentPojo = null;
 		}
 		
+		studentCursor.close();
+		
 		return studentPojo;
 	}
 	
@@ -124,6 +126,8 @@ public class StudentDao {
 			studentPojo = null;
 		}
 		
+		studentCursor.close();
+		
 		return studentPojo;
 	}
 	
@@ -146,6 +150,8 @@ public class StudentDao {
 		} else {
 			studentPojo = null;
 		}
+		
+		studentCursor.close();
 		
 		return studentPojo;
 	}

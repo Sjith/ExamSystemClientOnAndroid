@@ -136,6 +136,8 @@ public class RelationPaperQuestionDao {
 		} else {
 			relationPaperQuestionPojo = null;
 		}
+		
+		relationPaperQuestionCursor.close();
 
 		return relationPaperQuestionPojo;
 	}
@@ -172,6 +174,8 @@ public class RelationPaperQuestionDao {
 		} else {
 			relationPaperQuestionPojo = null;
 		}
+		
+		relationPaperQuestionCursor.close();
 
 		return relationPaperQuestionPojo;
 	}
@@ -207,6 +211,8 @@ public class RelationPaperQuestionDao {
 									.getColumnIndex("questionIndex")));
 			relationPaperQuestionPojos.add(relationPaperQuestionPojo);
 		}
+		
+		relationPaperQuestionCursor.close();
 
 		return relationPaperQuestionPojos;
 	}
@@ -242,6 +248,8 @@ public class RelationPaperQuestionDao {
 									.getColumnIndex("questionIndex")));
 			relationPaperQuestionPojos.add(relationPaperQuestionPojo);
 		}
+		
+		relationPaperQuestionCursor.close();
 
 		return relationPaperQuestionPojos;
 	}

@@ -286,11 +286,40 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_weight">1</item>
     </style>
+    
+    <style name="PaperIndicator">
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:padding">@dimen/padding_small</item>
+        <item name="footerColor">@color/blue_light</item>
+        <item name="textColor">@color/black_text_primary</item>
+        <item name="selectedColor">@color/black_text_darker</item>
+        <item name="topPadding">0dp</item>
+    </style>
+    
+    <style name="PaperPager">
+        <item name="android:layout_height">0dp</item>
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_weight">1</item>
+    </style>
+    
+    <style name="QuestionContent">
+        <item name="android:layout_width">fill_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/hello</item>
+        <item name="android:textColor">@color/black_text_darker</item>
+        <item name="android:textSize">@dimen/text_size_large</item>
+    </style>
+    
+    <style name="QuestionOption" parent="QuestionContent">
+        <item name="android:textSize">@dimen/text_size_medium</item>
+    </style>
+    
     <!--
     <style name="ListItemTitle">
         <item name="android:textStyle">bold</item>
         <item name="android:textSize">@dimen/text_size_medium</item>
-        <item name="android:textColor">@color/body_text_1</item>
+        <item name="android:textColor">@color/body_text_1</item>z
     </style>
 
     <style name="ListItemSubtitle">

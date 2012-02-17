@@ -16,6 +16,7 @@
 <resources>
 
     <dimen name="colorstrip_height">6dp</dimen>
+    <dimen name="shadow_height">6dp</dimen>
     <!-- UI elements -->
     <!--
     <dimen name="time_normal">3000</dimen>

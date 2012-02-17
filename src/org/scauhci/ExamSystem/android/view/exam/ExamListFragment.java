@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.scauhci.ExamSystem.android.R;
+import org.scauhci.ExamSystem.android.module.ExamModule;
 
 import android.os.Bundle;
 import android.support.v4.app.ActionBar;
@@ -17,6 +18,7 @@ public class ExamListFragment extends Fragment {
 
 	View root;
 	ExamListView examListView;
+	ExamModule examModule = new ExamModule();
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
@@ -42,17 +44,7 @@ public class ExamListFragment extends Fragment {
 	public void initExamListView() {
 		examListView = (ExamListView) (root.findViewById(R.id.list_exam));
 		
-		/*The code between start and end should be write in a method which can get the noticeListItemDatas.*/
-		/*Start*/
-		ArrayList<HashMap<String, Object>> examListItemDatas = new ArrayList<HashMap<String, Object>>();
-		HashMap<String, Object> examListItemData = new HashMap<String, Object>();
-
-		examListItemData.put("examName", "考试名字测试");
-		examListItemData.put("examLastTime", "考试时长：测试");
-		examListItemData.put("examStartTime", "开始时间：测试");
-		examListItemData.put("examEndTime", "结束时间：测试");
-		examListItemDatas.add(examListItemData);
-		/*End*/
+		ArrayList<HashMap<String, Object>> examListItemDatas = examModule.getAllExamListItemData();
 		examListView.setData(examListItemDatas);
 	}
 }

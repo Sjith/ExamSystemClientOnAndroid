@@ -1,6 +1,7 @@
 package org.scauhci.ExamSystem.android.dao;
 
 import org.scauhci.ExamSystem.android.tool.Flag;
+import org.scauhci.ExamSystem.android.tool.GetThing;
 
 import org.scauhci.ExamSystem.android.tool.SQLStatement;
 
@@ -13,11 +14,15 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class DaoHelper extends SQLiteOpenHelper {
-
+	
 	public DaoHelper(Context context, String databasePath,
 			CursorFactory cursorFactory, int databaseVersion) {
-		super(context, databasePath, cursorFactory, databaseVersion);
-		Log.e(Flag.DEBUG, "The database creates sucessfully.");
+		// super(context, databasePath, cursorFactory, databaseVersion);
+
+		// Test
+		
+		super(GetThing.getActivity(), "exam_online.db", cursorFactory, 1);
+		Log.e(Flag.DEBUG, "The DaoHelper creates sucessfully.");
 	}
 
 	@Override
@@ -39,24 +44,27 @@ public class DaoHelper extends SQLiteOpenHelper {
 	@Override
 	public void onUpgrade(SQLiteDatabase database, int oldVersion,
 			int newVersion) {
-		Log.e(Flag.DEBUG, "The database upgrade from version "
-				+ oldVersion + " to version " + newVersion);
+		Log.e(Flag.DEBUG, "The database upgrade from version " + oldVersion
+				+ " to version " + newVersion);
 	}
 
 	public int insert(String tableName, String[] keys, String[] values) {
 		int executeResult = Flag.ERROR;
 
-		String allKey = null, allValue = null;
+		String allKey = "", allValue = "";
 
 		for (int i = 0; i < keys.length; i++) {
-			allKey += "'" + keys[i] + "', ";
-			allValue += "'" + values[i] + "', ";
+			if (!values[i].equals("")) {
+				allKey += "'" + keys[i] + "', ";
+				allValue += "'" + values[i] + "', ";
+			}
 		}
 		allKey = allKey.substring(0, allKey.length() - 2);
 		allValue = allValue.substring(0, allValue.length() - 2);
 
 		String[] bindArgs = { tableName, allKey, allValue };
-		this.getReadableDatabase().execSQL(SQLStatement.INSERT, bindArgs);
+		this.getReadableDatabase().execSQL(
+				getCompleteStatement(SQLStatement.INSERT, bindArgs));
 		Log.e(Flag.DEBUG, "The record inserts successfully.");
 
 		return executeResult;
@@ -66,17 +74,20 @@ public class DaoHelper extends SQLiteOpenHelper {
 			String[] whereConditionValues) {
 		int executeResult = Flag.ERROR;
 
-		String whereConditions = null;
+		String whereConditions = "";
 
 		for (int i = 0; i < whereConditionKeys.length; i++) {
-			whereConditions += " " + whereConditionKeys[i] + " = " + "'"
-					+ whereConditionValues[i] + "' AND";
+			if (!whereConditionValues[i].equals("")) {
+				whereConditions += " " + whereConditionKeys[i] + " = " + "'"
+				+ whereConditionValues[i] + "' AND";
+			}
 		}
 		whereConditions = whereConditions.substring(0,
 				whereConditions.length() - 5);
 
 		String[] bindArgs = { tableName, whereConditions };
-		this.getReadableDatabase().execSQL(SQLStatement.DELETE, bindArgs);
+		this.getReadableDatabase().execSQL(
+				getCompleteStatement(SQLStatement.DELETE, bindArgs));
 		Log.e(Flag.DEBUG, "The record deletes successfully.");
 
 		return executeResult;
@@ -86,21 +97,26 @@ public class DaoHelper extends SQLiteOpenHelper {
 			String[] whereConditionKeys, String[] whereConditionValues) {
 		int executeResult = Flag.ERROR;
 
-		String setConditions = null, whereConditions = null;
+		String setConditions = "", whereConditions = "";
 
 		for (int i = 0; i < keys.length; i++) {
-			setConditions += " " + keys[i] + " = " + "'" + newValues[i] + "',";
+			if (!newValues[i].equals("")) {
+				setConditions += " " + keys[i] + " = " + "'" + newValues[i] + "',";
+			}
 		}
-		setConditions = setConditions.substring(0, setConditions.length() - 2);
+		setConditions = setConditions.substring(0, setConditions.length() - 1);
 		for (int i = 0; i < whereConditionKeys.length; i++) {
-			whereConditions += " " + whereConditionKeys[i] + " = " + "'"
-					+ whereConditionValues[i] + "' AND";
+			if (!whereConditionValues[i].equals("")) {
+				whereConditions += " " + whereConditionKeys[i] + " = " + "'"
+				+ whereConditionValues[i] + "' AND";
+			}
 		}
 		whereConditions = whereConditions.substring(0,
 				whereConditions.length() - 5);
 
 		String[] bindArgs = { setConditions, tableName, whereConditions };
-		this.getReadableDatabase().execSQL(SQLStatement.UPDATE, bindArgs);
+		this.getReadableDatabase().execSQL(
+				getCompleteStatement(SQLStatement.UPDATE, bindArgs));
 		Log.e(Flag.DEBUG, "The record updates successfully.");
 
 		return executeResult;
@@ -109,30 +125,51 @@ public class DaoHelper extends SQLiteOpenHelper {
 	public Cursor select(String tableName, String[] keys,
 			String[] whereConditionKeys, String[] whereConditionValues) {
 
-		String[] selectionArgs = null;
+		String[] selectionArgs;
 
-		String selectConditions = null, whereConditions = null;
+		String selectConditions = "", whereConditions = "";
 
 		for (int i = 0; i < keys.length; i++) {
 			selectConditions += keys[i] + ",";
 		}
 		selectConditions = selectConditions.substring(0,
-				selectConditions.length() - 2);
+				selectConditions.length() - 1);
 		if (whereConditionKeys != null) {
 			for (int i = 0; i < whereConditionKeys.length; i++) {
-				whereConditions += " " + whereConditionKeys[i] + " = " + "'"
-				+ whereConditionValues[i] + "' AND";
+				if (!whereConditionValues[i].equals("")) {
+					whereConditions += " " + whereConditionKeys[i] + " = " + "'"
+					+ whereConditionValues[i] + "' AND";
+				}
 			}
 			whereConditions = whereConditions.substring(0,
-					whereConditions.length() - 5);
-			selectionArgs = new String[]{ selectConditions, tableName + " WHERE " + whereConditions };
+					whereConditions.length() - 4);
+			selectionArgs = new String[] { selectConditions,
+					tableName + " WHERE " + whereConditions };
 		} else {
-			selectionArgs = new String[]{ selectConditions, tableName };
+			selectionArgs = new String[] { selectConditions, tableName };
 		}
-		Cursor cursor = getReadableDatabase().rawQuery(SQLStatement.SELECT,
-				selectionArgs);
+		Log.e(Flag.DEBUG, getReadableDatabase() + "");
+		
+		Cursor cursor = getReadableDatabase().rawQuery(
+				getCompleteStatement(SQLStatement.SELECT, selectionArgs), null);
+
 		Log.e(Flag.DEBUG, "Get the records successfully.");
 
 		return cursor;
+	}
+
+	public String getCompleteStatement(String basicStatement,
+			String[] selectionArgs) {
+		String completeStatement = "";
+
+		for (int i = 0, j = 0; i < basicStatement.length(); i++) {
+			if (basicStatement.charAt(i) == '?') {
+				completeStatement += selectionArgs[j++];
+			} else {
+				completeStatement += basicStatement.charAt(i);
+			}
+		}
+
+		return completeStatement;
 	}
 }

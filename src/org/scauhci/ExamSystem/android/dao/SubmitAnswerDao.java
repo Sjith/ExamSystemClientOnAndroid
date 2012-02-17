@@ -16,7 +16,7 @@ import android.database.Cursor;
 public class SubmitAnswerDao {
 
 	DaoHelper daoHelper = new DaoHelper(null, "exam_online.db", null, 0);
-	String tableName = "submitAnswer";
+	String tableName = "submit_answer";
 
 	public SubmitAnswerDao() {
 		// update();
@@ -139,6 +139,8 @@ public class SubmitAnswerDao {
 		} else {
 			submitAnswerPojo = null;
 		}
+		
+		submitAnswerCursor.close();
 
 		return submitAnswerPojo;
 	}
@@ -176,6 +178,8 @@ public class SubmitAnswerDao {
 		} else {
 			submitAnswerPojo = null;
 		}
+		
+		submitAnswerCursor.close();
 
 		return submitAnswerPojo;
 	}
@@ -222,6 +226,8 @@ public class SubmitAnswerDao {
 		} else {
 			submitAnswerPojo = null;
 		}
+		
+		submitAnswerCursor.close();
 
 		return submitAnswerPojo;
 	}
@@ -266,6 +272,8 @@ public class SubmitAnswerDao {
 							.getColumnIndex("questionStdScore")));
 			submitAnswerPojos.add(submitAnswerPojo);
 		}
+		
+		submitAnswerCursor.close();
 
 		return submitAnswerPojos;
 	}
@@ -287,6 +295,8 @@ public class SubmitAnswerDao {
 		} else {
 			totalScore = 0;
 		}
+		
+		submitAnswerCursor.close();
 
 		return totalScore;
 	}

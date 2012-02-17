@@ -1,9 +1,16 @@
 package org.scauhci.ExamSystem.android.view.dashboard;
 
+import java.io.File;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.HashMap;
+
 import org.scauhci.ExamSystem.android.R;
+import org.scauhci.ExamSystem.android.analyzer.PaperXmlAnalyzer;
 import org.scauhci.ExamSystem.android.tool.Flag;
+import org.scauhci.ExamSystem.android.tool.GetThing;
+
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.Menu;
@@ -30,6 +37,17 @@ public class DashboardActivity extends FragmentActivity {
 
 		initSlidingDrawer();
 		initNoticeListView();
+		
+		/*Test*/
+		GetThing.setActivity(this);
+		/*try {
+			File xmlFile = new File("/sdcard", "paper_utf8.xml");
+			FileInputStream xmlInputStream = new FileInputStream(xmlFile);
+			PaperXmlAnalyzer paperXmlAnalyzer = new PaperXmlAnalyzer();
+			paperXmlAnalyzer.analysisXml(xmlInputStream);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}*/
 	}
 
 	private void initSlidingDrawer() {

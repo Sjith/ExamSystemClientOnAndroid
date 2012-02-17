@@ -21,22 +21,25 @@ public class QuestionDao {
 	}
 
 	public QuestionPojo add(QuestionPojo questionPojo) {
-		
+
 		if (completeQuestionPojo(questionPojo) == null) {
 			long questionId;
 			for (questionId = HashValue.getDJBHashValue(questionPojo
 					.getQuestionContent()); getQuestionPojoByQuestionId(Long
-							.toHexString(questionId)) != null; questionId++)
+					.toHexString(questionId)) != null; questionId++)
 				;
 			questionPojo.setQuestionId(Long.toHexString(questionId));
-			
+
 			String[] keys = { "questionId", "questionContent", "questionType",
 					"courseId", "questionStdAnswer" };
-			String[] values = { questionPojo.getQuestionId(),
+			String[] values = {
+					questionPojo.getQuestionId(),
 					questionPojo.getQuestionContent(),
 					questionPojo.getQuestionType() + "",
-					questionPojo.getCourseId(), questionPojo.getQuestionStdAnswer() };
-			
+					questionPojo.getCourseId(),
+					questionPojo.getQuestionStdAnswer() == null ? ""
+							: questionPojo.getQuestionStdAnswer() };
+
 			daoHelper.insert(tableName, keys, values);
 		} else {
 			questionPojo = null;
@@ -124,6 +127,8 @@ public class QuestionDao {
 		} else {
 			questionPojo = null;
 		}
+		
+		questionCursor.close();
 
 		return questionPojo;
 	}
@@ -155,6 +160,8 @@ public class QuestionDao {
 		} else {
 			questionPojo = null;
 		}
+		
+		questionCursor.close();
 
 		return questionPojo;
 	}
@@ -185,6 +192,8 @@ public class QuestionDao {
 					.getColumnIndex("questionType")));
 			questionPojos.add(questionPojo);
 		}
+		
+		questionCursor.close();
 
 		return questionPojos;
 	}

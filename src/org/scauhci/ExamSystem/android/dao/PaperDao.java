@@ -141,6 +141,8 @@ public class PaperDao {
 		} else {
 			paperPojo = null;
 		}
+		
+		paperCursor.close();
 
 		return paperPojo;
 	}
@@ -179,6 +181,8 @@ public class PaperDao {
 			paperPojo = null;
 		}
 		
+		paperCursor.close();
+		
 		return paperPojo;
 	}
 
@@ -213,6 +217,8 @@ public class PaperDao {
 			paperPojo.setPaperCreateTime(paperCreateTime);
 			paperPojos.add(paperPojo);
 		}
+		
+		paperCursor.close();
 		
 		return paperPojos;
 	}

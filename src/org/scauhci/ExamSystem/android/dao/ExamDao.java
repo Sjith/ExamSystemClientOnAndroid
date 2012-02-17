@@ -9,6 +9,7 @@ import org.scauhci.ExamSystem.android.tool.HashValue;
 
 import android.database.Cursor;
 import android.text.format.Time;
+import android.util.Log;
 
 public class ExamDao {
 
@@ -22,24 +23,32 @@ public class ExamDao {
 	}
 
 	public ExamPojo add(ExamPojo examPojo) {
-		
+
 		if (completeExamPojo(examPojo) == null) {
 			long examId;
 			for (examId = HashValue.getDJBHashValue(examPojo.getExamName()); getExamPojoByExamId(Long
 					.toHexString(examId)) != null; examId++)
 				;
 			examPojo.setExamId(Long.toHexString(examId));
-			
+
 			String[] keys = { "examId", "courseId", "teacherId", "paperId",
-					"examExplain", "examName", "examCreateTime", "examStartTime",
-			"examEndTime" };
-			String[] values = { examPojo.getExamId(), examPojo.getCourseId(),
-					examPojo.getTeacherId(), examPojo.getPaperId(),
-					examPojo.getExamExplain(), examPojo.getExamName(),
-					examPojo.getExamCreateTime().format3339(true),
-					examPojo.getExamStartTime().format3339(true),
-					examPojo.getExamEndTime().format3339(true) };
-			
+					"examExplain", "examName", "examCreateTime",
+					"examStartTime", "examEndTime" };
+			String[] values = {
+					examPojo.getExamId(),
+					examPojo.getCourseId(),
+					examPojo.getTeacherId(),
+					examPojo.getPaperId(),
+					examPojo.getExamExplain() == null ? "" : examPojo
+							.getExamExplain(),
+					examPojo.getExamName(),
+					examPojo.getExamCreateTime() == null ? "" : examPojo
+							.getExamCreateTime().format3339(true),
+					examPojo.getExamStartTime() == null ? "" : examPojo
+							.getExamStartTime().format3339(true),
+					examPojo.getExamEndTime() == null ? "" : examPojo
+							.getExamEndTime().format3339(true) };
+
 			daoHelper.insert(tableName, keys, values);
 		} else {
 			examPojo = null;
@@ -137,20 +146,36 @@ public class ExamDao {
 			examPojo.setExamName(examCursor.getString(examCursor
 					.getColumnIndex("examName")));
 			Time examCreateTime = new Time();
-			examCreateTime.parse3339(examCursor.getString(examCursor
-					.getColumnIndex("examCreateTime")));
-			examPojo.setExamCreateTime(examCreateTime);
+			if (examCursor.getString(examCursor
+					.getColumnIndex("examCreateTime")) == null) {
+				examPojo.setExamCreateTime(null);
+			} else {
+				examCreateTime.parse3339(examCursor.getString(examCursor
+						.getColumnIndex("examCreateTime")));
+				examPojo.setExamCreateTime(examCreateTime);
+			}
 			Time examStartTime = new Time();
-			examStartTime.parse3339(examCursor.getString(examCursor
-					.getColumnIndex("examStartTime")));
-			examPojo.setExamCreateTime(examStartTime);
+			if (examCursor
+					.getString(examCursor.getColumnIndex("examStartTime")) == null) {
+				examPojo.setExamCreateTime(null);
+			} else {
+				examStartTime.parse3339(examCursor.getString(examCursor
+						.getColumnIndex("examStartTime")));
+				examPojo.setExamStartTime(examStartTime);
+			}
 			Time examEndTime = new Time();
-			examEndTime.parse3339(examCursor.getString(examCursor
-					.getColumnIndex("examEndTime")));
-			examPojo.setExamCreateTime(examEndTime);
+			if (examCursor.getString(examCursor.getColumnIndex("examEndTime")) == null) {
+				examPojo.setExamCreateTime(null);
+			} else {
+				examEndTime.parse3339(examCursor.getString(examCursor
+						.getColumnIndex("examEndTime")));
+				examPojo.setExamEndTime(examEndTime);
+			}
 		} else {
 			examPojo = null;
 		}
+
+		examCursor.close();
 
 		return examPojo;
 	}
@@ -180,20 +205,36 @@ public class ExamDao {
 			examPojo.setExamName(examCursor.getString(examCursor
 					.getColumnIndex("examName")));
 			Time examCreateTime = new Time();
-			examCreateTime.parse3339(examCursor.getString(examCursor
-					.getColumnIndex("examCreateTime")));
-			examPojo.setExamCreateTime(examCreateTime);
+			if (examCursor.getString(examCursor
+					.getColumnIndex("examCreateTime")) == null) {
+				examPojo.setExamCreateTime(null);
+			} else {
+				examCreateTime.parse3339(examCursor.getString(examCursor
+						.getColumnIndex("examCreateTime")));
+				examPojo.setExamCreateTime(examCreateTime);
+			}
 			Time examStartTime = new Time();
-			examStartTime.parse3339(examCursor.getString(examCursor
-					.getColumnIndex("examStartTime")));
-			examPojo.setExamCreateTime(examStartTime);
+			if (examCursor
+					.getString(examCursor.getColumnIndex("examStartTime")) == null) {
+				examPojo.setExamCreateTime(null);
+			} else {
+				examStartTime.parse3339(examCursor.getString(examCursor
+						.getColumnIndex("examStartTime")));
+				examPojo.setExamStartTime(examStartTime);
+			}
 			Time examEndTime = new Time();
-			examEndTime.parse3339(examCursor.getString(examCursor
-					.getColumnIndex("examEndTime")));
-			examPojo.setExamCreateTime(examEndTime);
+			if (examCursor.getString(examCursor.getColumnIndex("examEndTime")) == null) {
+				examPojo.setExamCreateTime(null);
+			} else {
+				examEndTime.parse3339(examCursor.getString(examCursor
+						.getColumnIndex("examEndTime")));
+				examPojo.setExamEndTime(examEndTime);
+			}
 		} else {
 			examPojo = null;
 		}
+
+		examCursor.close();
 
 		return examPojo;
 	}
@@ -222,19 +263,35 @@ public class ExamDao {
 			examPojo.setExamName(examCursor.getString(examCursor
 					.getColumnIndex("examName")));
 			Time examCreateTime = new Time();
-			examCreateTime.parse3339(examCursor.getString(examCursor
-					.getColumnIndex("examCreateTime")));
-			examPojo.setExamCreateTime(examCreateTime);
+			if (examCursor.getString(examCursor
+					.getColumnIndex("examCreateTime")) == null) {
+				examPojo.setExamCreateTime(null);
+			} else {
+				examCreateTime.parse3339(examCursor.getString(examCursor
+						.getColumnIndex("examCreateTime")));
+				examPojo.setExamCreateTime(examCreateTime);
+			}
 			Time examStartTime = new Time();
-			examStartTime.parse3339(examCursor.getString(examCursor
-					.getColumnIndex("examStartTime")));
-			examPojo.setExamCreateTime(examStartTime);
+			if (examCursor
+					.getString(examCursor.getColumnIndex("examStartTime")) == null) {
+				examPojo.setExamCreateTime(null);
+			} else {
+				examStartTime.parse3339(examCursor.getString(examCursor
+						.getColumnIndex("examStartTime")));
+				examPojo.setExamStartTime(examStartTime);
+			}
 			Time examEndTime = new Time();
-			examEndTime.parse3339(examCursor.getString(examCursor
-					.getColumnIndex("examEndTime")));
-			examPojo.setExamCreateTime(examEndTime);
+			if (examCursor.getString(examCursor.getColumnIndex("examEndTime")) == null) {
+				examPojo.setExamCreateTime(null);
+			} else {
+				examEndTime.parse3339(examCursor.getString(examCursor
+						.getColumnIndex("examEndTime")));
+				examPojo.setExamEndTime(examEndTime);
+			}
 			examPojos.add(examPojo);
 		}
+
+		examCursor.close();
 
 		return examPojos;
 	}
@@ -285,6 +342,8 @@ public class ExamDao {
 			numberOfExam = Integer.parseInt(examCursor.getString(examCursor
 					.getColumnIndex("count(*)")));
 		}
+
+		examCursor.close();
 
 		return numberOfExam;
 	}

@@ -520,18 +520,33 @@ containing a value of this type.
         public static final int default_title_indicator_selected_bold=0x7f070002;
     }
     public static final class color {
-        public static final int abs__item_bg=0x7f060012;
+        public static final int abs__item_bg=0x7f060021;
         public static final int abs__item_focused=0x7f06000e;
-        public static final int abs__tab_text_color_dark=0x7f060013;
-        public static final int abs__tab_text_color_light=0x7f060014;
+        public static final int abs__tab_text_color_dark=0x7f060022;
+        public static final int abs__tab_text_color_light=0x7f060023;
         public static final int black_text_darker=0x7f060010;
         public static final int black_text_primary=0x7f060011;
+        public static final int blue_dark=0x7f060015;
+        public static final int blue_darker=0x7f060016;
+        public static final int blue_light=0x7f060013;
+        public static final int blue_lighter=0x7f060012;
+        public static final int blue_primary=0x7f060014;
         public static final int default_circle_indicator_fill_color=0x7f060008;
         public static final int default_circle_indicator_page_color=0x7f060009;
         public static final int default_circle_indicator_stroke_color=0x7f06000a;
         public static final int default_title_indicator_footer_color=0x7f06000b;
         public static final int default_title_indicator_selected_color=0x7f06000c;
         public static final int default_title_indicator_text_color=0x7f06000d;
+        public static final int green_dark=0x7f06001a;
+        public static final int green_darker=0x7f06001b;
+        public static final int green_light=0x7f060018;
+        public static final int green_lighter=0x7f060017;
+        public static final int green_primary=0x7f060019;
+        public static final int pink_dark=0x7f06001f;
+        public static final int pink_darker=0x7f060020;
+        public static final int pink_light=0x7f06001d;
+        public static final int pink_lighter=0x7f06001c;
+        public static final int pink_primary=0x7f06001e;
         public static final int primary=0x7f06000f;
         public static final int vpi__background_holo_dark=0x7f060000;
         public static final int vpi__background_holo_light=0x7f060001;
@@ -541,8 +556,8 @@ containing a value of this type.
         public static final int vpi__bright_foreground_holo_light=0x7f060003;
         public static final int vpi__bright_foreground_inverse_holo_dark=0x7f060006;
         public static final int vpi__bright_foreground_inverse_holo_light=0x7f060007;
-        public static final int vpi__dark_theme=0x7f060015;
-        public static final int vpi__light_theme=0x7f060016;
+        public static final int vpi__dark_theme=0x7f060024;
+        public static final int vpi__light_theme=0x7f060025;
     }
     public static final class dimen {
         /**  Default height of an action bar. 
@@ -583,11 +598,12 @@ containing a value of this type.
         public static final int default_title_indicator_text_size=0x7f090007;
         public static final int default_title_indicator_title_padding=0x7f090008;
         public static final int default_title_indicator_top_padding=0x7f090009;
-        public static final int padding_large=0x7f090016;
-        public static final int padding_medium=0x7f090015;
-        public static final int padding_small=0x7f090014;
-        public static final int text_size_large=0x7f090012;
-        public static final int text_size_medium=0x7f090011;
+        public static final int padding_large=0x7f090017;
+        public static final int padding_medium=0x7f090016;
+        public static final int padding_small=0x7f090015;
+        public static final int shadow_height=0x7f090010;
+        public static final int text_size_large=0x7f090013;
+        public static final int text_size_medium=0x7f090012;
         /**  UI elements 
 
     <dimen name="time_normal">3000</dimen>
@@ -611,8 +627,8 @@ containing a value of this type.
     <dimen name="body_padding_large">10dp</dimen>
     
          */
-        public static final int text_size_small=0x7f090010;
-        public static final int text_size_xlarge=0x7f090013;
+        public static final int text_size_small=0x7f090011;
+        public static final int text_size_xlarge=0x7f090014;
     }
     public static final class drawable {
         public static final int abs__ab_solid_dark_holo=0x7f020000;
@@ -755,6 +771,9 @@ containing a value of this type.
         public static final int normal=0x7f050006;
         public static final int paper_indicator=0x7f05002a;
         public static final int paper_pager=0x7f05002b;
+        public static final int question_content=0x7f05003e;
+        public static final int question_options=0x7f05003f;
+        public static final int shadow=0x7f050040;
         public static final int showCustom=0x7f05000d;
         public static final int showHome=0x7f05000a;
         public static final int showTitle=0x7f05000c;
@@ -795,7 +814,10 @@ containing a value of this type.
         public static final int list_exam_item=0x7f030014;
         public static final int list_notice_item=0x7f030015;
         public static final int main=0x7f030016;
-        public static final int vpi__tab=0x7f030017;
+        public static final int question_item=0x7f030017;
+        public static final int question_option_item=0x7f030018;
+        public static final int shadow=0x7f030019;
+        public static final int vpi__tab=0x7f03001a;
     }
     public static final class string {
         public static final int abs__tab_under_ab_tag=0x7f0b0000;
@@ -899,6 +921,10 @@ containing a value of this type.
         public static final int NoticeListItemContent=0x7f0a003e;
         public static final int NoticeListItemName=0x7f0a003a;
         public static final int NoticeListItemPublicTime=0x7f0a003c;
+        public static final int PaperIndicator=0x7f0a0044;
+        public static final int PaperPager=0x7f0a0045;
+        public static final int QuestionContent=0x7f0a0046;
+        public static final int QuestionOption=0x7f0a0047;
         public static final int TextAppearance_TabPageIndicator=0x7f0a0006;
         public static final int TextAppearance_Widget_Subtitle=0x7f0a0022;
         public static final int TextAppearance_Widget_Title=0x7f0a0021;

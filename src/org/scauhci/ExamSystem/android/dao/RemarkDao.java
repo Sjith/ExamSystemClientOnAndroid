@@ -127,6 +127,8 @@ public class RemarkDao {
 		} else {
 			remarkPojo = null;
 		}
+		
+		remarkCursor.close();
 
 		return remarkPojo;
 	}
@@ -162,6 +164,8 @@ public class RemarkDao {
 		} else {
 			remarkPojo = null;
 		}
+		
+		remarkCursor.close();
 
 		return remarkPojo;
 	}
@@ -196,6 +200,8 @@ public class RemarkDao {
 			remarkPojo.setRemarkUpdateTime(remarkUpdateTime);
 			remarkPojos.add(remarkPojo);
 		}
+		
+		remarkCursor.close();
 
 		return remarkPojos;
 	}
