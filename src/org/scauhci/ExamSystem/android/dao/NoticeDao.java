@@ -14,7 +14,7 @@ import android.text.format.Time;
 
 public class NoticeDao {
 
-	DaoHelper daoHelper = new DaoHelper(null, "exam_online.db", null, 0);
+	DaoHelper daoHelper = new DaoHelper(null, "exam_online.db", null, 1);
 	String tableName = "notice";
 
 	public NoticePojo add(NoticePojo noticePojo) {

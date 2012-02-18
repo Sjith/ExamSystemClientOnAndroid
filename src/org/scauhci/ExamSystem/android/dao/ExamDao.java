@@ -13,10 +13,8 @@ import android.util.Log;
 
 public class ExamDao {
 
-	DaoHelper daoHelper = new DaoHelper(null, "exam_online.db", null, 0);
+	DaoHelper daoHelper = new DaoHelper(null, "exam_online.db", null, 1);
 	String tableName = "exam";
-
-	// private static ExamPojo latestExamPojo = null;
 
 	public ExamDao() {
 		// updateLatestExamPojo();
@@ -296,42 +294,6 @@ public class ExamDao {
 		return examPojos;
 	}
 
-	/*
-	 * public static ExamPojo getLatestExamPojo() { return latestExamPojo; }
-	 */
-	/*
-	 * public int updateLatestExamPojo() { int executeResult = Flag.ERROR;
-	 * ExamPojo examPojo = new ExamPojo();
-	 * 
-	 * String[] keys = { "*" };
-	 * 
-	 * Cursor examCursor = daoHelper.select(tableName, keys, null, null); if
-	 * (examCursor.isFirst()) {
-	 * examPojo.setExamId(examCursor.getString(examCursor
-	 * .getColumnIndex("examId")));
-	 * examPojo.setCourseId(examCursor.getString(examCursor
-	 * .getColumnIndex("courseId")));
-	 * examPojo.setTeacherId(examCursor.getString(examCursor
-	 * .getColumnIndex("teacherId")));
-	 * examPojo.setPaperId(examCursor.getString(examCursor
-	 * .getColumnIndex("paperId")));
-	 * examPojo.setExamExplain(examCursor.getString(examCursor
-	 * .getColumnIndex("examExplain")));
-	 * examPojo.setExamName(examCursor.getString(examCursor
-	 * .getColumnIndex("examName"))); Time examCreateTime = new Time();
-	 * examCreateTime.parse3339(examCursor.getString(examCursor
-	 * .getColumnIndex("examCreateTime")));
-	 * examPojo.setExamCreateTime(examCreateTime); Time examStartTime = new
-	 * Time(); examStartTime.parse3339(examCursor.getString(examCursor
-	 * .getColumnIndex("examStartTime")));
-	 * examPojo.setExamCreateTime(examStartTime); Time examEndTime = new Time();
-	 * examEndTime.parse3339(examCursor.getString(examCursor
-	 * .getColumnIndex("examEndTime")));
-	 * examPojo.setExamCreateTime(examEndTime); ExamDao.latestExamPojo =
-	 * examPojo; executeResult = Flag.SUCCESS; }
-	 * 
-	 * return executeResult; }
-	 */
 	public int getNumberOfExam() {
 		int numberOfExam = 0;
 
@@ -347,18 +309,4 @@ public class ExamDao {
 
 		return numberOfExam;
 	}
-
-	// targetTime初始化为系统当前时间，当注意系统当前时间是否与网络时间对对应。
-
-	/*
-	 * public Time getRemainTime() { Time targetTime = new Time();
-	 * targetTime.setToNow(); return getRemainTime(targetTime); }
-	 * 
-	 * public Time getRemainTime(Time targetTime) { Time remainTime = new
-	 * Time(); Time examEndTime = ExamDao.latestExamPojo.getExamEndTime();
-	 * 
-	 * remainTime.set(examEndTime.toMillis(false) - targetTime.toMillis(false));
-	 * 
-	 * return remainTime; }
-	 */
 }

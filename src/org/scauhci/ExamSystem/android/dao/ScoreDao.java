@@ -14,7 +14,7 @@ import android.database.Cursor;
 
 public class ScoreDao {
 
-	DaoHelper daoHelper = new DaoHelper(null, "exam_online.db", null, 0);
+	DaoHelper daoHelper = new DaoHelper(null, "exam_online.db", null, 1);
 	String tableName = "score";
 
 	public ScoreDao() {

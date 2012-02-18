@@ -13,7 +13,7 @@ import android.text.format.Time;
 
 public class QuestionDao {
 
-	DaoHelper daoHelper = new DaoHelper(null, "exam_online.db", null, 0);
+	DaoHelper daoHelper = new DaoHelper(null, "exam_online.db", null, 1);
 	String tableName = "question";
 
 	public QuestionDao() {
@@ -28,6 +28,7 @@ public class QuestionDao {
 					.getQuestionContent()); getQuestionPojoByQuestionId(Long
 					.toHexString(questionId)) != null; questionId++)
 				;
+			/*In this part, the questionId of questionPojo will be replaced by auto product.*/
 			questionPojo.setQuestionId(Long.toHexString(questionId));
 
 			String[] keys = { "questionId", "questionContent", "questionType",

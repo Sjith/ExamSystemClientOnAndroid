@@ -14,9 +14,8 @@ import android.text.format.Time;
 
 public class PaperDao {
 
-	DaoHelper daoHelper = new DaoHelper(null, "exam_online.db", null, 0);
+	DaoHelper daoHelper = new DaoHelper(null, "exam_online.db", null, 1);
 	String tableName = "paper";
-	private PaperPojo latestPaperPojo = null;
 
 	public PaperDao() {
 		// update();
@@ -36,7 +35,7 @@ public class PaperDao {
 			"paperExplain" };
 			String[] values = { paperPojo.getPaperId(), paperPojo.getPaperName(),
 					paperPojo.getPaperType() + "", paperPojo.getTeacherId(),
-					paperPojo.getPaperCreateTime().format3339(true),
+					paperPojo.getPaperCreateTime() == null ? "" : paperPojo.getPaperCreateTime().format3339(true),
 					paperPojo.getCourseId(), paperPojo.getPaperTotalScore() + "",
 					paperPojo.getPaperExplain() };
 			
@@ -135,9 +134,14 @@ public class PaperDao {
 			paperPojo.setPaperExplain(paperCursor.getString(paperCursor
 					.getColumnIndex("paperExplain")));
 			Time paperCreateTime = new Time();
-			paperCreateTime.parse3339(paperCursor.getString(paperCursor
-					.getColumnIndex("paperCreateTime")));
-			paperPojo.setPaperCreateTime(paperCreateTime);
+			if (paperCursor.getString(paperCursor
+					.getColumnIndex("paperCreateTime")) != null) {
+				paperPojo.setPaperCreateTime(null);
+			} else {
+				paperCreateTime.parse3339(paperCursor.getString(paperCursor
+						.getColumnIndex("paperCreateTime")));
+				paperPojo.setPaperCreateTime(paperCreateTime);
+			}
 		} else {
 			paperPojo = null;
 		}
@@ -174,9 +178,14 @@ public class PaperDao {
 			paperPojo.setPaperExplain(paperCursor.getString(paperCursor
 					.getColumnIndex("paperExplain")));
 			Time paperCreateTime = new Time();
-			paperCreateTime.parse3339(paperCursor.getString(paperCursor
-					.getColumnIndex("paperCreateTime")));
-			paperPojo.setPaperCreateTime(paperCreateTime);
+			if (paperCursor.getString(paperCursor
+					.getColumnIndex("paperCreateTime")) != null) {
+				paperPojo.setPaperCreateTime(null);
+			} else {
+				paperCreateTime.parse3339(paperCursor.getString(paperCursor
+						.getColumnIndex("paperCreateTime")));
+				paperPojo.setPaperCreateTime(paperCreateTime);
+			}
 		} else {
 			paperPojo = null;
 		}
@@ -212,9 +221,14 @@ public class PaperDao {
 			paperPojo.setPaperExplain(paperCursor.getString(paperCursor
 					.getColumnIndex("paperExplain")));
 			Time paperCreateTime = new Time();
-			paperCreateTime.parse3339(paperCursor.getString(paperCursor
-					.getColumnIndex("paperCreateTime")));
-			paperPojo.setPaperCreateTime(paperCreateTime);
+			if (paperCursor.getString(paperCursor
+					.getColumnIndex("paperCreateTime")) != null) {
+				paperPojo.setPaperCreateTime(null);
+			} else {
+				paperCreateTime.parse3339(paperCursor.getString(paperCursor
+						.getColumnIndex("paperCreateTime")));
+				paperPojo.setPaperCreateTime(paperCreateTime);
+			}
 			paperPojos.add(paperPojo);
 		}
 		

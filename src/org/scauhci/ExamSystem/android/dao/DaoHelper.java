@@ -16,12 +16,8 @@ import android.widget.Toast;
 public class DaoHelper extends SQLiteOpenHelper {
 	
 	public DaoHelper(Context context, String databasePath,
-			CursorFactory cursorFactory, int databaseVersion) {
-		// super(context, databasePath, cursorFactory, databaseVersion);
-
-		// Test
-		
-		super(GetThing.getActivity(), "exam_online.db", cursorFactory, 1);
+			CursorFactory cursorFactory, int databaseVersion) {		
+		super(GetThing.getActivity(), databasePath, cursorFactory, databaseVersion);
 		Log.e(Flag.DEBUG, "The DaoHelper creates sucessfully.");
 	}
 
@@ -152,8 +148,6 @@ public class DaoHelper extends SQLiteOpenHelper {
 		
 		Cursor cursor = getReadableDatabase().rawQuery(
 				getCompleteStatement(SQLStatement.SELECT, selectionArgs), null);
-
-		Log.e(Flag.DEBUG, "Get the records successfully.");
 
 		return cursor;
 	}

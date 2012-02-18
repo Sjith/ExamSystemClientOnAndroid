@@ -11,7 +11,7 @@ import android.text.format.Time;
 
 public class CourseDao {
 
-	DaoHelper daoHelper = new DaoHelper(null, "exam_online.db", null, 0);
+	DaoHelper daoHelper = new DaoHelper(null, "exam_online.db", null, 1);
 	String tableName = "course";
 	private CoursePojo latestCoursePojo = null;
 

@@ -1,8 +1,8 @@
 package org.scauhci.ExamSystem.android.view.dashboard;
 
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -35,19 +35,13 @@ public class DashboardActivity extends FragmentActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_dashboard);
 
+		/*Test*/
+		//Start
+		initDatabase();
+		//End
+		
 		initSlidingDrawer();
 		initNoticeListView();
-		
-		/*Test*/
-		GetThing.setActivity(this);
-		/*try {
-			File xmlFile = new File("/sdcard", "paper_utf8.xml");
-			FileInputStream xmlInputStream = new FileInputStream(xmlFile);
-			PaperXmlAnalyzer paperXmlAnalyzer = new PaperXmlAnalyzer();
-			paperXmlAnalyzer.analysisXml(xmlInputStream);
-		} catch (Exception e) {
-			e.printStackTrace();
-		}*/
 	}
 
 	private void initSlidingDrawer() {
@@ -55,24 +49,31 @@ public class DashboardActivity extends FragmentActivity {
 		TextView slidingDrawerSubtitle = (TextView) getLayoutInflater()
 				.inflate(R.layout.dashboard_sliding_drawer_subtitle, null);
 
-		/*This method should invoke other methods to get the NoticeTitle list,and this code should be change.*/
+		/*
+		 * This method should invoke other methods to get the NoticeTitle
+		 * list,and this code should be change.
+		 */
 		slidingDrawerSubtitle.setText("通知标题测试");
 		slidingDrawerSubtitleViewFlipper.addView(slidingDrawerSubtitle);
 	}
 
 	private void initNoticeListView() {
 		NoticeListView noticeListView = (NoticeListView) findViewById(R.id.dashboard_sliding_drawer_content_list_notice);
-		
-		/*The code between start and end should be write in a method which can get the noticeListItemDatas.*/
-		/*Start*/
+
+		/*
+		 * The code between start and end should be write in a method which can
+		 * get the noticeListItemDatas.
+		 */
+		/* Start */
 		ArrayList<HashMap<String, Object>> noticeListItemDatas = new ArrayList<HashMap<String, Object>>();
 		HashMap<String, Object> noticeListItemData = new HashMap<String, Object>();
-		
+
 		noticeListItemData.put("noticeName", "通知标题测试");
 		noticeListItemData.put("noticePublicTime", "发布时间：测试");
-		noticeListItemData.put("noticeContent", "通知内容测试测试测试通知内容测试测试测试通知内容测试测试测试");
+		noticeListItemData.put("noticeContent",
+				"通知内容测试测试测试通知内容测试测试测试通知内容测试测试测试");
 		noticeListItemDatas.add(noticeListItemData);
-		/*End*/
+		/* End */
 		noticeListView.setData(noticeListItemDatas);
 	}
 
@@ -93,4 +94,25 @@ public class DashboardActivity extends FragmentActivity {
 
 				});
 	}
+
+	private void initDatabase() {
+
+		/* Test */
+		GetThing.setActivity(this);
+
+		File database = new File("/data/data/org.scauhci.ExamSystem.android/databases",
+				"exam_online.db");
+		Log.e(Flag.DEBUG, database.exists() + "");
+		if (!database.exists()) {
+			try {
+				InputStream xmlInputStream = getAssets().open("paper_utf8.xml");
+				PaperXmlAnalyzer paperXmlAnalyzer = new PaperXmlAnalyzer();
+				paperXmlAnalyzer.analysisXml(xmlInputStream);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+
+	}
+
 }

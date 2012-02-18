@@ -11,7 +11,7 @@ import android.database.Cursor;
 
 public class StudentDao {
 
-	DaoHelper daoHelper = new DaoHelper(null, "exam_online.db", null, 0);
+	DaoHelper daoHelper = new DaoHelper(null, "exam_online.db", null, 1);
 	String tableName = "student";
 	private static StudentPojo latestStudentPojo = null;
 

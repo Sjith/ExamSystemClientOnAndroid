@@ -29,23 +29,25 @@ public class ExamService {
 	SubmitAnswerDao submitAnswerDao = new SubmitAnswerDao();
 	RelationPaperQuestionDao relationPaperQuestionDao = new RelationPaperQuestionDao();
 
+	// targetTime初始化为系统当前时间，当注意系统当前时间是否与网络时间对对应。
 	public Time getRemainTime(ExamPojo examPojo) {
 		Time targetTime = new Time();
 		targetTime.setToNow();
-		
+
 		return getRemainTime(examPojo, targetTime);
 	}
-	
-	public Time getLastTime(ExamPojo examPojo){
+
+	public Time getLastTime(ExamPojo examPojo) {
 		return getRemainTime(examPojo, examPojo.getExamStartTime());
 	}
-	
-	public Time getRemainTime(ExamPojo examPojo, Time targetTime){
+
+	public Time getRemainTime(ExamPojo examPojo, Time targetTime) {
 		Time remainTime = new Time();
 		Time examEndTime = examPojo.getExamEndTime();
 		Time examStartTime = examPojo.getExamStartTime();
-		
-		if (examPojo.getExamStartTime() != null && examStartTime != null && examEndTime != null) {
+
+		if (examPojo.getExamStartTime() != null && examStartTime != null
+				&& examEndTime != null) {
 			if (targetTime.before(examPojo.getExamStartTime())) {
 				remainTime.set(targetTime.toMillis(false)
 						- examStartTime.toMillis(false));
@@ -54,17 +56,9 @@ public class ExamService {
 						- targetTime.toMillis(false));
 			}
 		}
-		
+
 		return remainTime;
 	}
-
-	/*
-	 * public ExamPojo getLatestExamPojo() { return ExamDao.getLatestExamPojo();
-	 * }
-	 * 
-	 * public PaperPojo getLatestPaperPojo() { return
-	 * getPaperPojoByExamPojo(getLatestExamPojo()); }
-	 */
 
 	public ArrayList<ExamPojo> getAllExamPojo() {
 		return examDao.getAllExamPojo();
@@ -118,17 +112,19 @@ public class ExamService {
 		return submitAnswerDao.getStandardSubmitAnswerPojosOfExamPojo(examPojo);
 	}
 
-	public SubmitAnswerPojo addSubmitAnswerPojo(SubmitAnswerPojo submitAnswerPojo) {
+	public SubmitAnswerPojo addSubmitAnswerPojo(
+			SubmitAnswerPojo submitAnswerPojo) {
 
 		if (submitAnswerPojo.getStudentId() == null) {
 			submitAnswerPojo.setStudentId(StudentDao.getLatestStudentPojo()
 					.getStudentId());
 		}
-		
+
 		return submitAnswerDao.add(submitAnswerPojo);
 	}
 
-	public SubmitAnswerPojo deleteSubmitAnswerPojo(SubmitAnswerPojo submitAnswerPojo) {
+	public SubmitAnswerPojo deleteSubmitAnswerPojo(
+			SubmitAnswerPojo submitAnswerPojo) {
 
 		if (submitAnswerPojo.getStudentId() == null) {
 			submitAnswerPojo.setStudentId(StudentDao.getLatestStudentPojo()
@@ -157,7 +153,7 @@ public class ExamService {
 		scorePojo.setStudentId(studentPojo.getStudentId());
 		scorePojo.setScore(submitAnswerDao
 				.getTotalScoreOfExamPojoByStudentPojo(studentPojo, examPojo));
-		
+
 		return scoreDao.add(scorePojo);
 	}
 

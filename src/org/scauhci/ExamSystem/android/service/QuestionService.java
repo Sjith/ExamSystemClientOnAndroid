@@ -13,6 +13,7 @@ public class QuestionService {
 	QuestionOptionDao questionOptionDao = new QuestionOptionDao();
 	QuestionDao questionDao = new QuestionDao();
 	
+	/*This method is incomplete.*/
 	/*public ArrayList<QuestionPojo> getQuestionPojosByCoursePojo(CoursePojo coursePojo) {
 		ArrayList<QuestionPojo> questionPojos = null;
 		return questionPojos;

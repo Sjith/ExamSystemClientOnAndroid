@@ -14,7 +14,7 @@ import android.text.format.Time;
 
 public class RemarkDao {
 
-	DaoHelper daoHelper = new DaoHelper(null, "exam_online.db", null, 0);
+	DaoHelper daoHelper = new DaoHelper(null, "exam_online.db", null, 1);
 	String tableName = "remark";
 
 	public RemarkPojo add(RemarkPojo remarkPojo) {
