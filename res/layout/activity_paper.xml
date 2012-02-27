@@ -3,14 +3,22 @@
     android:layout_width="fill_parent"
     android:layout_height="fill_parent"
     android:orientation="vertical" >
-    
+
     <include layout="@layout/shadow" />
     
     <com.viewpagerindicator.TitlePageIndicator
         android:id="@+id/paper_indicator"
-        style="@style/PaperIndicator"/>
-    <android.support.v4.view.ViewPager
-        android:id="@+id/paper_pager"
-        style="@style/PaperPager"/>
+        style="@style/PaperIndicator" />
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <org.scauhci.ExamSystem.android.view.paper.PaperPager
+            android:id="@+id/paper_pager"
+            style="@style/PaperPager" />
+
+        <include layout="@layout/sliding_drawer_paper" />
+    </FrameLayout>
 
 </LinearLayout>

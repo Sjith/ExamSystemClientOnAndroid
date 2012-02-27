@@ -14,11 +14,12 @@ import android.util.Log;
 import android.widget.Toast;
 
 public class DaoHelper extends SQLiteOpenHelper {
-	
+
 	public DaoHelper(Context context, String databasePath,
-			CursorFactory cursorFactory, int databaseVersion) {		
-		super(GetThing.getActivity(), databasePath, cursorFactory, databaseVersion);
-		Log.e(Flag.DEBUG, "The DaoHelper creates sucessfully.");
+			CursorFactory cursorFactory, int databaseVersion) {
+		super(GetThing.getActivity(), databasePath, cursorFactory,
+				databaseVersion);
+		// Log.e(Flag.DEBUG, "The DaoHelper creates sucessfully.");
 	}
 
 	@Override
@@ -75,7 +76,7 @@ public class DaoHelper extends SQLiteOpenHelper {
 		for (int i = 0; i < whereConditionKeys.length; i++) {
 			if (!whereConditionValues[i].equals("")) {
 				whereConditions += " " + whereConditionKeys[i] + " = " + "'"
-				+ whereConditionValues[i] + "' AND";
+						+ whereConditionValues[i] + "' AND";
 			}
 		}
 		whereConditions = whereConditions.substring(0,
@@ -97,14 +98,15 @@ public class DaoHelper extends SQLiteOpenHelper {
 
 		for (int i = 0; i < keys.length; i++) {
 			if (!newValues[i].equals("")) {
-				setConditions += " " + keys[i] + " = " + "'" + newValues[i] + "',";
+				setConditions += " " + keys[i] + " = " + "'" + newValues[i]
+						+ "',";
 			}
 		}
 		setConditions = setConditions.substring(0, setConditions.length() - 1);
 		for (int i = 0; i < whereConditionKeys.length; i++) {
 			if (!whereConditionValues[i].equals("")) {
 				whereConditions += " " + whereConditionKeys[i] + " = " + "'"
-				+ whereConditionValues[i] + "' AND";
+						+ whereConditionValues[i] + "' AND";
 			}
 		}
 		whereConditions = whereConditions.substring(0,
@@ -133,8 +135,8 @@ public class DaoHelper extends SQLiteOpenHelper {
 		if (whereConditionKeys != null) {
 			for (int i = 0; i < whereConditionKeys.length; i++) {
 				if (!whereConditionValues[i].equals("")) {
-					whereConditions += " " + whereConditionKeys[i] + " = " + "'"
-					+ whereConditionValues[i] + "' AND";
+					whereConditions += " " + whereConditionKeys[i] + " = "
+							+ "'" + whereConditionValues[i] + "' AND";
 				}
 			}
 			whereConditions = whereConditions.substring(0,
@@ -144,8 +146,7 @@ public class DaoHelper extends SQLiteOpenHelper {
 		} else {
 			selectionArgs = new String[] { selectConditions, tableName };
 		}
-		Log.e(Flag.DEBUG, getReadableDatabase() + "");
-		
+
 		Cursor cursor = getReadableDatabase().rawQuery(
 				getCompleteStatement(SQLStatement.SELECT, selectionArgs), null);
 

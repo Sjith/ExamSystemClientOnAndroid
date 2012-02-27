@@ -30,42 +30,7 @@
             android:layout_width="fill_parent"
             android:layout_height="fill_parent" />
 
-        <SlidingDrawer
-            android:id="@+id/dashboard_sliding_drawer"
-            style="@style/DashboardSlidingDrawer"
-            android:content="@+id/dashboard_sliding_drawer_content"
-            android:handle="@+id/dashboard_sliding_drawer_handle" >
-
-            <LinearLayout
-                android:id="@id/dashboard_sliding_drawer_handle"
-                style="@style/DashboardSlidingDrawerHandle" >
-
-                <TextView
-                    android:id="@+id/dashboard_sliding_drawer_title"
-                    style="@style/DashboardSlidingDrawerTitle" />
-
-                <ViewFlipper
-                    android:id="@+id/dashboard_sliding_drawer_subtitle_view_flipper"
-                    style="@style/DashboardSlidingDrawerSubtitleViewFlipper" >
-
-                    <TextView style="@style/DashboardSlidingDrawerSubtitle" />
-
-                    <TextView style="@style/DashboardSlidingDrawerSubtitle" />
-
-                    <TextView style="@style/DashboardSlidingDrawerSubtitle" />
-                </ViewFlipper>
-            </LinearLayout>
-
-            <LinearLayout
-                android:id="@id/dashboard_sliding_drawer_content"
-                style="@style/DashboardSlidingDrawerContent" >
-
-                <org.scauhci.ExamSystem.android.view.dashboard.NoticeListView
-                    android:id="@+id/dashboard_sliding_drawer_content_list_notice"
-                    style="@style/DashboardSlidingDrawerContentNoticeList" >
-                </org.scauhci.ExamSystem.android.view.dashboard.NoticeListView>
-            </LinearLayout>
-        </SlidingDrawer>
+        <include layout="@layout/sliding_drawer_notice"/>
     </FrameLayout>
 
 </LinearLayout>

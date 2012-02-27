@@ -61,8 +61,6 @@ public class PaperXmlAnalyzer {
 		} else {
 			try {
 				inDate = dateFormator.parse(targetString);
-				Log.e(Flag.DEBUG,
-						DateFormat.format("yyyyMMdd'T'hhmmss'Z'", inDate) + "");
 				resultTime.parse(DateFormat.format("yyyyMMdd'T'hhmmss'Z'",
 						inDate) + "");
 			} catch (ParseException e) {
@@ -87,7 +85,7 @@ public class PaperXmlAnalyzer {
 		SubmitAnswerPojo standardSubmitAnswerPojo = null;
 		QuestionOptionPojo questionOptionPojo = null;
 		CoursePojo coursePojo = null;
-		String questionStdAnswer = null;
+		String questionStdAnswerIndex = null;
 		while (eventCode != XmlPullParser.END_DOCUMENT) {
 			switch (eventCode) {
 			case XmlPullParser.START_DOCUMENT:
@@ -164,10 +162,8 @@ public class PaperXmlAnalyzer {
 					questionPojo.setQuestionStdAnswer(xmlPullParser
 							.getAttributeValue(null, "questionStdAnswer"));
 
-					questionStdAnswer = xmlPullParser.getAttributeValue(null,
+					questionStdAnswerIndex = xmlPullParser.getAttributeValue(null,
 							"stdAnswer");
-
-					questionDao.add(questionPojo);
 
 					relationPaperQuestionPojo = new RelationPaperQuestionPojo();
 
@@ -195,8 +191,6 @@ public class PaperXmlAnalyzer {
 							.parseFloat(xmlPullParser.getAttributeValue(null,
 									"stdScore")));
 
-					submitAnswerDao.add(standardSubmitAnswerPojo);
-
 				} else if (xmlPullParser.getName().equals("option")) {
 
 					questionOptionPojo = new QuestionOptionPojo();
@@ -206,9 +200,11 @@ public class PaperXmlAnalyzer {
 					questionOptionPojo
 							.setQuestionOptionContent(getTextInTag(xmlPullParser
 									.getAttributeValue(null, "value")));
-					if (questionStdAnswer.equals(xmlPullParser
+					if (questionStdAnswerIndex.equals(xmlPullParser
 							.getAttributeValue(null, "index"))) {
 						questionOptionPojo.setQuestionStdAnswer(true);
+						standardSubmitAnswerPojo.setSubmitAnswerContent(questionOptionPojo.getQuestionOptionContent());
+						questionPojo.setQuestionStdAnswer(questionOptionPojo.getQuestionOptionContent());
 					}
 
 					questionOptionDao.add(questionOptionPojo);
@@ -216,6 +212,10 @@ public class PaperXmlAnalyzer {
 				}
 				break;
 			case XmlPullParser.END_TAG:
+				if (xmlPullParser.getName().equals("question")) {
+					submitAnswerDao.add(standardSubmitAnswerPojo);
+					questionDao.add(questionPojo);
+				}
 				break;
 			default:
 				break;

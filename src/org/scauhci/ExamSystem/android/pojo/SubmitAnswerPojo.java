@@ -6,8 +6,17 @@ public class SubmitAnswerPojo {
 	private String questionId;
 	private String examId;
 	private String studentId;
-	private float questionStdScore;
+	private float questionStdScore = 0;
 	private float questionScore;
+	private String submitAnswerContent;
+
+	public String getSubmitAnswerContent() {
+		return submitAnswerContent;
+	}
+
+	public void setSubmitAnswerContent(String submitAnswerContent) {
+		this.submitAnswerContent = submitAnswerContent;
+	}
 
 	public String getSubmitAnswerId() {
 		return submitAnswerId;

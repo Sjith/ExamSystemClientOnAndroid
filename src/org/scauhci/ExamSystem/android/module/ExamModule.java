@@ -5,67 +5,62 @@ import java.util.HashMap;
 
 import org.scauhci.ExamSystem.android.pojo.ExamPojo;
 import org.scauhci.ExamSystem.android.pojo.PaperPojo;
-import org.scauhci.ExamSystem.android.pojo.QuestionOptionPojo;
-import org.scauhci.ExamSystem.android.pojo.QuestionPojo;
+import org.scauhci.ExamSystem.android.pojo.ScorePojo;
+import org.scauhci.ExamSystem.android.pojo.SubmitAnswerPojo;
 import org.scauhci.ExamSystem.android.service.ExamService;
-import org.scauhci.ExamSystem.android.service.QuestionService;
 
 public class ExamModule {
-	ExamService examService = new ExamService();
-	QuestionService questionService = new QuestionService();
+	ExamService examService;
+	ExamListModule examListModule;
+	PaperModule paperModule;
+	ExamPojo examPojo;
+	HashMap<String, Object> examData = new HashMap<String, Object>();
+	PaperPojo paperPojo;
 
-	public ArrayList<HashMap<String,Object>> getAllExamListItemData(){
-		ArrayList<HashMap<String, Object>> examListItemDatas = new ArrayList<HashMap<String, Object>>();
-		ArrayList<ExamPojo> examPojos = examService.getAllExamPojo();
-		
-		for (ExamPojo examPojo : examPojos) {
-			HashMap<String, Object> examListItemData = new HashMap<String, Object>();
-			examListItemData.put("examName", examPojo.getExamName());
-			examListItemData.put("examLastTime", examService.getLastTime(examPojo).toMillis(false));
-			examListItemData.put("examStartTime", examPojo.getExamStartTime() == null ? "" : examPojo.getExamStartTime().format("%n月%j日 %H:%M"));
-			examListItemData.put("examEndTime", examPojo.getExamEndTime() == null ? "" : examPojo.getExamEndTime().format("%n月%j日 %H:%M"));
-			examListItemData.put("paperId", examPojo.getPaperId());
-			examListItemDatas.add(examListItemData);
-		}
-		
-		return examListItemDatas;
+	public ExamModule(ExamPojo examPojo, ExamListModule examListModule) {
+		this.examListModule = examListModule;
+		this.examPojo = examPojo;
+		examService = examListModule.getExamService();
+		paperPojo = examService.getPaperPojoByExamPojo(examPojo);
+		paperModule = new PaperModule(paperPojo, this);
+		examData.put("examId", examPojo.getExamId());
+		examData.put("examName", examPojo.getExamName());
+		examData.put("examLastTime", examService.getLastTime(examPojo)
+				.toMillis(false));
+		examData.put("examStartTime", examPojo.getExamStartTime() == null ? ""
+				: examPojo.getExamStartTime().format("%n月%j日 %H:%M"));
+		examData.put("examEndTime", examPojo.getExamEndTime() == null ? ""
+				: examPojo.getExamEndTime().format("%n月%j日 %H:%M"));
+		examData.put("paperId", examPojo.getPaperId());
 	}
-	
-	public ArrayList<HashMap<String, Object>> getQuestionDatasByPaperId(String paperId){
-		PaperPojo paperPojo = new PaperPojo();
-		ArrayList<HashMap<String, Object>> questionDatas = new ArrayList<HashMap<String, Object>>();
-		
-		paperPojo.setPaperId(paperId);
-		ArrayList<QuestionPojo> questionPojos = examService.getQuestionPojosByPaperPojo(paperPojo);
-		for (QuestionPojo questionPojo : questionPojos) {
-			HashMap<String, Object> questionData = new HashMap<String, Object>();
-			
-			questionData.put("questionId", questionPojo.getQuestionId());
-			questionData.put("questionContent", questionPojo.getQuestionContent());
-			
-			questionDatas.add(questionData);
-		}
-		
-		return questionDatas;
+
+	public PaperModule getPaperModule() {
+		return paperModule;
 	}
-	
-	public ArrayList<HashMap<String, Object>> getQuestionOptionDatasByQuestionId(String questionId){
-		ArrayList<HashMap<String, Object>> questionOptionDatas = new ArrayList<HashMap<String, Object>>();
-		QuestionPojo questionPojo = new QuestionPojo();
-		
-		questionPojo.setQuestionId(questionId);
-		ArrayList<QuestionOptionPojo> questionOptionPojos = questionService.getQuestionOptionPojosByQuestionPojo(questionPojo);
-		
-		for (QuestionOptionPojo questionOptionPojo : questionOptionPojos) {
-			HashMap<String, Object> questionOptionData = new HashMap<String, Object>();
-			
-			questionOptionData.put("questionOptionId", questionOptionPojo.getQuestionOptionContent());
-			questionOptionData.put("questionOptionContent", questionOptionPojo.getQuestionOptionContent());
-			questionOptionData.put("isQuestionStdAnswer", questionOptionPojo.isQuestionStdAnswer());
-			
-			questionOptionDatas.add(questionOptionData);
+
+	public ExamPojo getExamPojo() {
+		return examPojo;
+	}
+
+	protected ExamService getExamService() {
+		return examService;
+	}
+
+	public HashMap<String, Object> getExamData() {
+		return examData;
+	}
+
+	public float finishExam() {
+		ScorePojo scorePojo;
+		ArrayList<SubmitAnswerPojo> submitAnswerPojos = paperModule
+				.submitPaper();
+
+		for (SubmitAnswerPojo submitAnswerPojo : submitAnswerPojos) {
+			submitAnswerPojo.setExamId(examPojo.getExamId());
 		}
-		
-		return questionOptionDatas;
+
+		scorePojo = examService.finishExam(submitAnswerPojos);
+
+		return scorePojo.getExamScore();
 	}
 }

@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="utf-8"?>
 <merge xmlns:android="http://schemas.android.com/apk/res/android" >
 
-    <TextView
-        android:id="@+id/question_content"
-        style="@style/QuestionContent" >
-    </TextView>
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal" >
+
+        <CheckBox
+            android:id="@+id/question_star_button"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="2dp"
+            android:button="@drawable/btn_star" />
+
+        <TextView
+            android:id="@+id/question_content"
+            style="@style/QuestionContent" >
+        </TextView>
+    </LinearLayout>
 
     <RadioGroup
         android:id="@+id/question_options"
-        android:layout_height="wrap_content"
         android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
         android:paddingTop="@dimen/padding_small" >
-
     </RadioGroup>
 
 </merge>

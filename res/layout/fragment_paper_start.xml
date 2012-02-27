@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background_noise"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/padding_sliding_drawer" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            style="@style/PaperStartFragmentTextRight"
+            android:text="@string/exam_name" />
+
+        <TextView
+            android:id="@+id/exam_name"
+            style="@style/PaperStartFragmentTextLeft" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            style="@style/PaperStartFragmentTextRight"
+            android:text="@string/exam_start_time" />
+
+        <TextView
+            android:id="@+id/exam_start_time"
+            style="@style/PaperStartFragmentTextLeft" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            style="@style/PaperStartFragmentTextRight"
+            android:text="@string/exam_end_time" />
+
+        <TextView
+            android:id="@+id/exam_end_time"
+            style="@style/PaperStartFragmentTextLeft" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:orientation="horizontal" >
+
+        <TextView
+            style="@style/PaperStartFragmentTextRight"
+            android:text="@string/exam_last_time" />
+
+        <TextView
+            android:id="@+id/exam_last_time"
+            style="@style/PaperStartFragmentTextLeft" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/start_exam_button"
+        style="@style/PaperStartFragmentStartExamButton" />
+
+</LinearLayout>

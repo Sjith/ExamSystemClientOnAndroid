@@ -33,7 +33,7 @@ public class ScoreDao {
 			
 			String[] keys = { "scoreId", "examId", "studentId", "paperScore" };
 			String[] values = { scorePojo.getScoreId(), scorePojo.getExamId(),
-					scorePojo.getStudentId(), scorePojo.getPaperScore() + "" };
+					scorePojo.getStudentId(), scorePojo.getExamScore() + "" };
 			
 			daoHelper.insert(tableName, keys, values);
 		} else {
@@ -84,8 +84,8 @@ public class ScoreDao {
 		if (scorePojo.getStudentId() != null) {
 			keyValueMap.put("studentId", scorePojo.getStudentId());
 		}
-		if (scorePojo.getPaperScore() != 0) {
-			keyValueMap.put("studentId", scorePojo.getPaperScore() + "");
+		if (scorePojo.getExamScore() != 0) {
+			keyValueMap.put("studentId", scorePojo.getExamScore() + "");
 		}
 
 		return keyValueMap;
@@ -107,7 +107,7 @@ public class ScoreDao {
 					.getColumnIndex("studentId")));
 			scorePojo.setExamId(scoreCursor.getString(scoreCursor
 					.getColumnIndex("examId")));
-			scorePojo.setScore(scoreCursor.getFloat(scoreCursor
+			scorePojo.setExamScore(scoreCursor.getFloat(scoreCursor
 					.getColumnIndex("score")));
 		} else {
 			scorePojo = null;
@@ -136,7 +136,7 @@ public class ScoreDao {
 					.getColumnIndex("studentId")));
 			scorePojo.setExamId(scoreCursor.getString(scoreCursor
 					.getColumnIndex("examId")));
-			scorePojo.setScore(scoreCursor.getFloat(scoreCursor
+			scorePojo.setExamScore(scoreCursor.getFloat(scoreCursor
 					.getColumnIndex("score")));
 		} else {
 			scorePojo = null;
@@ -165,7 +165,7 @@ public class ScoreDao {
 					.getColumnIndex("studentId")));
 			scorePojo.setExamId(scoreCursor.getString(scoreCursor
 					.getColumnIndex("examId")));
-			scorePojo.setScore(scoreCursor.getFloat(scoreCursor
+			scorePojo.setExamScore(scoreCursor.getFloat(scoreCursor
 					.getColumnIndex("score")));
 		} else {
 			scorePojo = null;
@@ -194,7 +194,7 @@ public class ScoreDao {
 					.getColumnIndex("examId")));
 			scorePojo.setStudentId(scoreCursor.getString(scoreCursor
 					.getColumnIndex("studentId")));
-			scorePojo.setScore(scoreCursor.getFloat(scoreCursor
+			scorePojo.setExamScore(scoreCursor.getFloat(scoreCursor
 					.getColumnIndex("score")));
 			scorePojos.add(scorePojo);
 		}

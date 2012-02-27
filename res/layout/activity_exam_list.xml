@@ -6,10 +6,16 @@
 
     <include layout="@layout/colorstrip" />
 
-    <android.support.v4.view.ViewPager
-        android:id="@+id/exam_list_pager"
-        style="@style/ExamListPager" >
-        
-    </android.support.v4.view.ViewPager>
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent" >
+
+        <android.support.v4.view.ViewPager
+            android:id="@+id/exam_list_pager"
+            style="@style/ExamListPager" >
+        </android.support.v4.view.ViewPager>
+
+        <include layout="@layout/sliding_drawer_notice" />
+    </FrameLayout>
 
 </LinearLayout>

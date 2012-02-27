@@ -1,6 +1,10 @@
 package org.scauhci.ExamSystem.android.view.exam;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+
 import org.scauhci.ExamSystem.android.R;
+import org.scauhci.ExamSystem.android.module.ExamListModule;
 import org.scauhci.ExamSystem.android.tool.Flag;
 import org.scauhci.ExamSystem.android.view.dashboard.DashboardActivity;
 
@@ -13,45 +17,80 @@ import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.MenuItem;
 import android.support.v4.view.ViewPager;
 import android.util.Log;
+import android.view.ViewGroup;
 
 public class ExamListActivity extends FragmentActivity {
 
 	ViewPager examListPager;
 	ExamListPagerAdapter examListPagerAdapter;
-	static int numberOfFragment = 2;
-	static int examListFragmentIndex = 0;
-	static int createExamFragmentIndex = 1;
+	ExamListFragment examListFragment;
+	CreateExamFragment createExamFragment;
+	ExamListModule examListModule;
+	ArrayList<HashMap<String, Object>> examListItemDatas;
+	final int numberOfFragment = 2;
+	final int examListFragmentIndex = 0;
+	final int createExamFragmentIndex = 1;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.activity_exam_list);
 
+		examListModule = ExamListModule.getInstance();
+		examListItemDatas = examListModule.getAllExamListItemData();
+		
 		initPager();
 	}
+	
+	public ArrayList<HashMap<String, Object>> getAllExamListItemData() {
+		return examListItemDatas;
+	}
 
+	public ExamListModule getExamListModule() {
+		return examListModule;
+	}
+
+	public ExamListFragment getExamListFragment() {
+		return examListFragment;
+	}
+
+	public CreateExamFragment getCreateExamFragment() {
+		return createExamFragment;
+	}
+
+	/**Initialize the ExamListPager.*/
 	private void initPager() {
+		examListFragment = new ExamListFragment();
+		createExamFragment = new CreateExamFragment();		
 		examListPagerAdapter = new ExamListPagerAdapter(
 				getSupportFragmentManager());
+		examListPagerAdapter.setExamListItemDatas(examListItemDatas);
 
 		examListPager = (ViewPager) findViewById(R.id.exam_list_pager);
 		examListPager.setAdapter(examListPagerAdapter);
 	}
 
-	public static class ExamListPagerAdapter extends FragmentPagerAdapter {
-
+	public class ExamListPagerAdapter extends FragmentPagerAdapter {
+		
+		ArrayList<HashMap<String, Object>> examListItemDatas;
+		
 		public ExamListPagerAdapter(FragmentManager fm) {
 			super(fm);
+		}
+		
+		public void setExamListItemDatas(
+				ArrayList<HashMap<String, Object>> examListItemDatas) {
+			this.examListItemDatas = examListItemDatas;
+			getExamListFragment().setExamListItemDatas(examListItemDatas);
+			notifyDataSetChanged();
 		}
 
 		@Override
 		public Fragment getItem(int position) {
-			ExamListFragment examListFragment = new ExamListFragment();
-			CreateExamFragment createExamFragment = new CreateExamFragment();
 			if (position == examListFragmentIndex) {
-				return examListFragment;
+				return getExamListFragment();
 			} else if (position == createExamFragmentIndex) {
-				return createExamFragment;
+				return getCreateExamFragment();
 			} else {
 				return null;
 			}
@@ -62,6 +101,10 @@ public class ExamListActivity extends FragmentActivity {
 			return numberOfFragment;
 		}
 
+		@Override
+		public void destroyItem(ViewGroup container, int position, Object object) {
+		}
+		
 	}
 
 	@Override
@@ -77,5 +120,10 @@ public class ExamListActivity extends FragmentActivity {
 		default:
 			return super.onOptionsItemSelected(item);
 		}
+	}
+	
+	/*TODO Complete this method.*/
+	public void addExam(){
+		
 	}
 }

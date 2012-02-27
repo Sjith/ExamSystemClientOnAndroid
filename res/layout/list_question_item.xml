@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/QuestionListItem" >
+    	
+        <TextView
+            android:id="@+id/list_question_item_index"
+            style="@style/QuestionListItemIndex" />
+
+        <TextView
+            android:id="@+id/list_question_item_name"
+            style="@style/QuestionListItemContent" />
+
+</LinearLayout>

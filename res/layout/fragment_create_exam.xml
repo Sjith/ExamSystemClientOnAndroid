@@ -7,7 +7,7 @@
         <TextView 
             android:id="@+id/exam_name_edit_title"
             style="@style/ExamEditTitle"
-            android:text="@string/exam_name_edit_title"/>
+            android:text="@string/exam_name"/>
         <EditText
             android:id="@+id/exam_name_edit"
             style="@style/ExamEdit"
@@ -20,7 +20,7 @@
         <TextView 
             android:id="@+id/exam_start_time_edit_title"
             style="@style/ExamEditTitle"
-            android:text="@string/exam_start_time_edit_title"/>
+            android:text="@string/exam_start_time"/>
     </LinearLayout>
 
     <LinearLayout
@@ -29,7 +29,7 @@
         <TextView 
             android:id="@+id/exam_end_time_edit_title"
             style="@style/ExamEditTitle"
-            android:text="@string/exam_end_time_edit_title"/>
+            android:text="@string/exam_end_time"/>
     </LinearLayout>
 
     <LinearLayout
@@ -38,7 +38,7 @@
         <TextView 
             android:id="@+id/exam_choose_paper_edit_title"
             style="@style/ExamEditTitle"
-            android:text="@string/exam_paper_choose_title"/>
+            android:text="@string/exam_paper_choose"/>
     </LinearLayout>
 
 </LinearLayout>

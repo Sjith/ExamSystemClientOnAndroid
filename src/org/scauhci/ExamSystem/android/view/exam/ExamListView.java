@@ -26,9 +26,6 @@ public class ExamListView extends ListView {
 		public void onItemClick(AdapterView<?> parent, View examListItemView,
 				int position, long id) {
 			
-			Log.e(Flag.DEBUG, "You are click the item " + position
-					+ " in ExamList");
-			
 			Intent intent = new Intent(getContext(), PaperAcitvity.class);
 			String examListItemName = (String) ((TextView) examListItemView
 					.findViewById(R.id.list_exam_item_name)).getText();
@@ -37,9 +34,8 @@ public class ExamListView extends ListView {
 				if (examListItemData.get("examName").equals(examListItemName)) {
 					Bundle args = new Bundle();
 					
-					args.putString("paperId", examListItemData.get("paperId")
+					args.putString("examId", examListItemData.get("examId")
 							+ "");
-					Log.e("paperId", examListItemData.get("paperId") + "");
 					intent.putExtras(args);
 					break;
 				}
@@ -60,13 +56,13 @@ public class ExamListView extends ListView {
 		super(context, attrs, defStyle);
 	}
 
-	public void setData(ArrayList<HashMap<String, Object>> examListItemDatas) {
+	public void setExamListItemDatas(ArrayList<HashMap<String, Object>> examListItemDatas) {
 
 		this.examListItemDatas = examListItemDatas;
-		initData();
+		initExamListItemDatas();
 	}
 
-	public void initData() {
+	public void initExamListItemDatas() {
 
 		examListAdapter = new SimpleAdapter(getContext(), examListItemDatas,
 				R.layout.list_exam_item, new String[] { "examName",

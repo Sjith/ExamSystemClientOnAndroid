@@ -24,7 +24,7 @@ public class SubmitAnswerDao {
 
 	public SubmitAnswerPojo add(SubmitAnswerPojo submitAnswerPojo) {
 		
-		if (completeSubmitAnswerPojo(submitAnswerPojo) == null) {
+		if (verifySubmitAnswerPojo(submitAnswerPojo) == null) {
 			long submitAnswerId;
 			for (submitAnswerId = HashValue.getDJBHashValue(submitAnswerPojo
 					.getExamId()
@@ -35,12 +35,13 @@ public class SubmitAnswerDao {
 			submitAnswerPojo.setSubmitAnswerId(Long.toHexString(submitAnswerId));
 			
 			String[] keys = { "submitAnswerId", "questionId", "examId",
-					"studentId", "questionStdScore", "questionScore" };
+					"studentId", "questionStdScore", "questionScore", "submitAnswerContent" };
 			String[] values = { submitAnswerPojo.getSubmitAnswerId(),
 					submitAnswerPojo.getQuestionId(), submitAnswerPojo.getExamId(),
 					submitAnswerPojo.getStudentId(),
 					submitAnswerPojo.getQuestionStdScore() + "",
-					submitAnswerPojo.getQuestionScore() + "" };
+					submitAnswerPojo.getQuestionScore() + "",
+					submitAnswerPojo.getSubmitAnswerContent()};
 			
 			daoHelper.insert(tableName, keys, values);
 		} else {
@@ -104,6 +105,9 @@ public class SubmitAnswerDao {
 			keyValueMap.put("questionScore",
 					submitAnswerPojo.getQuestionScore() + "");
 		}
+		if (submitAnswerPojo.getSubmitAnswerContent() != null) {
+			keyValueMap.put("submitAnswerContent", submitAnswerPojo.getSubmitAnswerContent());
+		}
 
 		return keyValueMap;
 	}
@@ -136,6 +140,8 @@ public class SubmitAnswerDao {
 			submitAnswerPojo.setQuestionStdScore(submitAnswerCursor
 					.getFloat(submitAnswerCursor
 							.getColumnIndex("questionStdScore")));
+			submitAnswerPojo.setSubmitAnswerContent(submitAnswerCursor
+					.getString(submitAnswerCursor.getColumnIndex("submitAnswerContent")));
 		} else {
 			submitAnswerPojo = null;
 		}
@@ -175,12 +181,58 @@ public class SubmitAnswerDao {
 			submitAnswerPojo.setQuestionStdScore(submitAnswerCursor
 					.getFloat(submitAnswerCursor
 							.getColumnIndex("questionStdScore")));
+			submitAnswerPojo.setSubmitAnswerContent(submitAnswerCursor
+					.getString(submitAnswerCursor.getColumnIndex("submitAnswerContent")));
 		} else {
 			submitAnswerPojo = null;
 		}
 		
 		submitAnswerCursor.close();
 
+		return submitAnswerPojo;
+	}
+	
+	public SubmitAnswerPojo verifySubmitAnswerPojo(
+			SubmitAnswerPojo submitAnswerPojo) {
+		HashMap<String, String> keyValueMap = getKeyValueMapBySubmitAnswerPojo(submitAnswerPojo);
+		keyValueMap.remove("submitAnswerId");
+		keyValueMap.remove("questionScore");
+		keyValueMap.remove("submitAnswerContent");
+		
+		String[] keys = { "*" };
+		String[] whereConditionKeys = new String[keyValueMap.size()];
+		keyValueMap.keySet().toArray(whereConditionKeys);
+		String[] whereConditionValues = new String[whereConditionKeys.length];
+		keyValueMap.values().toArray(whereConditionValues);
+		
+		Cursor submitAnswerCursor = daoHelper.select(tableName, keys,
+				whereConditionKeys, whereConditionValues);
+		if (submitAnswerCursor.moveToFirst()) {
+			submitAnswerPojo.setSubmitAnswerId(submitAnswerCursor
+					.getString(submitAnswerCursor
+							.getColumnIndex("submitAnswerId")));
+			submitAnswerPojo.setExamId(submitAnswerCursor
+					.getString(submitAnswerCursor.getColumnIndex("examId")));
+			submitAnswerPojo
+			.setQuestionId(submitAnswerCursor
+					.getString(submitAnswerCursor
+							.getColumnIndex("questionId")));
+			submitAnswerPojo.setStudentId(submitAnswerCursor
+					.getString(submitAnswerCursor.getColumnIndex("studentId")));
+			submitAnswerPojo.setQuestionScore(submitAnswerCursor
+					.getFloat(submitAnswerCursor
+							.getColumnIndex("questionScore")));
+			submitAnswerPojo.setQuestionStdScore(submitAnswerCursor
+					.getFloat(submitAnswerCursor
+							.getColumnIndex("questionStdScore")));
+			submitAnswerPojo.setSubmitAnswerContent(submitAnswerCursor
+					.getString(submitAnswerCursor.getColumnIndex("submitAnswerContent")));
+		} else {
+			submitAnswerPojo = null;
+		}
+		
+		submitAnswerCursor.close();
+		
 		return submitAnswerPojo;
 	}
 
@@ -223,6 +275,8 @@ public class SubmitAnswerDao {
 			submitAnswerPojo.setQuestionStdScore(submitAnswerCursor
 					.getFloat(submitAnswerCursor
 							.getColumnIndex("questionStdScore")));
+			submitAnswerPojo.setSubmitAnswerContent(submitAnswerCursor
+					.getString(submitAnswerCursor.getColumnIndex("submitAnswerContent")));
 		} else {
 			submitAnswerPojo = null;
 		}
@@ -270,6 +324,8 @@ public class SubmitAnswerDao {
 			submitAnswerPojo.setQuestionStdScore(submitAnswerCursor
 					.getFloat(submitAnswerCursor
 							.getColumnIndex("questionStdScore")));
+			submitAnswerPojo.setSubmitAnswerContent(submitAnswerCursor
+					.getString(submitAnswerCursor.getColumnIndex("submitAnswerContent")));
 			submitAnswerPojos.add(submitAnswerPojo);
 		}
 		

@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import org.scauhci.ExamSystem.android.R;
+import org.scauhci.ExamSystem.android.module.ExamListModule;
 import org.scauhci.ExamSystem.android.module.ExamModule;
 
 import android.os.Bundle;
@@ -18,11 +19,14 @@ public class ExamListFragment extends Fragment {
 
 	View root;
 	ExamListView examListView;
-	ExamModule examModule = new ExamModule();
+	ExamListActivity examListActivity;
+	ArrayList<HashMap<String, Object>> examListItemDatas;
 
 	@Override
 	public void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+		examListActivity = (ExamListActivity) getActivity();
 	}
 
 	@Override
@@ -30,8 +34,8 @@ public class ExamListFragment extends Fragment {
 			Bundle savedInstanceState) {
 		root = inflater.inflate(R.layout.fragment_exam_list, container, false);
 		
-		initExamListView();
 		changeActionBar();
+		initExamListView();
 		return root;
 	}
 	
@@ -41,10 +45,15 @@ public class ExamListFragment extends Fragment {
 		actionBar.setTitle(R.string.exam_list_title);
 	}
 
+	public void setExamListItemDatas(
+			ArrayList<HashMap<String, Object>> examListItemDatas) {
+		this.examListItemDatas = examListItemDatas;
+		/*TODO Debug this NULL point exception.*/
+	}
+
 	public void initExamListView() {
 		examListView = (ExamListView) (root.findViewById(R.id.list_exam));
 		
-		ArrayList<HashMap<String, Object>> examListItemDatas = examModule.getAllExamListItemData();
-		examListView.setData(examListItemDatas);
+		examListView.setExamListItemDatas(examListItemDatas);
 	}
 }

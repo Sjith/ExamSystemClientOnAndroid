@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android" >
+
+    <org.scauhci.ExamSystem.android.view.dashboard.NoticeSlidingDrawer
+            android:id="@+id/sliding_drawer_notice"
+            style="@style/NoticeSlidingDrawer"
+            android:content="@+id/sliding_drawer_notice_content"
+            android:handle="@+id/sliding_drawer_notice_handle" >
+
+            <LinearLayout
+                android:id="@id/sliding_drawer_notice_handle"
+                style="@style/NoticeSlidingDrawerHandle" >
+
+                <TextView
+                    android:id="@+id/sliding_drawer_notice_title"
+                    style="@style/NoticeSlidingDrawerTitle" />
+
+                <ViewFlipper
+                    android:id="@+id/sliding_drawer_notice_subtitle_view_flipper"
+                    style="@style/NoticeSlidingDrawerSubtitleViewFlipper" >
+
+                    <TextView style="@style/NoticeSlidingDrawerSubtitle" />
+
+                    <TextView style="@style/NoticeSlidingDrawerSubtitle" />
+
+                    <TextView style="@style/NoticeSlidingDrawerSubtitle" />
+                </ViewFlipper>
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@id/sliding_drawer_notice_content"
+                style="@style/NoticeSlidingDrawerContent" >
+
+                <org.scauhci.ExamSystem.android.view.dashboard.NoticeListView
+                    android:id="@+id/sliding_drawer_notice_content_list_notice"
+                    style="@style/NoticeSlidingDrawerContentNoticeList" >
+                </org.scauhci.ExamSystem.android.view.dashboard.NoticeListView>
+            </LinearLayout>
+        </org.scauhci.ExamSystem.android.view.dashboard.NoticeSlidingDrawer>
+
+</merge>

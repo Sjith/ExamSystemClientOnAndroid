@@ -119,6 +119,20 @@ public class ExamService {
 			submitAnswerPojo.setStudentId(StudentDao.getLatestStudentPojo()
 					.getStudentId());
 		}
+		if (submitAnswerPojo.getQuestionStdScore() == 0) {
+			ExamPojo examPojo = examDao.getExamPojoByExamId(submitAnswerPojo.getExamId());
+			QuestionPojo questionPojo = questionDao.getQuestionPojoByQuestionId(submitAnswerPojo.getQuestionId());
+			float questionStdScore = getStandardSubmitAnswerPojoByExamPojoAndQuestionPojo(examPojo, questionPojo).getQuestionStdScore();
+			submitAnswerPojo.setQuestionStdScore(questionStdScore);
+		}
+		if (submitAnswerPojo.getQuestionScore() == 0) {
+			ExamPojo examPojo = examDao.getExamPojoByExamId(submitAnswerPojo.getExamId());
+			QuestionPojo questionPojo = questionDao.getQuestionPojoByQuestionId(submitAnswerPojo.getQuestionId());
+			String standardSubmitAnswerContent = getStandardSubmitAnswerPojoByExamPojoAndQuestionPojo(examPojo, questionPojo).getSubmitAnswerContent();
+			if (submitAnswerPojo.getSubmitAnswerContent().equals(standardSubmitAnswerContent)) {
+				submitAnswerPojo.setQuestionScore(submitAnswerPojo.getQuestionStdScore());
+			}
+		}
 
 		return submitAnswerDao.add(submitAnswerPojo);
 	}
@@ -134,12 +148,7 @@ public class ExamService {
 		return submitAnswerDao.delete(submitAnswerPojo);
 	}
 
-	/* incomplete */
 	public ScorePojo finishExam(ArrayList<SubmitAnswerPojo> submitAnswerPojos) {
-		/*
-		 * Did't verify whether the value of submitAnswerPojo is identical and
-		 * whether the value of studentPojo and submitAnswerPojo is identical.
-		 */
 		ScorePojo scorePojo = new ScorePojo();
 		StudentPojo studentPojo = StudentDao.getLatestStudentPojo();
 		ExamPojo examPojo = examDao.getExamPojoByExamId(submitAnswerPojos
@@ -151,7 +160,7 @@ public class ExamService {
 
 		scorePojo.setExamId(examPojo.getExamId());
 		scorePojo.setStudentId(studentPojo.getStudentId());
-		scorePojo.setScore(submitAnswerDao
+		scorePojo.setExamScore(submitAnswerDao
 				.getTotalScoreOfExamPojoByStudentPojo(studentPojo, examPojo));
 
 		return scoreDao.add(scorePojo);

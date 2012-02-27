@@ -15,7 +15,14 @@ public class PaperTitleFragmentAdapter extends PaperFragmentAdapter implements T
 
 	@Override
 	public String getTitle(int position) {
-		String inflaterTitle = "第" + position + "题";
+		String inflaterTitle;
+		if (position == 0) {
+			inflaterTitle = "开始考试";
+		} else if (position == (this.getCount() -1)) {
+			inflaterTitle = "结束考试";
+		} else {
+			inflaterTitle = "第" + position + "题";
+		}
 		return inflaterTitle;
 	}
 }

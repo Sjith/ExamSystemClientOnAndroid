@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@drawable/background_noise"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:paddingBottom="@dimen/padding_sliding_drawer" >
+
+    <TextView
+        style="@style/PaperEndFragmentText"
+        android:text="@string/remain_time_without_sign" />
+
+    <TextView
+        android:id="@+id/remain_time"
+        style="@style/PaperEndFragmentText" />
+
+    <Button
+        android:id="@+id/finish_exam_button"
+        style="@style/PaperEndFragmentFinishExamButton" />
+
+</LinearLayout>

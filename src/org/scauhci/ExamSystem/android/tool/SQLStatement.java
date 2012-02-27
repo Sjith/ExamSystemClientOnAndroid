@@ -74,6 +74,7 @@ public class SQLStatement {
 			+ "  `studentId` varchar(32) NOT NULL,"
 			+ "  `questionId` char(32) NOT NULL,"
 			+ "  `examId` char(32) NOT NULL,"
+			+ "  `submitAnswerContent` mediumtext DEFAULT NULL,"
 			+ "  `questionStdScore` float DEFAULT NULL,"
 			+ "  `questionScore` float NOT NULL,"
 			+ "  PRIMARY KEY (`submitAnswerId`),"
@@ -122,5 +123,5 @@ public class SQLStatement {
 
 	public static final String UPDATE = "UPDATE ? SET ? WHERE ?;";
 
-	public static final String SELECT = "SELECT ? FROM ?;";
+	public static final String SELECT = "SELECT ? FROM ?";
 }
